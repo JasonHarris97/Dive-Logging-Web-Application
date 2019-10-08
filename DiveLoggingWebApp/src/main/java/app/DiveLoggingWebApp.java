@@ -1,3 +1,5 @@
+// SOURCE: https://www.codebyamir.com/blog/user-account-registration-with-spring-boot
+
 package app;
 
 import org.springframework.boot.SpringApplication;
