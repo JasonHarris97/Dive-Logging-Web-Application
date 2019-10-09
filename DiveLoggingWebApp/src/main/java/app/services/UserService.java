@@ -19,6 +19,14 @@ public class UserService {
     public User findByFirstName(String firstName) {
     	return userRepository.findByFirstName(firstName);
     }
+    
+    public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+	
+	public User findByConfirmationToken(String confirmationToken) {
+		return userRepository.findByConfirmationToken(confirmationToken);
+	}
 	
 	public void saveUser(User user) {
 		userRepository.save(user);
