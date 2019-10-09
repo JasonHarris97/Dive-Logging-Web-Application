@@ -27,13 +27,13 @@ public class RegistrationController {
 	@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public ModelAndView showRegistrationPage(ModelAndView modelAndView, User user) {
 		modelAndView.addObject("user", user);
-		modelAndView.setViewName("register");
+		modelAndView.setViewName("registration");
 		
 		return modelAndView;
 	}
 	
 	// Process form submission
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView processRegistrationForm(ModelAndView modelAndView, @Valid User user, BindingResult bindingResult, HttpServletRequest request) {
 		
 		// See if user already exists in the database
@@ -43,15 +43,15 @@ public class RegistrationController {
 		
 		if(userExists != null) {
 			modelAndView.addObject("alreadyRegisteredMessage", "User exists with this email. Please use another email address");
-			modelAndView.setViewName("register");
+			modelAndView.setViewName("registration");
 			bindingResult.reject("email");
 		}
 		
 		if(bindingResult.hasErrors()){
-			modelAndView.setViewName("register");
+			modelAndView.setViewName("registration");
 		} else {
 			userService.saveUser(user);
-			modelAndView.setViewName("register");
+			modelAndView.setViewName("registration");
 		}
 		
 		return modelAndView;
