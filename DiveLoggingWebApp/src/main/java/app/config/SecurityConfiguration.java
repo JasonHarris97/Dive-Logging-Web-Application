@@ -27,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     		"/index*",
                     		"/meme**",
                             "/registration**",
+                            "/dive/**",
                             "/js/**",
                             "/css/**",
                             "/img/**",

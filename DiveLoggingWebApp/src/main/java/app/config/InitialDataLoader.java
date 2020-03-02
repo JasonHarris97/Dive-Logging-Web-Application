@@ -11,8 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import app.controllers.RegistrationController;
+import app.models.Dive;
 import app.models.Role;
 import app.models.User;
+import app.services.DiveService;
 import app.services.UserService;
 
 @Component
@@ -22,6 +24,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private DiveService diveService;
 	
 	@Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -34,6 +39,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			return;
 		}
 
+		// Test User
 		User testUser = new User();
 		testUser.setEmail("test@gmail.com");
 		testUser.setFirstName("John");
@@ -41,8 +47,12 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		testUser.setPassword(passwordEncoder.encode("test"));
 		testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
 		userService.save(testUser);
-		log.info("JOHN SMITH ADDED");
-		log.info("JOHN SMITH ADDED");
-		log.info("JOHN SMITH ADDED");
+		log.info("Test User Added");	
+		
+		// Test Dive Log
+		Dive testDive = new Dive(testUser, "test descrption");
+		diveService.save(testDive);
+		log.info("Test Dive Added with ID: " + testDive.getId());
+
 	}
 }
