@@ -86,6 +86,15 @@ public class Dive {
 	
 	private String observationsList;
 	
+	// Constructors
+	public Dive() {
+	}
+	
+	public Dive(User diveOwner, String description) {
+		this.diveOwner = diveOwner;
+		this.description = description;
+	}
+	
 	// Id -----------------------------------------
 	public Long getId() {
         return id;
