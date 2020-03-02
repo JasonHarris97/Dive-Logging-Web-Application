@@ -26,10 +26,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
+    @Override
     public User save(UserDto registration) {
         User user = new User();
         user.setFirstName(registration.getFirstName());
@@ -38,6 +40,11 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
         return userRepository.save(user);
+    }
+    
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override
@@ -49,6 +56,11 @@ public class UserServiceImpl implements UserService {
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
             user.getPassword(),
             mapRolesToAuthorities(user.getRoles()));
+    }
+    
+    @Override
+    public long count() {
+        return userRepository.count();
     }
 
     private Collection < ? extends GrantedAuthority > mapRolesToAuthorities(Collection <Role> roles) {

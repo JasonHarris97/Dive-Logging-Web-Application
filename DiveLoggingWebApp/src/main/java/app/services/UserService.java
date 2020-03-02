@@ -8,4 +8,6 @@ import app.web.UserDto;
 public interface UserService extends UserDetailsService {
     User findByEmail(String email);
     User save(UserDto registration);
+    void save(User user);
+    long count();
 }
