@@ -29,6 +29,11 @@ public class UserController{
         return new UserDto();
     }
     
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model) {
+        return "user/login";
+    }
+    
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
         return "user/registration";
@@ -53,7 +58,7 @@ public class UserController{
         }
 
         userService.save(userDto);
-        return "redirect:/login?regSuccess";
+        return "redirect:/user/login?regSuccess";
     }
 }
 

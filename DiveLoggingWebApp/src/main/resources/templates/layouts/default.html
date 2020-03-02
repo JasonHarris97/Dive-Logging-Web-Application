@@ -39,7 +39,7 @@
 						<!-- <li sec:authorize="isAuthenticated()"><a th:href="@{/profile/{email}"><span sec:authentication="name"></span></a></li> -->
 						<li sec:authorize="isAuthenticated()"><a th:href="@{/profile}" sec:authentication="name"></a></li>
 						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-						<li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+						<li sec:authorize="!isAuthenticated()"><a th:href="@{/user/login}">Login</a></li>
 					</ul>
 				</div>
 			</div>

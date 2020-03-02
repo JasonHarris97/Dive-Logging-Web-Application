@@ -17,12 +17,7 @@ public class MainController {
     public String root() {
         return "index";
     }
-
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login";
-    }
-
+    
     @GetMapping("/user")
     public String userIndex() {
         return "user/index";

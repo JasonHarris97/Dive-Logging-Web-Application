@@ -16,7 +16,7 @@
 				<h1>Login</h1>
 				
 				<!-- LOGIN FORM -->
-				<form th:action="@{/login}" method="post">
+				<form th:action="@{/user/login}" method="post">
 					<!-- Display if invalid credentials -->
 					<div th:if="${param.error}">
 						<div class="alert alert-danger">Invalid username or
@@ -61,7 +61,7 @@
 					
 					<!-- Registration link -->
 					<div class="form-group">
-						<span>New user? <a href="/" th:href="@{/registration}">Register
+						<span>New user? <a href="/" th:href="@{/user/registration}">Register
 						here</a></span>
 					</div>
 				</form>
