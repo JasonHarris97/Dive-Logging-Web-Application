@@ -1,53 +1,16 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	  layout:decorate="~{layouts/default}"
+	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-	<link rel="stylesheet" type="text/css" 
-		th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-
 	<title>Dives</title>
 </head>
 
 <body>
-	<!-- NAV BAR -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Dive</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li sec:authorize="!isAuthenticated()"><a th:href="@{/registration}">Register</a></li>
-					<li><a th:href="@{/queryLogs}">Query</a></li>
-					<li><a th:href="@{/findUsers}">Find</a></li>
-					<li><a th:href="@{/uploadLog}">Upload</a></li>
-					<!-- <li sec:authorize="isAuthenticated()"><a th:href="@{/profile/{email}"><span sec:authentication="name"></span></a></li> -->
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/profile}" sec:authentication="name"></a></li>
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-					<li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<!-- NAV BAR -->
-
-	<br>
-	<br>
-
 	<!-- MAIN -->
-	<div class="container">
+	<div layout:fragment="content">
 		<h1>My Dives</h1>
 
 		<table class="table table-striped table-hover">
@@ -69,5 +32,6 @@
 	</div>
 	<!-- MAIN -->
 </body>
+
 </html>
 
