@@ -10,7 +10,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import app.controllers.RegistrationController;
 import app.models.Dive;
 import app.models.Role;
 import app.models.User;

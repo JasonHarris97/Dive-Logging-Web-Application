@@ -15,7 +15,7 @@
 				<h1>Registration</h1>
 
 				<!-- Registration Form -->
-				<form th:action="@{/registration}" th:object="${user}" method="post">
+				<form th:action="@{/user/registration}" th:object="${user}" method="post">
 
 					<p class="error-message" th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error</p>
 					

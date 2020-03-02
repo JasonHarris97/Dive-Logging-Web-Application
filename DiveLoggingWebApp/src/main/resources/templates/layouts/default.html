@@ -31,7 +31,7 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li sec:authorize="!isAuthenticated()"><a th:href="@{/registration}">Register</a></li>
+						<li sec:authorize="!isAuthenticated()"><a th:href="@{/user/registration}">Register</a></li>
 						<li><a th:href="@{/queryLogs}">Query</a></li>
 						<li><a th:href="@{/dive}">Discover</a></li>
 						<li><a th:href="@{/findUsers}">Find</a></li>
