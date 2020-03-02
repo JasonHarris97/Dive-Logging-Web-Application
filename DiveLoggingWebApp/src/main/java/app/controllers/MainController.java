@@ -27,23 +27,4 @@ public class MainController {
     public String userIndex() {
         return "user/index";
     }
-    
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserName(Authentication authentication) {
-       return authentication.getName();
-    }
-    
-    @RequestMapping(value = "/principal", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserName(Principal principal) {
-       return principal.getName();
-    }
-    
-    @GetMapping("/meme")
-    public String meme() {
-        return "meme";
-    }
-    
-    
 }
