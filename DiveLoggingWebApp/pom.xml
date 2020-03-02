@@ -31,6 +31,7 @@
   	</build>
   
   	<dependencies>
+  		<!-- Spring Boot -->
 		<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -45,7 +46,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-        
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		
+		<!-- Thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -57,41 +70,39 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
+		  <groupId>nz.net.ultraq.thymeleaf</groupId>
+		  <artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
 		
+		<!-- com.nulab -->
 		<dependency>
   			<groupId>com.nulab-inc</groupId>
   			<artifactId>zxcvbn</artifactId>
   			<version>1.2.3</version>
 		</dependency>
 
+		<!-- nekohtml -->
 		<dependency>
 			<groupId>net.sourceforge.nekohtml</groupId>
 			<artifactId>nekohtml</artifactId>
 			<version>1.9.21</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
 		
-		<!-- bootstrap and jquery -->
+		<!-- bootstrap and jQuery -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>3.3.7</version>
         </dependency>
+        
         <dependency>
              <groupId>org.webjars</groupId>
              <artifactId>jquery</artifactId>
              <version>3.2.1</version>
         </dependency>
 		
-		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+		<!-- commons-beanutils -->
         <dependency>
            <groupId>commons-beanutils</groupId>
            <artifactId>commons-beanutils</artifactId>
@@ -99,7 +110,6 @@
        </dependency>
 		
 		<!-- MySQL -->
-		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -119,6 +129,7 @@
             <scope>test</scope>
         </dependency>
         
+        <!-- h2database -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
