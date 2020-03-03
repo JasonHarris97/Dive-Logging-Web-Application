@@ -37,7 +37,7 @@
 						<li><a th:href="@{/findUsers}">Find</a></li>
 						<li><a th:href="@{/uploadLog}">Upload</a></li>
 						<!-- <li sec:authorize="isAuthenticated()"><a th:href="@{/profile/{email}"><span sec:authentication="name"></span></a></li> -->
-						<li sec:authorize="isAuthenticated()"><a th:href="@{/profile}" sec:authentication="name"></a></li>
+						<li sec:authorize="isAuthenticated()"><a th:href="@{'/user/view/'+${#authentication.name}}" sec:authentication="name"></a></li>
 						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 						<li sec:authorize="!isAuthenticated()"><a th:href="@{/user/login}">Login</a></li>
 					</ul>

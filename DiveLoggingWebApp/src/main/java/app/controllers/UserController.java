@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,11 @@ public class UserController{
     @ModelAttribute("user")
     public UserDto userDto() {
         return new UserDto();
+    }
+    
+    @ModelAttribute("activeUser")
+    public User user() {
+        return new User();
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -60,5 +66,14 @@ public class UserController{
         userService.save(userDto);
         return "redirect:/user/login?regSuccess";
     }
+    
+    @RequestMapping(value="/view/{username}", method = RequestMethod.GET)
+	public String getUserProfilePage(@PathVariable("username") String username, Model model) {
+		User user = userService.findByUsername(username);
+		model.addAttribute("user", user);
+		
+		return "user/view";
+	}
+
 }
 
