@@ -30,7 +30,7 @@
 		<h3>End Time</h3>
 		<p th:text="${dive.endTime}"></p>
 		<h3>Duration</h3>
-		<p th:text="${dive.diveDuration.toHoursPart()}"></p>
+		<p th:text="${dive.diveDuration.toMinutes()}"></p>
 		<h3>Latitude</h3>
 		<p th:text="${dive.latitude}"></p>
 		<h3>Longitude</h3>
@@ -81,7 +81,7 @@
 		<p th:text="${dive.faunaList}"></p>
 		<h3>Flora</h3>
 		<p th:text="${dive.floraList}"></p>
-		<h3>observationsList</h3>
+		<h3>ObservationsList</h3>
 		<p th:text="${dive.observationsList}"></p>
 	</div>
 	<!-- MAIN -->
