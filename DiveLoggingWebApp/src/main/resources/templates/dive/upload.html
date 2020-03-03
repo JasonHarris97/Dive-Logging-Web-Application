@@ -26,6 +26,27 @@
 						<p class="error-message" th:each="error: ${#fields.errors('date')}" th:text="${error}">Validation error</p>
 					</div>
 
+					<!-- startTime -->
+					<div class="form-group" th:classappend="${#fields.hasErrors('startTime')}? 'has-error':''">
+						<label for="startTime" class="control-label">startTime</label> 
+						<input type="time" id="startTime" class="form-control" th:field="*{startTime}" />
+						<p class="error-message" th:each="error: ${#fields.errors('startTime')}" th:text="${error}">Validation error</p>
+					</div>	
+
+					<!-- endTime -->
+					<div class="form-group" th:classappend="${#fields.hasErrors('endTime')}? 'has-error':''">
+						<label for="endTime" class="control-label">endTime</label> 
+						<input type="time" id="endTime" class="form-control" th:field="*{endTime}" />
+						<p class="error-message" th:each="error: ${#fields.errors('endTime')}" th:text="${error}">Validation error</p>
+					</div>	
+
+					<!-- latitude -->
+					<div class="form-group" th:classappend="${#fields.hasErrors('latitude')}? 'has-error':''">
+						<label for="latitude" class="control-label">latitude</label> 
+						<input type="number" id="latitude" class="form-control" th:field="*{latitude}" />
+						<p class="error-message" th:each="error: ${#fields.errors('latitude')}" th:text="${error}">Validation error</p>
+					</div>
+
 					<!--descrption -->
 					<div class="form-group" th:classappend="${#fields.hasErrors('description')}? 'has-error':''">
 						<label for="description" class="control-label">Description</label> 

@@ -1,8 +1,8 @@
 package app.models;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.util.Collection;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "dive")
@@ -26,13 +26,14 @@ public class Dive {
 	@OneToOne
 	private User diveOwner;
 	
-	private Date date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
 	
-	private Time startTime;
+	private LocalTime startTime;
 	
-	private Time endTime;
+	private LocalTime endTime;
 	
-	private Time diveTimeLength;
+	private Duration diveDuration;
 	
 	private double latitude;
 	
@@ -116,42 +117,42 @@ public class Dive {
 	// diveOwner -----------------------------------------
  
 	// date -----------------------------------------
-	public Date getDate() {
+	public LocalDate getDate() {
 	     return date;
 	}
 	
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 	     this.date = date;
 	}
 	// date -----------------------------------------
       
 	// startTime -----------------------------------------
-	public Time getStartTime() {
+	public LocalTime getStartTime() {
 	     return startTime;
 	}
 	
-	public void setStartTime(Time startTime) {
+	public void setStartTime(LocalTime startTime) {
 	     this.startTime = startTime;
 	}
 	// startTime -----------------------------------------
 
 	// endTime -----------------------------------------
-	public Time getEndTime() {
+	public LocalTime getEndTime() {
 	     return endTime;
 	}
 	
-	public void setEndTime(Time endTime) {
+	public void setEndTime(LocalTime endTime) {
 	     this.endTime = endTime;
 	}
 	// endTime -----------------------------------------
 	
 	// diveTimeLength -----------------------------------------
-	public Time getDiveTimeLength() {
-	     return diveTimeLength;
+	public Duration getDiveDuration() {
+	     return diveDuration;
 	}
 	
-	public void setDiveTimeLength(Time diveTimeLength) {
-	     this.diveTimeLength = diveTimeLength;
+	public void setDiveDuration(Duration diveDuration) {
+	     this.diveDuration = diveDuration;
 	}
 	// diveTimeLength -----------------------------------------
 

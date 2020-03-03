@@ -1,6 +1,7 @@
 package app.controllers;
 
 import java.security.Principal;
+import java.time.Duration;
 
 import javax.validation.Valid;
 
@@ -64,6 +65,8 @@ public class DiveController {
 		
 		User currentUser = userService.findByUsername(principal.getName());
 		dive.setDiveOwner(currentUser);
+		
+		dive.setDiveDuration(Duration.between(dive.getStartTime(), dive.getEndTime()));
 		
         diveService.save(dive);
         return "redirect:/dive";
