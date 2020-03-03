@@ -52,7 +52,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		testUser.setNoOfCountries(0);
 		testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
 		userService.save(testUser);
-		log.info("Test User Added");	
+		log.info("Test User Added with ID:" + testUser.getId());	
 		
 		// Test Dive Log
 		Dive testDive = new Dive(testUser, "test descrption");
