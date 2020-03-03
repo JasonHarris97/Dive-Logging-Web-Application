@@ -35,11 +35,6 @@ public class UserController{
         return new UserDto();
     }
     
-    @ModelAttribute("activeUser")
-    public User user() {
-        return new User();
-    }
-    
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
         return "user/login";

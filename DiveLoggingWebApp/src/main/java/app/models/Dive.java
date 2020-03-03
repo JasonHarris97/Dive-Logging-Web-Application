@@ -110,7 +110,7 @@ public class Dive {
          return diveOwner;
     }
 
-	public void setDiveOwn(User diveOwner) {
+	public void setDiveOwner(User diveOwner) {
 	    this.diveOwner = diveOwner;
 	}
 	// diveOwner -----------------------------------------
