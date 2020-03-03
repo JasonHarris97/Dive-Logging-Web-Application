@@ -12,11 +12,77 @@
 <body>
 	<!-- MAIN -->
 	<div layout:fragment="content">
-		<h1>My Dive</h1>
+		<h1 th:text="'Title: '+${dive.description}"></h1>
+		<h3>ID</h3>
 		<p th:text="${dive.id}"></p>
+		<h3>First Name</h3>
 		<p th:text="${dive.diveOwner.firstName}"></p>
+		<h3>Last Name</h3>
 		<p th:text="${dive.diveOwner.lastName}"></p>
+		<h3>Owner Email</h3>
 		<p th:text="${dive.diveOwner.email}"></p>
+		<h3>Description</h3>
+		<p th:text="${dive.description}"></p>
+		<h3>Date</h3>
+		<p th:text="${dive.date}"></p>
+		<h3>Start Time</h3>
+		<p th:text="${dive.startTime}"></p>
+		<h3>End Time</h3>
+		<p th:text="${dive.endTime}"></p>
+		<h3>Duration</h3>
+		<p th:text="${dive.diveDuration.toMinutes()}"></p>
+		<h3>Latitude</h3>
+		<p th:text="${dive.latitude}"></p>
+		<h3>Longitude</h3>
+		<p th:text="${dive.longitude}"></p>
+		<h3>Country</h3>
+		<p th:text="${dive.country}"></p>
+		<h3>Location</h3>
+		<p th:text="${dive.location}"></p>
+		<h3>Detailed Location</h3>
+		<p th:text="${dive.detailedLocation}"></p>
+		<h3>Weather</h3>
+		<p th:text="${dive.weather}"></p>
+		<h3>Visibility</h3>
+		<p th:text="${dive.visibility}"></p>
+		<h3>Water Type</h3>
+		<p th:text="${dive.waterType}"></p>
+		<h3>Dive Suit</h3>
+		<p th:text="${dive.diveSuit}"></p>
+		<h3>Entry</h3>
+		<p th:text="${dive.entry}"></p>
+		<h3>Air Temp</h3>
+		<p th:text="${dive.airTemperature}"></p>
+		<h3>Water Temp</h3>
+		<p th:text="${dive.waterTemperature}"></p>
+		<h3>Tank Type</h3>
+		<p th:text="${dive.tankType}"></p>
+		<h3>Gas Type</h3>
+		<p th:text="${dive.gasType}"></p>
+		<h3>Tank Size</h3>
+		<p th:text="${dive.tankSize}"></p>
+		<h3>Tank Start</h3>
+		<p th:text="${dive.tankStart}"></p>
+		<h3>Tank End</h3>
+		<p th:text="${dive.tankEnd}"></p>
+		<h3>Tank Usage</h3>
+		<p th:text="${dive.tankUsage}"></p>
+		<h3>No of Participants</h3>
+		<p th:text="${dive.noOfParticipants}"></p>
+		<h3>Participants List</h3>
+		<p th:text="${dive.participantsList}"></p>
+		<h3>Max Depth</h3>
+		<p th:text="${dive.maxDepth}"></p>
+		<h3>Altitude</h3>
+		<p th:text="${dive.altitude}"></p>
+		<h3>Description</h3>
+		<p th:text="${dive.description}"></p>
+		<h3>Fauna</h3>
+		<p th:text="${dive.faunaList}"></p>
+		<h3>Flora</h3>
+		<p th:text="${dive.floraList}"></p>
+		<h3>ObservationsList</h3>
+		<p th:text="${dive.observationsList}"></p>
 	</div>
 	<!-- MAIN -->
 </body>

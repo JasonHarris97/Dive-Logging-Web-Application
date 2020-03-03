@@ -1,5 +1,8 @@
 package app.config;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 
 import org.slf4j.Logger;
@@ -56,6 +59,37 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		
 		// Test Dive Log
 		Dive testDive = new Dive(testUser, "test descrption");
+		testDive.setDate(LocalDate.now());
+		testDive.setStartTime(LocalTime.now());
+		testDive.setEndTime(LocalTime.now());
+		testDive.setDiveDuration(Duration.between(LocalTime.now(), LocalTime.now()));
+		testDive.setLatitude(20.0);
+		testDive.setLongitude(24.0);
+		testDive.setCountry("England");
+		testDive.setLocation("Brazil");
+		testDive.setDetailedLocation("Brazil, Sao Paulo");
+		testDive.setWeather("Rainy");
+		testDive.setVisibility("Poor");
+		testDive.setWaterType("Salt");
+		testDive.setDiveSuit("Standard Wet Suit");
+		testDive.setEntry("Boat");
+		testDive.setAirTemperature(30.4);
+		testDive.setWaterTemperature(24.5);
+		testDive.setTankType("Big Tank");
+		testDive.setGasType("Oxygen");
+		testDive.setTankSize(5000);
+		testDive.setTankStart(4789.93);
+		testDive.setTankEnd(1340.32);
+		testDive.setTankUsage(4789.93-1340.32);
+		testDive.setNoOfParticipants(3);
+		testDive.setParticipantsList("Jason Harris, Tim Johnson, John Smith");
+		testDive.setMaxDepth(345.67);
+		testDive.setAltitude(346);
+		testDive.setDescription("Test description");
+		testDive.setFaunaList("animal1 animal2");
+		testDive.setFloraList("plant1 plant2 plant3");
+		testDive.setObservationsList("observation1 observation2");
+		
 		diveService.save(testDive);
 		log.info("Test Dive Added with ID: " + testDive.getId());
 
