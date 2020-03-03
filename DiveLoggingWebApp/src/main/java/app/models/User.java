@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name="user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name="user", uniqueConstraints = @UniqueConstraint(columnNames = {"email", "username"}))
 public class User {
 
     @Id
@@ -14,9 +14,24 @@ public class User {
     private Long id;
 
     private String firstName;
+    
     private String lastName;
+    
+    private String username;
+    
     private String email;
+    
     private String password;
+    
+    private String contactNumber;
+    
+    private String country;
+    
+    private String padiLevel;
+    
+    private int noOfDives;
+    
+    private int noOfCountries;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -67,6 +82,14 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
     public String getEmail() {
         return email;
@@ -92,6 +115,46 @@ public class User {
         this.roles = roles;
     }
 
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPadiLevel() {
+		return padiLevel;
+	}
+
+	public void setPadiLevel(String padiLevel) {
+		this.padiLevel = padiLevel;
+	}
+
+	public int getNoOfDives() {
+		return noOfDives;
+	}
+
+	public void setNoOfDives(int noOfDives) {
+		this.noOfDives = noOfDives;
+	}
+
+	public int getNoOfCountries() {
+		return noOfCountries;
+	}
+
+	public void setNoOfCountries(int noOfCountries) {
+		this.noOfCountries = noOfCountries;
+	}
+	
     @Override
     public String toString() {
         return "User{" +

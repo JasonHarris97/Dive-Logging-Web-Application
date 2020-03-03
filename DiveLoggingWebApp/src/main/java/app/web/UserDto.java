@@ -17,20 +17,32 @@ public class UserDto {
 
     @NotEmpty
     private String lastName;
+    
+    @NotEmpty
+    private String username;
+    
+    @Email
+    @NotEmpty
+    private String email;
+    
+    @Email
+    @NotEmpty
+    private String confirmEmail;
 
     @NotEmpty
     private String password;
 
     @NotEmpty
     private String confirmPassword;
-
-    @Email
+    
     @NotEmpty
-    private String email;
-
-    @Email
+    private String contactNumber;
+    
     @NotEmpty
-    private String confirmEmail;
+    private String country;
+    
+    @NotEmpty
+    private String padiLevel;
 
     @AssertTrue
     private Boolean terms;
@@ -50,6 +62,14 @@ public class UserDto {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    
+    public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
     public String getPassword() {
         return password;
@@ -90,5 +110,29 @@ public class UserDto {
     public void setTerms(Boolean terms) {
         this.terms = terms;
     }
+    
+    public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPadiLevel() {
+		return padiLevel;
+	}
+
+	public void setPadiLevel(String padiLevel) {
+		this.padiLevel = padiLevel;
+	}
 }
 

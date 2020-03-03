@@ -10,7 +10,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import app.controllers.RegistrationController;
 import app.models.Dive;
 import app.models.Role;
 import app.models.User;
@@ -41,13 +40,19 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
 		// Test User
 		User testUser = new User();
-		testUser.setEmail("test@gmail.com");
 		testUser.setFirstName("John");
 		testUser.setLastName("Smith");
+		testUser.setUsername("testUsername");
+		testUser.setEmail("test@gmail.com");
 		testUser.setPassword(passwordEncoder.encode("test"));
+		testUser.setContactNumber("07801418898");
+		testUser.setCountry("England");
+		testUser.setPadiLevel("Expert");
+		testUser.setNoOfDives(0);
+		testUser.setNoOfCountries(0);
 		testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
 		userService.save(testUser);
-		log.info("Test User Added");	
+		log.info("Test User Added with ID:" + testUser.getId());	
 		
 		// Test Dive Log
 		Dive testDive = new Dive(testUser, "test descrption");

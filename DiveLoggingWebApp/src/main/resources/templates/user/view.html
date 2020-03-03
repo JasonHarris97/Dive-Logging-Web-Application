@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	  layout:decorate="~{layouts/default}"
+	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>User View</title>
+</head>
+
+
+<body>
+	<!-- MAIN -->
+	<div layout:fragment="content">
+		<h1 th:text="${user.username}"></h1>
+		<p>Name</p>
+		<p th:text="${user.firstName}"></p>
+		<p th:text="${user.lastName}"></p>
+		<p>Country</p>
+		<p th:text="${user.country}"></p>
+		<p>Contact Number</p>
+		<p th:text="${user.contactNumber}"></p>
+		<p>Contact Email</p>
+		<p th:text="${user.email}"></p>
+	</div>
+	<!-- MAIN -->
+</body>
+
+</html>

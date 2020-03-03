@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     		"/*",
                     		"/index*",
                     		"/meme**",
-                            "/registration**",
+                            "/user/**",
                             "/dive/**",
                             "/layouts/**",
                             "/js/**",
@@ -36,14 +36,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
-                        .loginPage("/login")
+                        .loginPage("/user/login")
                             .permitAll()
                 .and()
                     .logout()
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/user/login?logout")
                 .permitAll();
     }
 

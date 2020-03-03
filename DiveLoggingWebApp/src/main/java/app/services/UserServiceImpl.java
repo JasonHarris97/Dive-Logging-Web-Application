@@ -30,14 +30,30 @@ public class UserServiceImpl implements UserService {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+    
+    @Override
+    public User findByUsername(String username) {
+    	return userRepository.findByUsername(username);
+    }
+    
+    @Override
+    public User findById(long id) {
+    	return userRepository.findById(id);
+    }
 
     @Override
     public User save(UserDto registration) {
         User user = new User();
         user.setFirstName(registration.getFirstName());
         user.setLastName(registration.getLastName());
+        user.setUsername(registration.getUsername());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
+        user.setContactNumber(registration.getContactNumber());
+        user.setCountry(registration.getCountry());
+        user.setPadiLevel(registration.getPadiLevel());
+        user.setNoOfDives(0);
+        user.setNoOfCountries(0);
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
         return userRepository.save(user);
     }
@@ -48,12 +64,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String identification) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(identification);
+        if(user == null){
+        	user = userRepository.findByUsername(identification);
+        }
+        
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),
+        
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),
             user.getPassword(),
             mapRolesToAuthorities(user.getRoles()));
     }
