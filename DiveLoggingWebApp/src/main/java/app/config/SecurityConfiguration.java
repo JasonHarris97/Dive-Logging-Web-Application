@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 		"/index*",
                 		"/meme**",
                         "/user/**",
-                        "/dive**",
+                        "/dive/**",
                         "/layouts/**",
                         "/js/**",
                         "/css/**",
