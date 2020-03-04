@@ -49,43 +49,43 @@ public class Dive {
 	
 	private String visibility;
 	
-	private String waterType;
+	private String waterType; 
 	
-	private String diveSuit;
+	private String diveSuit; 
 	
-	private String entry;
+	private String entry; 
 	
 	private double airTemperature;
 	
 	private double waterTemperature;
 	
-	private String tankType;
+	private String tankType; 
 	
-	private String gasType;
+	private String gasType; 
 	
-	private double tankSize;
+	private double tankSize; 
 	
-	private double tankStart;
+	private double tankStart; 
 	
-	private double tankEnd;
+	private double tankEnd; 
 	
-	private double tankUsage;
+	private double tankUsage; 
 	
-	private int noOfParticipants;
+	private int noOfParticipants; 
 	
-	private String participantsList;
+	private String participantsList; // to do
 	
-	private double maxDepth;
+	private double maxDepth; 
 	
-	private double altitude;
+	private double altitude; 
 	
-	private String description;
+	private String description; 
 	
-	private String faunaList;
+	private String faunaList; // to do
 	
-	private String floraList;
+	private String floraList; // to do
 	
-	private String observationsList;
+	private String observationsList; // to do
 	
 	// Constructors
 	public Dive() {

@@ -67,6 +67,7 @@ public class DiveController {
 		dive.setDiveOwner(currentUser);
 		
 		dive.setDiveDuration(Duration.between(dive.getStartTime(), dive.getEndTime()));
+		dive.setTankUsage(dive.getTankStart()-dive.getTankEnd());
 	
         diveService.save(dive);
         return "redirect:/dive";
