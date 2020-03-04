@@ -1,3 +1,14 @@
+#diveContainer {
+	margin: 0;
+	margin-top: 10px;
+	position: absolute;
+	display: table;
+	width: 74%;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
 /* Style the tab */
 .tab {
   overflow: hidden;
