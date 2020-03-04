@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      	  layout:decorate="~{layouts/uploadTemplate}"
+      	  layout:decorate="~{layouts/diveUploadTemplate}"
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<title>Upload Dive</title>
@@ -12,10 +12,10 @@
 	<div layout:fragment="content">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<h1>Upload Dive</h1>
-
 				<!-- Upload Dive Form -->
 				<form id="regForm" th:action="@{/dive/upload}" th:object="${dive}" method="post">
+					<h1>Upload Dive Log</h1>
+	
 					<!-- First Tab -->
 					<div class="tab">
 						<h3>Basic Information</h3>
