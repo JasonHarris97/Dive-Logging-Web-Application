@@ -1,0 +1,18 @@
+.mainContainer {
+	margin: 0;
+	margin-top: 65px;
+	position: absolute;
+	display: table;
+	width: 74%;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.title-custom {
+	font-size: 26px;
+}
+
+.navbar-custom{
+	font-size: 18px;
+}
