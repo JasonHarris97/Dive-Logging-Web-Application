@@ -9,6 +9,13 @@
 	transform: translateX(-50%);
 }
 
+#map { 
+	position: relative;
+	display: inline-block;
+	height: 600px; 
+	width: 600px; 
+}
+
 /* Style the tab */
 .tab {
   overflow: hidden;
