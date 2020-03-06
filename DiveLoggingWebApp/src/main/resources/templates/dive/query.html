@@ -16,16 +16,24 @@
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th><i class="fa fa-bolt"></i> ID</th>
-					<th><i class="fa fa-bolt"></i> Diver ID</th>
-					<th><i class="fa fa-bolt"></i> Diver Name</th>
+					<th><i class="fa fa-bolt"></i> Details</th>
+					<th><i class="fa fa-bolt"></i> Date</th>
+					<th><i class="fa fa-bolt"></i> Diver</th>
+					<th><i class="fa fa-bolt"></i> PADI Level</th>
+					<th><i class="fa fa-bolt"></i> Participants</th>
+					<th><i class="fa fa-bolt"></i> Country</th>
+					<th><i class="fa fa-bolt"></i> Location</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="d : ${dives}">
-					<td><a th:href ="@{'/dive/view/'+${d.id}}" th:text="${d.id}">Dive</a></td>
-					<td th:text="${d.diveOwner.id}">Dive Owner</td>
-					<td th:text="${d.diveOwner.firstName}">Dive Owner Name</td>
+					<td><a th:href ="@{'/dive/view/'+${d.id}}" th:text="Click">Link</a></td>
+					<td th:text="${d.date}">Date</td>
+					<td><a th:href ="@{'/user/view/'+${d.diveOwner.username}}" th:text="${d.diveOwner.firstName}+' '+${d.diveOwner.lastName}">Dive Owner Name</td>
+					<td th:text="${d.diveOwner.padiLevel}">Dive Owner PADI Level</td>
+					<td th:text="${d.noOfParticipants}">No. of Participants</td>
+					<td th:text="${d.country}">Dive Country</td>
+					<td th:text="${d.location}">Dive Location</td>
 				</tr>
 			</tbody>
 		</table>
