@@ -1,5 +1,7 @@
 package app.services;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +42,20 @@ public class DiveServiceImpl implements DiveService{
 	@Override
 	public Iterable<Dive> findFifty() {
 		return diveRepository.findFifty();
+	}
+
+	@Override
+	public Iterable<Dive> findAllByDiveOwner(User diveOwner) {
+		return diveRepository.findTop1000ByDiveOwner(diveOwner);
+	}
+
+	@Override
+	public Iterable<Dive> findAllByCountry(String country) {
+		return diveRepository.findTop1000ByCountry(country);
+	}
+
+	@Override
+	public Iterable<Dive> findAllByDate(LocalDate date) {
+		return diveRepository.findTop1000ByDate(date);
 	}
 }
