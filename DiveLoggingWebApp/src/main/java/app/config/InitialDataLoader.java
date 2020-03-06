@@ -108,11 +108,11 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testDive.setTankStart(faker.number().randomDouble(2, 0, testDive.getTankSize()));
 			testDive.setTankEnd(faker.number().randomDouble(2, 0, (int) testDive.getTankStart()));
 			testDive.setTankUsage(testDive.getTankStart()-testDive.getTankEnd());
-			testDive.setNoOfParticipants(rand.nextInt(10));
+			testDive.setNoOfParticipants(rand.nextInt(9)+1);
 			
-			String participantsList = "";
-			for(int i = 0; i < testDive.getNoOfParticipants(); i++) {
-				participantsList = participantsList + " " + faker.name().firstName();
+			String participantsList = testDive.getDiveOwner().getFirstName() + " " + testDive.getDiveOwner().getLastName();
+			for(int i = 0; i < testDive.getNoOfParticipants()-1; i++) {
+				participantsList = participantsList + " " + faker.name().firstName() + " " + faker.name().lastName();
 			}
 			testDive.setParticipantsList(participantsList);
 			testDive.setMaxDepth(faker.number().randomDouble(2, 0, 20000));
