@@ -36,10 +36,10 @@ public class DiveController {
         return new Dive();
     }
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = {"/query", "/"}, method = RequestMethod.GET)
 	public String getAllDives(Model model) {
 		model.addAttribute("dives", diveService.findAll());
-		return "dive/index";
+		return "dive/query";
 	}
 	
 	@RequestMapping(value = "/view/{diveId}", method = RequestMethod.GET)
@@ -72,6 +72,12 @@ public class DiveController {
         diveService.save(dive);
         return "redirect:/dive";
     }
+    
+    @RequestMapping(value = "/map", method = RequestMethod.GET)
+	public String getWorldMap(Model model) {
+		model.addAttribute("dives", diveService.findFifty());
+		return "dive/map";
+	}
 
 
 }

@@ -9,4 +9,5 @@ public interface DiveService{
     Dive findByUser(User user);
     Dive findById(long Id);
     Iterable<Dive> findAll();
+    Iterable<Dive> findFifty();
 }
