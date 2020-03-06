@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	  layout:decorate="~{layouts/default}"
+	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>Dive World Map</title>
+</head>
+
+<body>
+	<!-- MAIN -->
+	<div layout:fragment="content">
+		
+		<div id='map'></div>
+
+		<script th:inline="javascript">
+			L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
+
+			var i;
+			var diveList = [[${dives}]];
+			var longitude, latitude, description, detailedLocation, diver, date; 
+
+			var map = L.mapbox.map('map')
+			    .setView([30.0, 30.0], 2)
+			    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+			
+
+			for(i = 0; i < diveList.length; i++){
+				longitude = diveList[i].longitude;
+				latitude = diveList[i].latitude;
+				description = diveList[i].description;
+				detailedLocation = diveList[i].detailedLocation;
+				diver = diveList[i].firstName + " " + diveList[i].lastName;
+				date = diveList[i].date;
+
+				var marker = L.marker([latitude, longitude], {
+								icon: L.mapbox.marker.icon({
+									'marker-size': 'large',
+									'marker-symbol': 'circle',
+									'marker-color': '#4169E1'
+								    	})
+								})
+
+				marker.bindPopup(description + "<br />" + diver + "<br />" + date + "<br />" + String(detailedLocation));
+				marker.addTo(map);
+			}
+		</script>
+	</div>
+	<!-- MAIN -->
+</body>
+
+</html>

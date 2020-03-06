@@ -63,8 +63,8 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		testDive.setStartTime(LocalTime.now());
 		testDive.setEndTime(LocalTime.now());
 		testDive.setDiveDuration(Duration.between(LocalTime.now(), LocalTime.now()));
-		testDive.setLatitude(20.0);
-		testDive.setLongitude(24.0);
+		testDive.setLatitude(40.446);
+		testDive.setLongitude(79.982);
 		testDive.setCountry("England");
 		testDive.setLocation("Brazil");
 		testDive.setDetailedLocation("Brazil, Sao Paulo");

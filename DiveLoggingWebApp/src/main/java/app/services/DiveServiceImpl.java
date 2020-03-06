@@ -36,4 +36,9 @@ public class DiveServiceImpl implements DiveService{
 	public Iterable<Dive> findAll() {
 		return diveRepository.findAll();
 	}
+	
+	@Override
+	public Iterable<Dive> findFifty() {
+		return diveRepository.findFifty();
+	}
 }
