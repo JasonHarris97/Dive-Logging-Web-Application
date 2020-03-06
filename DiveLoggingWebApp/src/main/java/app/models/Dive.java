@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Dive {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
 	@NotNull
@@ -43,8 +44,10 @@ public class Dive {
 	
 	private String location;
 	
+	@Column(columnDefinition="varchar(2000)")
 	private String detailedLocation;
 	
+	@Column(columnDefinition="varchar(2000)")
 	private String weather;
 	
 	private String visibility;
@@ -63,7 +66,7 @@ public class Dive {
 	
 	private String gasType; 
 	
-	private double tankSize; 
+	private int tankSize; 
 	
 	private double tankStart; 
 	
@@ -73,18 +76,23 @@ public class Dive {
 	
 	private int noOfParticipants; 
 	
+	@Column(columnDefinition="varchar(2000)")
 	private String participantsList; // to do
 	
 	private double maxDepth; 
 	
 	private double altitude; 
 	
+	@Column(columnDefinition="varchar(2000)")
 	private String description; 
 	
+	@Column(columnDefinition="varchar(500)")
 	private String faunaList; // to do
 	
+	@Column(columnDefinition="varchar(500)")
 	private String floraList; // to do
 	
+	@Column(columnDefinition="varchar(500)")
 	private String observationsList; // to do
 	
 	// Constructors
@@ -268,11 +276,11 @@ public class Dive {
 		this.gasType = gasType;
 	}
 
-	public double getTankSize() {
+	public int getTankSize() {
 		return tankSize;
 	}
 
-	public void setTankSize(double tankSize) {
+	public void setTankSize(int tankSize) {
 		this.tankSize = tankSize;
 	}
 

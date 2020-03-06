@@ -3,7 +3,14 @@ package app.config;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,16 +20,32 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.github.javafaker.Address;
+import com.github.javafaker.Faker;
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
+
 import app.models.Dive;
 import app.models.Role;
 import app.models.User;
 import app.services.DiveService;
 import app.services.UserService;
+import app.strings.StringLists;
 
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent>{
 	
 	private final static Logger log = LoggerFactory.getLogger(InitialDataLoader.class);
+	
+	private final static Faker faker = new Faker(new Locale("en-GB"));
+	
+	private final static FakeValuesService fakeValuesService = new FakeValuesService(new Locale("en-GB"), new RandomService());
+	private final static Random rand = new Random();
+	private final static StringLists stringLists = new StringLists();
+	
+	private final static int noOfTestUsers = 100;
+	
+	private final static int noOfTestDives = 20;
 	
 	@Autowired
 	private UserService userService;
@@ -39,59 +62,100 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		if(userService.count() > 0) {
 			log.info("Database (events) already populated. Skipping data initialization.");
 			return;
+		}	
+		
+		List<User> testUsers = loadTestUsers();
+		loadTestDives(testUsers);
+	}
+	
+	private void loadTestDives(List<User> testUsers) {
+		Dive testDive;
+		
+		int diveNo;
+		
+		for(diveNo = 0; diveNo < noOfTestDives; diveNo++) {
+			testDive = new Dive();
+			testDive.setDiveOwner(testUsers.get(rand.nextInt(testUsers.size())));
+			testDive.setDate(convertToLocalDate(faker.date().past(2000, TimeUnit.DAYS)));
+			
+			LocalTime startTime = LocalTime.of(rand.nextInt(23), rand.nextInt(59));
+			testDive.setStartTime(startTime);
+			 
+			LocalTime endTime = LocalTime.of((startTime.getHour()+rand.nextInt(23)) % 24, (startTime.getMinute()+rand.nextInt(59)) % 60);
+			testDive.setEndTime(endTime);
+			
+			testDive.setDiveDuration(Duration.between(startTime, endTime));
+			
+			Address address = faker.address();
+			
+			testDive.setLatitude(Double.parseDouble(faker.address().latitude()));
+			testDive.setLongitude(Double.parseDouble(faker.address().longitude()));
+			
+			testDive.setCountry(address.country());
+			testDive.setLocation(address.city());
+			testDive.setDetailedLocation(address.fullAddress());
+			
+			testDive.setWeather(faker.weather().description());
+			testDive.setVisibility(stringLists.getVisabilityOptions().get(rand.nextInt(stringLists.getVisabilityOptions().size())));
+			testDive.setWaterType(stringLists.getWaterTypes().get(rand.nextInt(stringLists.getWaterTypes().size())));
+			testDive.setDiveSuit("Standard Wet Suit");
+			testDive.setEntry("Boat");
+			testDive.setAirTemperature(faker.number().randomDouble(2, -200, 100));
+			testDive.setWaterTemperature(faker.number().randomDouble(2, -200, 100));
+			testDive.setTankType("Big Tank");
+			testDive.setGasType("Oxygen");
+			testDive.setTankSize(rand.nextInt(10)*1000);
+			testDive.setTankStart(faker.number().randomDouble(2, 0, testDive.getTankSize()));
+			testDive.setTankEnd(faker.number().randomDouble(2, 0, (int) testDive.getTankStart()));
+			testDive.setTankUsage(testDive.getTankStart()-testDive.getTankEnd());
+			testDive.setNoOfParticipants(rand.nextInt(10));
+			
+			String participantsList = "";
+			for(int i = 0; i < testDive.getNoOfParticipants(); i++) {
+				participantsList = participantsList + " " + faker.name().firstName();
+			}
+			testDive.setParticipantsList(participantsList);
+			testDive.setMaxDepth(faker.number().randomDouble(2, 0, 20000));
+			testDive.setAltitude(faker.number().randomDouble(2, 0, 20000));
+			
+			testDive.setDescription("Test description");
+			testDive.setFaunaList("animal1 animal2");
+			testDive.setFloraList("plant1 plant2 plant3");
+			testDive.setObservationsList("observation1 observation2");
+			
+			diveService.save(testDive);
+		}	
+	}
+	
+	private List<User> loadTestUsers() {	
+		
+		List<String> padiLevels = stringLists.getPadiLevels();
+		
+		User testUser;
+		List<User> testUsers = new ArrayList<User>();
+		
+		for(int i = 0; i < noOfTestUsers; i++) {
+			testUser = new User();
+			testUser.setFirstName(faker.name().firstName());
+			testUser.setLastName(faker.name().lastName());
+			testUser.setUsername(testUser.getFirstName() + " " + testUser.getLastName());
+			testUser.setEmail(testUser.getUsername() + "." + fakeValuesService.bothify("????##@gmail.com"));
+			testUser.setCountry(faker.address().country());
+			testUser.setPassword(passwordEncoder.encode("test"));
+			testUser.setContactNumber(faker.phoneNumber().phoneNumber());
+			testUser.setPadiLevel(padiLevels.get(rand.nextInt(padiLevels.size())));
+			testUser.setNoOfDives(0);
+			testUser.setNoOfCountries(0);
+			testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
+			userService.save(testUser);
+			testUsers.add(testUser);
 		}
-
-		// Test User
-		User testUser = new User();
-		testUser.setFirstName("John");
-		testUser.setLastName("Smith");
-		testUser.setUsername("testUsername");
-		testUser.setEmail("test@gmail.com");
-		testUser.setPassword(passwordEncoder.encode("test"));
-		testUser.setContactNumber("07801418898");
-		testUser.setCountry("England");
-		testUser.setPadiLevel("Expert");
-		testUser.setNoOfDives(0);
-		testUser.setNoOfCountries(0);
-		testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
-		userService.save(testUser);
-		log.info("Test User Added with ID:" + testUser.getId());	
-		
-		// Test Dive Log
-		Dive testDive = new Dive(testUser, "test descrption");
-		testDive.setDate(LocalDate.now());
-		testDive.setStartTime(LocalTime.now());
-		testDive.setEndTime(LocalTime.now());
-		testDive.setDiveDuration(Duration.between(LocalTime.now(), LocalTime.now()));
-		testDive.setLatitude(40.446);
-		testDive.setLongitude(79.982);
-		testDive.setCountry("England");
-		testDive.setLocation("Brazil");
-		testDive.setDetailedLocation("Brazil, Sao Paulo");
-		testDive.setWeather("Rainy");
-		testDive.setVisibility("Poor");
-		testDive.setWaterType("Salt");
-		testDive.setDiveSuit("Standard Wet Suit");
-		testDive.setEntry("Boat");
-		testDive.setAirTemperature(30.4);
-		testDive.setWaterTemperature(24.5);
-		testDive.setTankType("Big Tank");
-		testDive.setGasType("Oxygen");
-		testDive.setTankSize(5000);
-		testDive.setTankStart(4789.93);
-		testDive.setTankEnd(1340.32);
-		testDive.setTankUsage(4789.93-1340.32);
-		testDive.setNoOfParticipants(3);
-		testDive.setParticipantsList("Jason Harris, Tim Johnson, John Smith");
-		testDive.setMaxDepth(345.67);
-		testDive.setAltitude(346);
-		testDive.setDescription("Test description");
-		testDive.setFaunaList("animal1 animal2");
-		testDive.setFloraList("plant1 plant2 plant3");
-		testDive.setObservationsList("observation1 observation2");
-		
-		diveService.save(testDive);
-		log.info("Test Dive Added with ID: " + testDive.getId());
-
+		return testUsers;
+	}
+	
+	private LocalDate convertToLocalDate(Date dateToConvert) {
+	    return dateToConvert.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
 	}
 }

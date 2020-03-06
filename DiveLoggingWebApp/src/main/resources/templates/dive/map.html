@@ -14,7 +14,8 @@
 		
 		<div id='map'></div>
 
-		<script th:inline="javascript">
+		<script th:inline="javascript">	
+		/*<![CDATA[*/
 			L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
 
 			var i;
@@ -31,7 +32,7 @@
 				latitude = diveList[i].latitude;
 				description = diveList[i].description;
 				detailedLocation = diveList[i].detailedLocation;
-				diver = diveList[i].firstName + " " + diveList[i].lastName;
+				diver = diveList[i].diveOwner.firstName + " " + diveList[i].diveOwner.lastName;
 				date = diveList[i].date;
 
 				var marker = L.marker([latitude, longitude], {
@@ -45,6 +46,7 @@
 				marker.bindPopup(description + "<br />" + diver + "<br />" + date + "<br />" + String(detailedLocation));
 				marker.addTo(map);
 			}
+		/*]]>*/
 		</script>
 	</div>
 	<!-- MAIN -->

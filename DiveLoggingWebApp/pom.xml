@@ -148,6 +148,13 @@
 		    <artifactId>mapbox-sdk-services</artifactId>
 		    <version>4.5.0</version>
 		</dependency>
+		
+		<!-- JavaFaker for test data -->
+		<dependency>
+		    <groupId>com.github.javafaker</groupId>
+		    <artifactId>javafaker</artifactId>
+		    <version>0.15</version>
+		</dependency>
         
   	</dependencies>
 
