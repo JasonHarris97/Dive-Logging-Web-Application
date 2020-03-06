@@ -2,6 +2,7 @@ package app.controllers;
 
 import java.security.Principal;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.validation.Valid;
@@ -59,7 +60,19 @@ public class DiveController {
 		}
 		
 		if(!query.getInputString().isEmpty()) {
-			model.addAttribute("returnedDives", diveService.findAllByCountry(query.getInputString()));
+			if(query.getSearchOption().equals("country")) {
+				model.addAttribute("returnedDives", diveService.findAllByCountry(query.getInputString()));
+			} else if (query.getSearchOption().equals("username")){
+				User diveOwner = userService.findByUsername(query.getInputString());
+				model.addAttribute("returnedDives", diveService.findAllByDiveOwner(diveOwner));
+			} else if (query.getSearchOption().equals("date")){
+				model.addAttribute("returnedDives", diveService.findAll());
+			} else if (query.getSearchOption().equals("location")){
+				model.addAttribute("returnedDives", diveService.findAllByLocation(query.getInputString()));
+			} else {
+				model.addAttribute("returnedDives", diveService.findAll());
+			}
+			
 			return "dive/query";
 		} else {
 			model.addAttribute("returnedDives", new ArrayList<String>());

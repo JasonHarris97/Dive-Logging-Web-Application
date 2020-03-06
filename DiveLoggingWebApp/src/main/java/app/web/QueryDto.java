@@ -8,6 +8,9 @@ public class QueryDto {
 
     @NotEmpty
     private String inputString;
+    
+    @NotEmpty
+    private String searchOption;
 
     @AssertTrue
     private Boolean terms;
@@ -21,6 +24,14 @@ public class QueryDto {
 
     public void setInputString(String inputString) {
         this.inputString = inputString;
+    }
+    
+    public String getSearchOption() {
+        return searchOption;
+    }
+
+    public void setSearchOption(String searchOption) {
+        this.searchOption = searchOption;
     }
 }
 

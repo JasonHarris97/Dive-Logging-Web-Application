@@ -58,4 +58,9 @@ public class DiveServiceImpl implements DiveService{
 	public Iterable<Dive> findAllByDate(LocalDate date) {
 		return diveRepository.findTop1000ByDate(date);
 	}
+	
+	@Override
+	public Iterable<Dive> findAllByLocation(String location) {
+		return diveRepository.findTop1000ByLocation(location);
+	}
 }
