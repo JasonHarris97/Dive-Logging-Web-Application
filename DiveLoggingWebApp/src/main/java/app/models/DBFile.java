@@ -3,6 +3,7 @@ package app.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "files")
@@ -11,6 +12,10 @@ public class DBFile {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+
+    @NotNull
+    @ManyToOne
+    private User fileOwner;
 
     private String fileName;
 
