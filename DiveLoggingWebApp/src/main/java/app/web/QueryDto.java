@@ -11,6 +11,9 @@ public class QueryDto {
     
     @NotEmpty
     private String searchOption;
+    
+    @NotEmpty
+    private String orderBy;
 
     @AssertTrue
     private Boolean terms;
@@ -32,6 +35,14 @@ public class QueryDto {
 
     public void setSearchOption(String searchOption) {
         this.searchOption = searchOption;
+    }
+    
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
     }
 }
 

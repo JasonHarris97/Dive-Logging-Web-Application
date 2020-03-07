@@ -25,30 +25,30 @@ public class Dive {
 	
 	@NotNull
 	@OneToOne
-	private User diveOwner;
+	private User diveOwner; 
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate date;
+	private LocalDate date; 
 	
 	private LocalTime startTime;
 	
 	private LocalTime endTime;
 	
-	private Duration diveDuration;
+	private Duration diveDuration; 
 	
 	private double latitude;
 	
 	private double longitude;
 	
-	private String country;
+	private String country; 
 	
-	private String location;
+	private String location; 
 	
 	@Column(columnDefinition="varchar(2000)")
 	private String detailedLocation;
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String weather;
+	private String weather; 
 	
 	private String visibility;
 	
@@ -79,7 +79,7 @@ public class Dive {
 	@Column(columnDefinition="varchar(2000)")
 	private String participantsList; // to do
 	
-	private double maxDepth; 
+	private double maxDepth;
 	
 	private double altitude; 
 	

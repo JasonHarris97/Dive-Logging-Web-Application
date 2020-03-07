@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,21 +61,7 @@ public class DiveController {
 		}
 		
 		if(!query.getInputString().isEmpty()) {
-			if(query.getSearchOption().equals("country")) {
-				model.addAttribute("returnedDives", diveService.findAllByCountry(query.getInputString()));
-			} else if (query.getSearchOption().equals("username")){
-				User diveOwner = userService.findByUsername(query.getInputString());
-				model.addAttribute("returnedDives", diveService.findAllByDiveOwner(diveOwner));
-			} else if (query.getSearchOption().equals("date")){
-				model.addAttribute("returnedDives", diveService.findAll());
-			} else if (query.getSearchOption().equals("location")){
-				model.addAttribute("returnedDives", diveService.findAllByLocation(query.getInputString()));
-			} else if (query.getSearchOption().equals("padiLevel")) {
-				model.addAttribute("returnedDives", diveService.findAllByDiveOwnerPadiLevel(query.getInputString()));
-			} else {
-				model.addAttribute("returnedDives", diveService.findAll());
-			}
-			
+			model = performQuery(query, model);
 			return "dive/query";
 		} else {
 			model.addAttribute("returnedDives", new ArrayList<String>());
@@ -119,6 +106,25 @@ public class DiveController {
 		model.addAttribute("dives", diveService.findFifty());
 		return "dive/map";
 	}
+    
+    private Model performQuery(QueryDto query, Model model) {
+
+    	if(query.getSearchOption().equals("country")) {
+			model.addAttribute("returnedDives", diveService.findAllByCountry(query.getInputString(), Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else if (query.getSearchOption().equals("username")){
+			User diveOwner = userService.findByUsername(query.getInputString());
+			model.addAttribute("returnedDives", diveService.findAllByDiveOwner(diveOwner, Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else if (query.getSearchOption().equals("date")){
+			model.addAttribute("returnedDives", diveService.findAll(Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else if (query.getSearchOption().equals("location")){
+			model.addAttribute("returnedDives", diveService.findAllByLocation(query.getInputString(), Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else if (query.getSearchOption().equals("padiLevel")) {
+			model.addAttribute("returnedDives", diveService.findAllByDiveOwnerPadiLevel(query.getInputString(), Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else {
+			model.addAttribute("returnedDives", diveService.findAll());
+		}
+    	return model;
+    }
 
 
 }
