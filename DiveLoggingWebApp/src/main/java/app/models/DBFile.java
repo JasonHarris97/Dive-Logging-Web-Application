@@ -16,10 +16,15 @@ public class DBFile {
     @NotNull
     @ManyToOne
     private User fileOwner;
+    
+    @ManyToOne
+    private Dive associatedDive;
 
     private String fileName;
 
     private String fileType;
+    
+    private String fileUse;
 
     @Lob
     private byte[] data;
@@ -56,5 +61,13 @@ public class DBFile {
 
 	public void setData(byte[] data) {
 		this.data = data;
+	}
+
+	public String getFileUse() {
+		return fileUse;
+	}
+
+	public void setFileUse(String fileUse) {
+		this.fileUse = fileUse;
 	}    
 }

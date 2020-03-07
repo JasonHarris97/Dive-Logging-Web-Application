@@ -29,6 +29,8 @@ public class User {
     
     private String padiLevel;
     
+    private String padiNo;
+    
     private int noOfDives;
     
     private int noOfCountries;
@@ -166,4 +168,12 @@ public class User {
             ", roles=" + roles +
             '}';
     }
+
+	public String getPadiNo() {
+		return padiNo;
+	}
+
+	public void setPadiNo(String padiNo) {
+		this.padiNo = padiNo;
+	}
 }

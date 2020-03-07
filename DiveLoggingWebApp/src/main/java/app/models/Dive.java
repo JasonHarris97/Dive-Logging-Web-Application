@@ -3,12 +3,14 @@ package app.models;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,9 +25,18 @@ public class Dive {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
+	private int diveNo;
+	
+	private String diveTitle;
+	
+	private String diveSite;
+	
+	private String divePurpose;
+	
 	@NotNull
-	@OneToOne
 	private User diveOwner; 
+	
+	private User diveBuddy;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date; 
@@ -54,6 +65,12 @@ public class Dive {
 	
 	private String waterType; 
 	
+	private String waterBodyType;
+	
+	private double waterDensity;
+	
+	private String tideLevel;
+	
 	private String diveSuit; 
 	
 	private String entry; 
@@ -66,6 +83,12 @@ public class Dive {
 	
 	private String gasType; 
 	
+	private String gasMix;
+	
+	private double fractionOfHelium;
+	
+	private double fractionOfNitrogen;
+	
 	private int tankSize; 
 	
 	private double tankStart; 
@@ -74,26 +97,41 @@ public class Dive {
 	
 	private double tankUsage; 
 	
+	private double weightCarried;
+	
 	private int noOfParticipants; 
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String participantsList; // to do
+	private String participantsList; 
+	
+	private String equipment;
+	
+	private String buoyancy;
+	
+	private double bottomTime;
 	
 	private double maxDepth;
 	
 	private double altitude; 
 	
+	private String startcode;
+	
+	private String surfacingCode;
+	
 	@Column(columnDefinition="varchar(2000)")
 	private String description; 
 	
 	@Column(columnDefinition="varchar(500)")
-	private String faunaList; // to do
+	private String faunaList; 
 	
 	@Column(columnDefinition="varchar(500)")
-	private String floraList; // to do
+	private String floraList; 
 	
 	@Column(columnDefinition="varchar(500)")
-	private String observationsList; // to do
+	private String observationsList; 
+	
+	@OneToMany
+	private Collection<DBFile> images;
 	
 	// Constructors
 	public Dive() {
@@ -370,6 +408,150 @@ public class Dive {
 
 	public void setObservationsList(String observationsList) {
 		this.observationsList = observationsList;
+	}
+
+	public String getWaterBodyType() {
+		return waterBodyType;
+	}
+
+	public void setWaterBodyType(String waterBodyType) {
+		this.waterBodyType = waterBodyType;
+	}
+
+	public double getFractionOfHelium() {
+		return fractionOfHelium;
+	}
+
+	public void setFractionOfHelium(double fractionOfHelium) {
+		this.fractionOfHelium = fractionOfHelium;
+	}
+
+	public double getFractionOfNitrogen() {
+		return fractionOfNitrogen;
+	}
+
+	public void setFractionOfNitrogen(double fractionOfNitrogen) {
+		this.fractionOfNitrogen = fractionOfNitrogen;
+	}
+
+	public User getDiveBuddy() {
+		return diveBuddy;
+	}
+
+	public void setDiveBuddy(User diveBuddy) {
+		this.diveBuddy = diveBuddy;
+	}
+
+	public double getWaterDensity() {
+		return waterDensity;
+	}
+
+	public void setWaterDensity(double waterDensity) {
+		this.waterDensity = waterDensity;
+	}
+
+	public int getDiveNo() {
+		return diveNo;
+	}
+
+	public void setDiveNo(int diveNo) {
+		this.diveNo = diveNo;
+	}
+
+	public String getDiveSite() {
+		return diveSite;
+	}
+
+	public void setDiveSite(String diveSite) {
+		this.diveSite = diveSite;
+	}
+
+	public String getDivePurpose() {
+		return divePurpose;
+	}
+
+	public void setDivePurpose(String divePurpose) {
+		this.divePurpose = divePurpose;
+	}
+
+	public String getTideLevel() {
+		return tideLevel;
+	}
+
+	public void setTideLevel(String tideLevel) {
+		this.tideLevel = tideLevel;
+	}
+
+	public String getGasMix() {
+		return gasMix;
+	}
+
+	public void setGasMix(String gasMix) {
+		this.gasMix = gasMix;
+	}
+
+	public String getStartcode() {
+		return startcode;
+	}
+
+	public void setStartcode(String startcode) {
+		this.startcode = startcode;
+	}
+
+	public String getSurfacingCode() {
+		return surfacingCode;
+	}
+
+	public void setSurfacingCode(String surfacingCode) {
+		this.surfacingCode = surfacingCode;
+	}
+
+	public String getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(String equipment) {
+		this.equipment = equipment;
+	}
+
+	public double getWeightCarried() {
+		return weightCarried;
+	}
+
+	public void setWeightCarried(double weightCarried) {
+		this.weightCarried = weightCarried;
+	}
+
+	public double getBottomTime() {
+		return bottomTime;
+	}
+
+	public void setBottomTime(double bottomTime) {
+		this.bottomTime = bottomTime;
+	}
+
+	public String getBuoyancy() {
+		return buoyancy;
+	}
+
+	public void setBuoyancy(String buoyancy) {
+		this.buoyancy = buoyancy;
+	}
+
+	public String getDiveTitle() {
+		return diveTitle;
+	}
+
+	public void setDiveTitle(String diveTitle) {
+		this.diveTitle = diveTitle;
+	}
+
+	public Collection<DBFile> getImages() {
+		return images;
+	}
+
+	public void setImages(Collection<DBFile> images) {
+		this.images = images;
 	}
 	
 }
