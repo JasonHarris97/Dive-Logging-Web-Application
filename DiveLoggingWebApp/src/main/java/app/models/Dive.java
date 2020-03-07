@@ -23,114 +23,113 @@ public class Dive {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // done
+    private Long id; 
 	
-	private int diveNo; // TODO IMPLEMENT IN CONTROLLER
+	private int diveNo; 
 	
-	private String diveTitle; // done
+	private String diveTitle; 
 	
-	private String diveSite; // done
+	private String diveSite; 
 	
-	private String divePurpose; // done 
+	private String divePurpose; 
 	
 	@NotNull
 	@OneToOne
-	private User diveOwner; // done
+	private User diveOwner; 
 	
-	@OneToOne
-	private User diveBuddy; // TODO IMPLEMENT IN CONTROLLER
+	private String diveBuddy; 
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate date; // done
+	private LocalDate date; 
 	
-	private LocalTime startTime; // done
+	private LocalTime startTime; 
 	
-	private LocalTime endTime; // done
+	private LocalTime endTime; 
 	
-	private Duration diveDuration; // done
+	private Duration diveDuration; 
 	
-	private double latitude; // done
+	private double latitude; 
 	
-	private double longitude; // done
+	private double longitude; 
 	
-	private String country; // done
+	private String country; 
 	
-	private String location; // done
-	
-	@Column(columnDefinition="varchar(2000)")
-	private String detailedLocation;  // done
+	private String location; 
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String weather; // done
-	
-	private String visibility; // done
-	
-	private String waterType; // done
-	
-	private String waterBodyType; // done
-	
-	private double waterDensity; // done
-	
-	private String tideLevel; // done
-	
-	private String diveSuit; // done
-	
-	private String entry; // done
-	
-	private double airTemperature; // done
-	
-	private double waterTemperature; // done
-	
-	private String tankType; // done
-	
-	private String gasType; // done
-	
-	private String gasMix; // done
-	
-	private double fractionOfHelium; // done
-	
-	private double fractionOfNitrogen; // done
-	
-	private int tankSize; // done
-	
-	private double tankStart; // done
-	
-	private double tankEnd; // done
-	
-	private double tankUsage; // done
-	
-	private double weightCarried; // done
-	
-	private int noOfParticipants; // done
+	private String detailedLocation;  
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String participantsList;  // done
+	private String weather; 
 	
-	private String equipment;  // done
+	private String visibility; 
 	
-	private String buoyancy;  // done
+	private String waterType; 
 	
-	private double bottomTime;  // done
+	private String waterBodyType; 
 	
-	private double maxDepth;  // done
+	private double waterDensity; 
 	
-	private double altitude;  // done
+	private String tideLevel; 
 	
-	private String startcode; // done
+	private String diveSuit; 
 	
-	private String surfacingCode; // done
+	private String entry; 
+	
+	private double airTemperature; 
+	
+	private double waterTemperature; 
+	
+	private String tankType; 
+	
+	private String gasType; 
+	
+	private String gasMix; 
+	
+	private double fractionOfHelium; 
+	
+	private double fractionOfNitrogen; 
+	
+	private int tankSize; 
+	
+	private double tankStart; 
+	
+	private double tankEnd;
+	
+	private double tankUsage; 
+	
+	private double weightCarried;
+	
+	private int noOfParticipants; 
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String description; // done
+	private String participantsList; 
+	
+	private String equipment;  
+	
+	private String buoyancy;  
+	
+	private double bottomTime; 
+	
+	private double maxDepth;  
+	
+	private double altitude;  
+	
+	private String startCode; 
+	
+	private String surfacingCode; 
+	
+	@Column(columnDefinition="varchar(2000)")
+	private String description; 
 	
 	@Column(columnDefinition="varchar(500)")
-	private String faunaList; // done
+	private String faunaList; 
 	
 	@Column(columnDefinition="varchar(500)")
-	private String floraList; // done
+	private String floraList; 
 	
 	@Column(columnDefinition="varchar(500)")
-	private String observationsList; // done
+	private String observationsList; 
 	
 	@OneToMany
 	private Collection<DBFile> images;
@@ -436,11 +435,11 @@ public class Dive {
 		this.fractionOfNitrogen = fractionOfNitrogen;
 	}
 
-	public User getDiveBuddy() {
+	public String getDiveBuddy() {
 		return diveBuddy;
 	}
 
-	public void setDiveBuddy(User diveBuddy) {
+	public void setDiveBuddy(String diveBuddy) {
 		this.diveBuddy = diveBuddy;
 	}
 
@@ -492,12 +491,12 @@ public class Dive {
 		this.gasMix = gasMix;
 	}
 
-	public String getStartcode() {
-		return startcode;
+	public String getStartCode() {
+		return startCode;
 	}
 
-	public void setStartcode(String startcode) {
-		this.startcode = startcode;
+	public void setStartCode(String startCode) {
+		this.startCode = startCode;
 	}
 
 	public String getSurfacingCode() {

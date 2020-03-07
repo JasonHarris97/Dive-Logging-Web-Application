@@ -10,10 +10,15 @@
 }
 
 #map { 
-	position: relative;
+	position: absolute;
 	display: inline-block;
-	height: 600px; 
-	width: 900px; 
+	margin: 0;
+	margin-top: 20px;
+	height: 600px;  
+	width: 95%; 
+	left: 50%;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
 }
 
 /* Style the tab */
@@ -47,6 +52,7 @@
 /* Style the tab content */
 .tabcontent {
 	display: none;
+	margin-bottom: 30px;
 	padding: 6px 12px;
 	border: 1px solid #ccc;
 	border-top: none;

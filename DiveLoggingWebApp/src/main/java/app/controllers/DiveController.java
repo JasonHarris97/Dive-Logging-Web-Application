@@ -101,8 +101,11 @@ public class DiveController {
 		if(dive.getTankEnd() != 0 && dive.getTankStart() != 0) {
 			dive.setTankUsage(dive.getTankStart()-dive.getTankEnd());
 		}
-	
+		
+		currentUser.setNoOfDives(currentUser.getNoOfDives()+1);
+		dive.setDiveNo(currentUser.getNoOfDives());
         diveService.save(dive);
+        
         return "redirect:/dive/view/" + dive.getId();
     }
     

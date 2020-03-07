@@ -53,13 +53,12 @@
 					<p class="error-message" th:each="error: ${#fields.errors('divePurpose')}" th:text="${error}">Validation error</p>
 				</div>
 
-				<!-- diveBuddy 
+				<!-- diveBuddy -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('diveBuddy')}? 'has-error':''">
 					<label for="diveBuddy" class="control-label">Dive Buddy</label> 
 					<input type="text" id="diveBuddy" class="form-control" th:field="*{diveBuddy}" />
 					<p class="error-message" th:each="error: ${#fields.errors('diveBuddy')}" th:text="${error}">Validation error</p>
-				</div>-->
-
+				</div>
 
 				<!-- date -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('date')}? 'has-error':''">
@@ -329,11 +328,11 @@
 					<p class="error-message" th:each="error: ${#fields.errors('maxDepth')}" th:text="${error}">Validation error</p>
 				</div>
 
-				<!-- startcode -->
-				<div class="form-group" th:classappend="${#fields.hasErrors('startcode')}? 'has-error':''">
-					<label for="startcode" class="control-label">Start Code</label> 
-					<input type="text" id="startcode" class="form-control" th:field="*{startcode}" />
-					<p class="error-message" th:each="error: ${#fields.errors('startcode')}" th:text="${error}">Validation error</p>
+				<!-- startCode -->
+				<div class="form-group" th:classappend="${#fields.hasErrors('startCode')}? 'has-error':''">
+					<label for="startCode" class="control-label">Start Code</label> 
+					<input type="text" id="startCode" class="form-control" th:field="*{startCode}" />
+					<p class="error-message" th:each="error: ${#fields.errors('startCode')}" th:text="${error}">Validation error</p>
 				</div>
 
 				<!-- surfacingCode -->
