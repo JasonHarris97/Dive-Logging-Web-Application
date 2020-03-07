@@ -63,4 +63,9 @@ public class DiveServiceImpl implements DiveService{
 	public Iterable<Dive> findAllByLocation(String location) {
 		return diveRepository.findTop1000ByLocation(location);
 	}
+
+	@Override
+	public Iterable<Dive> findAllByDiveOwnerPadiLevel(String padiLevel) {
+		return diveRepository.findTop1000ByDiveOwnerPadiLevel(padiLevel);
+	}
 }

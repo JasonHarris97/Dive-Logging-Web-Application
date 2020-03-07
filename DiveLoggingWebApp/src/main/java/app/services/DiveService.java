@@ -14,6 +14,7 @@ public interface DiveService{
     Iterable<Dive> findAllByCountry(String country);
     Iterable<Dive> findAllByDate(LocalDate date);
     Iterable<Dive> findAllByLocation(String location);
+    Iterable<Dive> findAllByDiveOwnerPadiLevel(String padiLevel);
     Iterable<Dive> findAll();
     Iterable<Dive> findFifty();
 }

@@ -21,4 +21,5 @@ public interface DiveRepository extends JpaRepository<Dive, Long> {
 	Iterable<Dive> findTop1000ByDate(LocalDate date);
 	Iterable<Dive> findTop1000ByCountry(String country);
 	Iterable<Dive> findTop1000ByLocation(String location);
+	Iterable<Dive> findTop1000ByDiveOwnerPadiLevel(String padiLevel);
 }

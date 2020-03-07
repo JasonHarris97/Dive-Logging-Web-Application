@@ -69,6 +69,8 @@ public class DiveController {
 				model.addAttribute("returnedDives", diveService.findAll());
 			} else if (query.getSearchOption().equals("location")){
 				model.addAttribute("returnedDives", diveService.findAllByLocation(query.getInputString()));
+			} else if (query.getSearchOption().equals("padiLevel")) {
+				model.addAttribute("returnedDives", diveService.findAllByDiveOwnerPadiLevel(query.getInputString()));
 			} else {
 				model.addAttribute("returnedDives", diveService.findAll());
 			}
