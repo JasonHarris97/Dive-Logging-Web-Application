@@ -30,6 +30,9 @@ function openTab(evt, tabName) {
     case "Observations":
       currentTab = 3;
       break;
+    case "ImagesAndFiles":
+      currentTab = 4;
+      break;
     default:
       currentTab = 0;
       break;
@@ -66,6 +69,9 @@ function nextPrev(n) {
       break;
     case 3:
       openTab(new Event("test"), "Observations")
+      break;
+    case 4:
+      openTab(new Event("test"), "ImagesAndFiles")
       break;
     default:
       openTab(new Event("test"), "BasicInfo")

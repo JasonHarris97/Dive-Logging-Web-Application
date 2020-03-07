@@ -23,114 +23,114 @@ public class Dive {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // done
 	
-	private int diveNo;
+	private int diveNo; // TODO IMPLEMENT IN CONTROLLER
 	
-	private String diveTitle;
+	private String diveTitle; // done
 	
-	private String diveSite;
+	private String diveSite; // done
 	
-	private String divePurpose;
+	private String divePurpose; // done 
 	
 	@NotNull
 	@OneToOne
-	private User diveOwner; 
+	private User diveOwner; // done
 	
 	@OneToOne
-	private User diveBuddy;
+	private User diveBuddy; // TODO IMPLEMENT IN CONTROLLER
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate date; 
+	private LocalDate date; // done
 	
-	private LocalTime startTime;
+	private LocalTime startTime; // done
 	
-	private LocalTime endTime;
+	private LocalTime endTime; // done
 	
-	private Duration diveDuration; 
+	private Duration diveDuration; // done
 	
-	private double latitude;
+	private double latitude; // done
 	
-	private double longitude;
+	private double longitude; // done
 	
-	private String country; 
+	private String country; // done
 	
-	private String location; 
-	
-	@Column(columnDefinition="varchar(2000)")
-	private String detailedLocation;
+	private String location; // done
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String weather; 
-	
-	private String visibility;
-	
-	private String waterType; 
-	
-	private String waterBodyType;
-	
-	private double waterDensity;
-	
-	private String tideLevel;
-	
-	private String diveSuit; 
-	
-	private String entry; 
-	
-	private double airTemperature;
-	
-	private double waterTemperature;
-	
-	private String tankType; 
-	
-	private String gasType; 
-	
-	private String gasMix;
-	
-	private double fractionOfHelium;
-	
-	private double fractionOfNitrogen;
-	
-	private int tankSize; 
-	
-	private double tankStart; 
-	
-	private double tankEnd; 
-	
-	private double tankUsage; 
-	
-	private double weightCarried;
-	
-	private int noOfParticipants; 
+	private String detailedLocation;  // done
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String participantsList; 
+	private String weather; // done
 	
-	private String equipment;
+	private String visibility; // done
 	
-	private String buoyancy;
+	private String waterType; // done
 	
-	private double bottomTime;
+	private String waterBodyType; // done
 	
-	private double maxDepth;
+	private double waterDensity; // done
 	
-	private double altitude; 
+	private String tideLevel; // done
 	
-	private String startcode;
+	private String diveSuit; // done
 	
-	private String surfacingCode;
+	private String entry; // done
+	
+	private double airTemperature; // done
+	
+	private double waterTemperature; // done
+	
+	private String tankType; // done
+	
+	private String gasType; // done
+	
+	private String gasMix; // done
+	
+	private double fractionOfHelium; // done
+	
+	private double fractionOfNitrogen; // done
+	
+	private int tankSize; // done
+	
+	private double tankStart; // done
+	
+	private double tankEnd; // done
+	
+	private double tankUsage; // done
+	
+	private double weightCarried; // done
+	
+	private int noOfParticipants; // done
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String description; 
+	private String participantsList;  // done
+	
+	private String equipment;  // done
+	
+	private String buoyancy;  // done
+	
+	private double bottomTime;  // done
+	
+	private double maxDepth;  // done
+	
+	private double altitude;  // done
+	
+	private String startcode; // done
+	
+	private String surfacingCode; // done
+	
+	@Column(columnDefinition="varchar(2000)")
+	private String description; // done
 	
 	@Column(columnDefinition="varchar(500)")
-	private String faunaList; 
+	private String faunaList; // done
 	
 	@Column(columnDefinition="varchar(500)")
-	private String floraList; 
+	private String floraList; // done
 	
 	@Column(columnDefinition="varchar(500)")
-	private String observationsList; 
+	private String observationsList; // done
 	
 	@OneToMany
 	private Collection<DBFile> images;
