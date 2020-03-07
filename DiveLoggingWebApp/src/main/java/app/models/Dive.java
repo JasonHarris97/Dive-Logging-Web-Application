@@ -34,8 +34,10 @@ public class Dive {
 	private String divePurpose;
 	
 	@NotNull
+	@OneToOne
 	private User diveOwner; 
 	
+	@OneToOne
 	private User diveBuddy;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

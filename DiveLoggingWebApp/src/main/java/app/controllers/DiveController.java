@@ -94,8 +94,13 @@ public class DiveController {
 		User currentUser = userService.findByUsername(principal.getName());
 		dive.setDiveOwner(currentUser);
 		
-		dive.setDiveDuration(Duration.between(dive.getStartTime(), dive.getEndTime()));
-		dive.setTankUsage(dive.getTankStart()-dive.getTankEnd());
+		if(dive.getStartTime() != null && dive.getEndTime() != null) {
+			dive.setDiveDuration(Duration.between(dive.getStartTime(), dive.getEndTime()));
+		}
+		
+		if(dive.getTankEnd() != 0 && dive.getTankStart() != 0) {
+			dive.setTankUsage(dive.getTankStart()-dive.getTankEnd());
+		}
 	
         diveService.save(dive);
         return "redirect:/dive/view/" + dive.getId();
