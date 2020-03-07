@@ -2,10 +2,13 @@ package app.controllers;
 
 import java.security.Principal;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,7 @@ import app.models.Dive;
 import app.models.User;
 import app.services.DiveService;
 import app.services.UserService;
+import app.web.QueryDto;
 import app.web.UserDto;
 
 @Controller
@@ -35,12 +39,36 @@ public class DiveController {
     public Dive dive() {
         return new Dive();
     }
+    
+    @ModelAttribute("query")
+    public QueryDto queryDto() {
+        return new QueryDto();
+    }
 	
 	@RequestMapping(value = {"/query", "/"}, method = RequestMethod.GET)
 	public String getAllDives(Model model) {
-		model.addAttribute("dives", diveService.findAll());
+		model.addAttribute("returnedDives", diveService.findAll());
 		return "dive/query";
 	}
+	
+	// CURRENT ---------------------------------------------------------------------------
+	@RequestMapping(value = {"/query"}, method = RequestMethod.POST)
+	public String performDiveQuery(@ModelAttribute("query") QueryDto query, Model model,
+			BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "dive/query";
+		}
+		
+		if(!query.getInputString().isEmpty()) {
+			model = performQuery(query, model);
+			return "dive/query";
+		} else {
+			model.addAttribute("returnedDives", new ArrayList<String>());
+			return "dive/query";
+		}
+	}
+	// CURRENT ---------------------------------------------------------------------------
 	
 	@RequestMapping(value = "/view/{diveId}", method = RequestMethod.GET)
 	public String getDiveDetails(@PathVariable("diveId") String diveId, Model model) {
@@ -70,7 +98,7 @@ public class DiveController {
 		dive.setTankUsage(dive.getTankStart()-dive.getTankEnd());
 	
         diveService.save(dive);
-        return "redirect:/dive";
+        return "redirect:/dive/view/" + dive.getId();
     }
     
     @RequestMapping(value = "/map", method = RequestMethod.GET)
@@ -78,6 +106,25 @@ public class DiveController {
 		model.addAttribute("dives", diveService.findFifty());
 		return "dive/map";
 	}
+    
+    private Model performQuery(QueryDto query, Model model) {
+
+    	if(query.getSearchOption().equals("country")) {
+			model.addAttribute("returnedDives", diveService.findAllByCountry(query.getInputString(), Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else if (query.getSearchOption().equals("username")){
+			User diveOwner = userService.findByUsername(query.getInputString());
+			model.addAttribute("returnedDives", diveService.findAllByDiveOwner(diveOwner, Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else if (query.getSearchOption().equals("date")){
+			model.addAttribute("returnedDives", diveService.findAll(Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else if (query.getSearchOption().equals("location")){
+			model.addAttribute("returnedDives", diveService.findAllByLocation(query.getInputString(), Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else if (query.getSearchOption().equals("padiLevel")) {
+			model.addAttribute("returnedDives", diveService.findAllByDiveOwnerPadiLevel(query.getInputString(), Sort.by(Sort.Direction.ASC, query.getOrderBy())));
+		} else {
+			model.addAttribute("returnedDives", diveService.findAll());
+		}
+    	return model;
+    }
 
 
 }

@@ -66,6 +66,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		
 		List<User> testUsers = loadTestUsers();
 		loadTestDives(testUsers);
+		loadSpecificTestData();
 	}
 	
 	private void loadTestDives(List<User> testUsers) {
@@ -108,11 +109,11 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testDive.setTankStart(faker.number().randomDouble(2, 0, testDive.getTankSize()));
 			testDive.setTankEnd(faker.number().randomDouble(2, 0, (int) testDive.getTankStart()));
 			testDive.setTankUsage(testDive.getTankStart()-testDive.getTankEnd());
-			testDive.setNoOfParticipants(rand.nextInt(10));
+			testDive.setNoOfParticipants(rand.nextInt(9)+1);
 			
-			String participantsList = "";
-			for(int i = 0; i < testDive.getNoOfParticipants(); i++) {
-				participantsList = participantsList + " " + faker.name().firstName();
+			String participantsList = testDive.getDiveOwner().getFirstName() + " " + testDive.getDiveOwner().getLastName();
+			for(int i = 0; i < testDive.getNoOfParticipants()-1; i++) {
+				participantsList = participantsList + " " + faker.name().firstName() + " " + faker.name().lastName();
 			}
 			testDive.setParticipantsList(participantsList);
 			testDive.setMaxDepth(faker.number().randomDouble(2, 0, 20000));
@@ -151,6 +152,58 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testUsers.add(testUser);
 		}
 		return testUsers;
+	}
+	
+	private void loadSpecificTestData() {
+		// Personal Test Account
+		User testUser = new User();
+		testUser.setFirstName("Jason");
+		testUser.setLastName("Harris");
+		testUser.setUsername("JasonHarris");
+		testUser.setEmail("test@gmail.com");
+		testUser.setPassword(passwordEncoder.encode("test"));
+		testUser.setContactNumber("07801418898");
+		testUser.setCountry("England");
+		testUser.setPadiLevel("Discover Scuba Diving");
+		testUser.setNoOfDives(0);
+		testUser.setNoOfCountries(0);
+		testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
+		userService.save(testUser);
+		
+		// Test Dive Log
+		Dive testDive = new Dive(testUser, "Test Description. Dive Description. Etc.");
+		testDive.setDate(LocalDate.now());
+		testDive.setStartTime(LocalTime.now());
+		testDive.setEndTime(LocalTime.now());
+		testDive.setDiveDuration(Duration.between(LocalTime.now(), LocalTime.now()));
+		testDive.setLatitude(20.0);
+		testDive.setLongitude(24.0);
+		testDive.setCountry("England");
+		testDive.setLocation("Brazil");
+		testDive.setDetailedLocation("Brazil, Sao Paulo");
+		testDive.setWeather("Rainy");
+		testDive.setVisibility("Poor");
+		testDive.setWaterType("Salt");
+		testDive.setDiveSuit("Standard Wet Suit");
+		testDive.setEntry("Boat");
+		testDive.setAirTemperature(30.4);
+		testDive.setWaterTemperature(24.5);
+		testDive.setTankType("Big Tank");
+		testDive.setGasType("Oxygen");
+		testDive.setTankSize(5000);
+		testDive.setTankStart(4789.93);
+		testDive.setTankEnd(1340.32);
+		testDive.setTankUsage(4789.93-1340.32);
+		testDive.setNoOfParticipants(3);
+		testDive.setParticipantsList("Jason Harris, Tim Johnson, John Smith");
+		testDive.setMaxDepth(345.67);
+		testDive.setAltitude(346);
+		testDive.setDescription("Test description");
+		testDive.setFaunaList("animal1 animal2");
+		testDive.setFloraList("plant1 plant2 plant3");
+		testDive.setObservationsList("observation1 observation2");
+		
+		diveService.save(testDive);
 	}
 	
 	private LocalDate convertToLocalDate(Date dateToConvert) {
