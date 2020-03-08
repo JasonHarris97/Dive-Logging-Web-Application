@@ -7,5 +7,5 @@ import app.models.DBFile;
 
 @Repository
 public interface DBFileRepository extends JpaRepository<DBFile, String> {
-
+	DBFile findById(Long id);
 }

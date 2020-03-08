@@ -64,4 +64,9 @@ public class DBFileServiceImpl implements DBFileService {
 	public void saveDBFile(DBFile file) {
 		dbFileRepository.save(file);
 	}
+
+	@Override
+	public DBFile findById(Long id) {
+		return dbFileRepository.findById(id);
+	}
 }

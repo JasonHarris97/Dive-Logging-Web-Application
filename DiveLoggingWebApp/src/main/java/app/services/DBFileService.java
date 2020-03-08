@@ -10,4 +10,5 @@ public interface DBFileService {
 	
 	DBFile storeFile(MultipartFile file);
 	DBFile getFile(String fileId);
+	DBFile findById(Long id);
 }
