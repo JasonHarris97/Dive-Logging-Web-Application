@@ -195,7 +195,7 @@
 			
 
 				var map = L.mapbox.map('map')
-				    .setView([0.0, 0.0], 2)
+				    .setView([latitude, longitude], 3)
 				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
 
 				var marker = L.marker([latitude, longitude], {
@@ -222,7 +222,7 @@
 				</tr>
 				<tr th:each="i : ${dive.images}">
 					<td th:text="${i.fileName}">Filename</td>
-					<td><img th:src="@{'/getImage/'+${i.id}}"></td>
+					<td><img class="diveImg" th:src="@{'/getImage/'+${i.id}}"></td>
 				</tr>
 			</table>
 		</div>
