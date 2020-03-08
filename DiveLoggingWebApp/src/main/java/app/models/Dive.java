@@ -3,13 +3,16 @@ package app.models;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -21,79 +24,116 @@ public class Dive {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; 
+	
+	private int diveNo; 
+	
+	private String diveTitle; 
+	
+	private String diveSite; 
+	
+	private String divePurpose; 
 	
 	@NotNull
-	@OneToOne
+	@ManyToOne
 	private User diveOwner; 
+	
+	private String diveBuddy; 
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date; 
 	
-	private LocalTime startTime;
+	private LocalTime startTime; 
 	
-	private LocalTime endTime;
+	private LocalTime endTime; 
 	
 	private Duration diveDuration; 
 	
-	private double latitude;
+	private double latitude; 
 	
-	private double longitude;
+	private double longitude; 
 	
 	private String country; 
 	
 	private String location; 
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String detailedLocation;
+	private String detailedLocation; 
 	
 	@Column(columnDefinition="varchar(2000)")
 	private String weather; 
 	
-	private String visibility;
+	private String visibility; 
 	
 	private String waterType; 
+	
+	private String waterBodyType; 
+	
+	private double waterDensity; 
+	
+	private String tideLevel; 
 	
 	private String diveSuit; 
 	
 	private String entry; 
 	
-	private double airTemperature;
+	private double airTemperature; 
 	
-	private double waterTemperature;
+	private double waterTemperature; 
 	
 	private String tankType; 
 	
 	private String gasType; 
 	
+	private String gasMix; 
+	
+	private double fractionOfHelium; 
+	
+	private double fractionOfNitrogen; 
+	
 	private int tankSize; 
 	
 	private double tankStart; 
 	
-	private double tankEnd; 
+	private double tankEnd;
 	
 	private double tankUsage; 
+	
+	private double weightCarried;
 	
 	private int noOfParticipants; 
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String participantsList; // to do
+	private String participantsList; 
 	
-	private double maxDepth;
+	private String equipment;  
 	
-	private double altitude; 
+	private String buoyancy;  
+	
+	private double bottomTime; 
+	
+	private double maxDepth;  
+	
+	private double altitude;  
+	
+	private String startCode; 
+	
+	private String surfacingCode; 
 	
 	@Column(columnDefinition="varchar(2000)")
 	private String description; 
 	
 	@Column(columnDefinition="varchar(500)")
-	private String faunaList; // to do
+	private String faunaList;
 	
 	@Column(columnDefinition="varchar(500)")
-	private String floraList; // to do
+	private String floraList;
 	
 	@Column(columnDefinition="varchar(500)")
-	private String observationsList; // to do
+	private String observationsList; 
+	
+	@OneToMany(mappedBy = "associatedDive")
+	private List<DBFile> images = new ArrayList<DBFile>(); 
 	
 	// Constructors
 	public Dive() {
@@ -370,6 +410,150 @@ public class Dive {
 
 	public void setObservationsList(String observationsList) {
 		this.observationsList = observationsList;
+	}
+
+	public String getWaterBodyType() {
+		return waterBodyType;
+	}
+
+	public void setWaterBodyType(String waterBodyType) {
+		this.waterBodyType = waterBodyType;
+	}
+
+	public double getFractionOfHelium() {
+		return fractionOfHelium;
+	}
+
+	public void setFractionOfHelium(double fractionOfHelium) {
+		this.fractionOfHelium = fractionOfHelium;
+	}
+
+	public double getFractionOfNitrogen() {
+		return fractionOfNitrogen;
+	}
+
+	public void setFractionOfNitrogen(double fractionOfNitrogen) {
+		this.fractionOfNitrogen = fractionOfNitrogen;
+	}
+
+	public String getDiveBuddy() {
+		return diveBuddy;
+	}
+
+	public void setDiveBuddy(String diveBuddy) {
+		this.diveBuddy = diveBuddy;
+	}
+
+	public double getWaterDensity() {
+		return waterDensity;
+	}
+
+	public void setWaterDensity(double waterDensity) {
+		this.waterDensity = waterDensity;
+	}
+
+	public int getDiveNo() {
+		return diveNo;
+	}
+
+	public void setDiveNo(int diveNo) {
+		this.diveNo = diveNo;
+	}
+
+	public String getDiveSite() {
+		return diveSite;
+	}
+
+	public void setDiveSite(String diveSite) {
+		this.diveSite = diveSite;
+	}
+
+	public String getDivePurpose() {
+		return divePurpose;
+	}
+
+	public void setDivePurpose(String divePurpose) {
+		this.divePurpose = divePurpose;
+	}
+
+	public String getTideLevel() {
+		return tideLevel;
+	}
+
+	public void setTideLevel(String tideLevel) {
+		this.tideLevel = tideLevel;
+	}
+
+	public String getGasMix() {
+		return gasMix;
+	}
+
+	public void setGasMix(String gasMix) {
+		this.gasMix = gasMix;
+	}
+
+	public String getStartCode() {
+		return startCode;
+	}
+
+	public void setStartCode(String startCode) {
+		this.startCode = startCode;
+	}
+
+	public String getSurfacingCode() {
+		return surfacingCode;
+	}
+
+	public void setSurfacingCode(String surfacingCode) {
+		this.surfacingCode = surfacingCode;
+	}
+
+	public String getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(String equipment) {
+		this.equipment = equipment;
+	}
+
+	public double getWeightCarried() {
+		return weightCarried;
+	}
+
+	public void setWeightCarried(double weightCarried) {
+		this.weightCarried = weightCarried;
+	}
+
+	public double getBottomTime() {
+		return bottomTime;
+	}
+
+	public void setBottomTime(double bottomTime) {
+		this.bottomTime = bottomTime;
+	}
+
+	public String getBuoyancy() {
+		return buoyancy;
+	}
+
+	public void setBuoyancy(String buoyancy) {
+		this.buoyancy = buoyancy;
+	}
+
+	public String getDiveTitle() {
+		return diveTitle;
+	}
+
+	public void setDiveTitle(String diveTitle) {
+		this.diveTitle = diveTitle;
+	}
+
+	public List<DBFile> getImages() {
+		return images;
+	}
+
+	public void setImages(List<DBFile> images) {
+		this.images = images;
 	}
 	
 }

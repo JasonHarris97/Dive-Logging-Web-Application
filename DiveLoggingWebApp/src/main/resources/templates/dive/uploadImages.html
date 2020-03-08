@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	  layout:decorate="~{layouts/diveUploadImagesTemplate}"
+	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>Dives</title>
+	<link th:href="@{/css/diveUploadImages.css}" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+	<!-- MAIN -->
+	<div layout:fragment="content">
+		<div id="ImagesAndFiles" class="tabcontent">
+			<h3>Images</h3>
+
+			<div class="multiple-upload">
+				<h3>Upload Multiple Files</h3>
+
+				<form id="multipleUploadForm" name="multipleUploadForm">
+					<input id="multipleFileUploadInputDive" type="hidden" name="diveId" th:value="${dive.id}" />
+					<input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
+					<button type="submit" class="primary submit-btn">Submit</button>
+				</form>
+
+				<div class="upload-response">
+					<div id="multipleFileUploadError"></div>
+					<div id="multipleFileUploadSuccess"></div>
+				</div>
+			</div>
+
+			<button type="button" class="primary submit-btn"><a th:href="@{'/dive/view/'+${dive.id}}">Finish</a></button>
+		</div>
+	</div>
+	<!-- MAIN -->
+</body>
+
+</html>

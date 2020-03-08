@@ -11,27 +11,29 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;//d
 
-    private String firstName;
+    private String firstName;//d
     
-    private String lastName;
+    private String lastName;//d
     
-    private String username;
+    private String username;//d
     
-    private String email;
+    private String email;//d
     
-    private String password;
+    private String password;//d
     
-    private String contactNumber;
+    private String contactNumber;//d
     
-    private String country;
+    private String country;//d
     
-    private String padiLevel;
+    private String padiLevel;//d
     
-    private int noOfDives;
+    private String padiNo; //d
     
-    private int noOfCountries;
+    private int noOfDives;//d
+    
+    private int noOfCountries;//d
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -166,4 +168,12 @@ public class User {
             ", roles=" + roles +
             '}';
     }
+
+	public String getPadiNo() {
+		return padiNo;
+	}
+
+	public void setPadiNo(String padiNo) {
+		this.padiNo = padiNo;
+	}
 }

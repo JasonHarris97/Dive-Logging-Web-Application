@@ -94,17 +94,38 @@ public class DiveController {
 		User currentUser = userService.findByUsername(principal.getName());
 		dive.setDiveOwner(currentUser);
 		
-		dive.setDiveDuration(Duration.between(dive.getStartTime(), dive.getEndTime()));
-		dive.setTankUsage(dive.getTankStart()-dive.getTankEnd());
-	
+		if(dive.getStartTime() != null && dive.getEndTime() != null) {
+			dive.setDiveDuration(Duration.between(dive.getStartTime(), dive.getEndTime()));
+		} else { 
+			dive.setDiveDuration(Duration.ZERO);
+		}
+		
+		
+		if(dive.getTankEnd() != 0 && dive.getTankStart() != 0) {
+			dive.setTankUsage(dive.getTankStart()-dive.getTankEnd());
+		} else {
+			dive.setTankUsage(0.0);
+		}
+		
+		currentUser.setNoOfDives(currentUser.getNoOfDives()+1);
+		dive.setDiveNo(currentUser.getNoOfDives());
         diveService.save(dive);
-        return "redirect:/dive/view/" + dive.getId();
+        
+        return "redirect:/dive/uploadImages/" + dive.getId();
     }
     
     @RequestMapping(value = "/map", method = RequestMethod.GET)
 	public String getWorldMap(Model model) {
 		model.addAttribute("dives", diveService.findFifty());
 		return "dive/map";
+	}
+    
+    @RequestMapping(value = "/uploadImages/{diveId}", method = RequestMethod.GET)
+	public String showUploadDiveImages(@PathVariable("diveId") String diveId, Model model) {
+    	Dive dive = diveService.findById(Long.parseLong(diveId));
+		model.addAttribute("dive", dive);
+		
+		return "dive/uploadImages";
 	}
     
     private Model performQuery(QueryDto query, Model model) {

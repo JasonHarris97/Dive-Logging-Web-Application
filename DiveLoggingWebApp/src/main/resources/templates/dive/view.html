@@ -16,43 +16,61 @@
 		<div class="tab">
 			<button class="tablinks" onclick="openTab(event, 'Overview')"  id="defaultOpen">Overview</button>
 			<button class="tablinks" onclick="openTab(event, 'Environment')">Environment</button>
-			<button class="tablinks" onclick="openTab(event, 'Details')">Details</button>
+			<button class="tablinks" onclick="openTab(event, 'DiveDetails')">Dive Details</button>
 			<button class="tablinks" onclick="openTab(event, 'Observations')">Observations</button>
+			<button class="tablinks" onclick="openTab(event, 'DiveSiteMap')">Dive Site Map</button>
+			<button class="tablinks" onclick="openTab(event, 'Images')">Images</button>
+			<button class="tablinks" onclick="openTab(event, 'DiverDetails')">Diver Details</button>
 		</div>
 
 		<!-- First Tab -->
 		<div id="Overview" class="tabcontent">
+			<h2 th:text="${dive.diveTitle}+' #'+${dive.diveNo}"></h2>
+			
+			<h4>Diver</h4>
+			<p th:text="${dive.diveOwner.username}"> <a th:href="@{'/user/view/'+${dive.diveOwner.username}}"></a></p>
 
-			<h1 th:text="'Title: '+${dive.description}"></h1>
-			<h3>ID</h3>
-			<p th:text="${dive.id}"></p>
-			<h3>First Name</h3>
-			<p th:text="${dive.diveOwner.firstName}"></p>
-			<h3>Last Name</h3>
-			<p th:text="${dive.diveOwner.lastName}"></p>
-			<h3>Owner Email</h3>
-			<p th:text="${dive.diveOwner.email}"></p>
-			<h3>Date</h3>
+			<h4>Dive Buddy</h4>
+			<p th:text="${dive.diveBuddy}"></p>
+
+			<h4>No of Participants</h4>
+			<p th:text="${dive.noOfParticipants}"></p>
+
+			<h4>Participants List</h4>
+			<p th:text="${dive.participantsList}"></p>
+
+			<h4>Dive Site</h4>
+			<p th:text="${dive.diveSite}"></p>
+
+			<h4>Dive Purpose</h4>
+			<p th:text="${dive.divePurpose}"></p>
+
+			<h4>Date</h4>
 			<p th:text="${dive.date}"></p>
-			<h3>Start Time</h3>
+
+			<h4>Start Time</h4>
 			<p th:text="${dive.startTime}"></p>
-			<h3>End Time</h3>
+
+			<h4>End Time</h4>
 			<p th:text="${dive.endTime}"></p>
-			<h3>Duration</h3>
+
+			<h4>Duration</h4>
 			<p th:text="${dive.diveDuration.toMinutes()}"></p>
-			<h3>Latitude</h3>
+
+			<h4>Latitude</h4>
 			<p th:text="${dive.latitude}"></p>
-			<h3>Longitude</h3>
+
+			<h4>Longitude</h4>
 			<p th:text="${dive.longitude}"></p>
-			<h3>Country</h3>
+
+			<h4>Country</h4>
 			<p th:text="${dive.country}"></p>
-			<h3>Location</h3>
+
+			<h4>Location</h4>
 			<p th:text="${dive.location}"></p>
-			<h3>Detailed Location</h3>
+
+			<h4>Detailed Location</h4>
 			<p th:text="${dive.detailedLocation}"></p>
-
-			<div id='map'></div>
-
 		</div>
 
 		<!-- Second Tab -->
@@ -60,84 +78,172 @@
 
 			<h4>Weather</h4>
 			<p th:text="${dive.weather}"></p>
-			<h3>Visibility</h3>
+
+			<h4>Visibility</h4>
 			<p th:text="${dive.visibility}"></p>
-			<h3>Air Temp</h3>
+
+			<h4>Air Temp</h4>
 			<p th:text="${dive.airTemperature}"></p>
-			<h3>Water Temp</h3>
+
+			<h4>Water Temp</h4>
 			<p th:text="${dive.waterTemperature}"></p>
-			<h3>Water Type</h3>
+
+			<h4>Water Density</h4>
+			<p th:text="${dive.waterDensity}"></p>
+
+			<h4>Water Type</h4>
 			<p th:text="${dive.waterType}"></p>
-			<h3>Altitude</h3>
+
+			<h4>Water Body Type</h4>
+			<p th:text="${dive.waterBodyType}"></p>
+
+			<h4>Tide Level</h4>
+			<p th:text="${dive.tideLevel}"></p>
+
+			<h4>Altitude</h4>
 			<p th:text="${dive.altitude}"></p>
-			<h3>Max Depth</h3>
+
+			<h4>Max Depth</h4>
 			<p th:text="${dive.maxDepth}"></p>
 		</div>
 
 		<!-- Third Tab -->
-		<div id="Details" class="tabcontent">
-
-			<h3>No of Participants</h3>
-			<p th:text="${dive.noOfParticipants}"></p>
-			<h3>Participants List</h3>
-			<p th:text="${dive.participantsList}"></p>
-			<h3>Entry</h3>
+		<div id="DiveDetails" class="tabcontent">
+			<h4>Entry</h4>
 			<p th:text="${dive.entry}"></p>
-			<h3>Dive Suit</h3>
+
+			<h4>Dive Suit</h4>
 			<p th:text="${dive.diveSuit}"></p>
-			<h3>Tank Type</h3>
+
+			<h4>Equipment</h4>
+			<p th:text="${dive.equipment}"></p>
+
+			<h4>Tank Type</h4>
 			<p th:text="${dive.tankType}"></p>
-			<h3>Gas Type</h3>
-			<p th:text="${dive.gasType}"></p>
-			<h3>Tank Size</h3>
+
+			<h4>Tank Size</h4>
 			<p th:text="${dive.tankSize}"></p>
-			<h3>Tank Start</h3>
+
+			<h4>Tank Start</h4>
 			<p th:text="${dive.tankStart}"></p>
-			<h3>Tank End</h3>
+
+			<h4>Tank End</h4>
 			<p th:text="${dive.tankEnd}"></p>
-			<h3>Tank Usage</h3>
+
+			<h4>Tank Usage</h4>
 			<p th:text="${dive.tankUsage}"></p>
+
+			<h4>Gas Type</h4>
+			<p th:text="${dive.gasType}"></p>
+
+			<h4>Gas Mix</h4>
+			<p th:text="${dive.gasMix}"></p>
+
+			<h4>Fraction Of Helium</h4>
+			<p th:text="${dive.fractionOfHelium}"></p>
+
+			<h4>Fraction Of Nitrogen</h4>
+			<p th:text="${dive.fractionOfNitrogen}"></p>
+
+			<h4>Weight Carried</h4>
+			<p th:text="${dive.weightCarried}"></p>
+
+			<h4>Buoyancy</h4>
+			<p th:text="${dive.buoyancy}"></p>
+
+			<h4>Start Code</h4>
+			<p th:text="${dive.startCode}"></p>
+
+			<h4>Surfacing Code</h4>
+			<p th:text="${dive.surfacingCode}"></p>
+
+
 		</div>
+
+
 
 		<!-- Fourth Tab -->
 		<div id="Observations" class="tabcontent">
-
-			<h3>Description</h3>
+			<h4>Description</h4>
 			<p th:text="${dive.description}"></p>
-			<h3>Fauna</h3>
+
+			<h4>Fauna</h4>
 			<p th:text="${dive.faunaList}"></p>
-			<h3>Flora</h3>
+
+			<h4>Flora</h4>
 			<p th:text="${dive.floraList}"></p>
-			<h3>ObservationsList</h3>
+
+			<h4>ObservationsList</h4>
 			<p th:text="${dive.observationsList}"></p>
 		</div>
 
-		<script th:inline="javascript">
-			L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
 
-			var longitude = [[${dive.longitude}]];
-			var latitude = [[${dive.latitude}]];
-			var description = [[${dive.description}]];
-			var detailedLocation = [[${dive.detailedLocation}]];
-			var diver = [[${dive.diveOwner.firstName}+' '+${dive.diveOwner.lastName}]];
-			var date = [[${dive.date}]];
-		
 
-			var map = L.mapbox.map('map')
-			    .setView([latitude, longitude], 3)
-			    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+		<!-- Fifth Tab -->
+		<div id="DiveSiteMap" class="tabcontent">
+			<div id='map'></div>
 
-			var marker = L.marker([latitude, longitude], {
-				icon: L.mapbox.marker.icon({
-					'marker-size': 'large',
-					'marker-symbol': 'circle',
-					'marker-color': '#4169E1'
-				    	})
-				})
+			<script th:inline="javascript">
+				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
 
-			marker.bindPopup(description + "<br />" + diver + "<br />" + date + "<br />" + String(detailedLocation));
-			marker.addTo(map);
-		</script>
+				var longitude = [[${dive.longitude}]];
+				var latitude = [[${dive.latitude}]];
+				var description = [[${dive.description}]];
+				var detailedLocation = [[${dive.detailedLocation}]];
+				var diver = [[${dive.diveOwner.firstName}+' '+${dive.diveOwner.lastName}]];
+				var date = [[${dive.date}]];
+			
+
+				var map = L.mapbox.map('map')
+				    .setView([0.0, 0.0], 2)
+				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+				var marker = L.marker([latitude, longitude], {
+					icon: L.mapbox.marker.icon({
+						'marker-size': 'large',
+						'marker-symbol': 'circle',
+						'marker-color': '#4169E1'
+					    	})
+					})
+
+				marker.bindPopup(description + "<br />" + diver + "<br />" + date + "<br />" + String(detailedLocation));
+				marker.addTo(map);
+			</script>
+		</div>
+
+
+
+		<!-- Sixth Tab -->
+		<div id="Images" class="tabcontent">
+			<table id="myTable">
+				<tr class="header">
+					<th>Name</th>	
+					<th>Image</th>
+				</tr>
+				<tr th:each="i : ${dive.images}">
+					<td th:text="${i.fileName}">Filename</td>
+					<td><img th:src="@{'/getImage/'+${i.id}}"></td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- Seventh Tab -->
+		<div id="DiverDetails" class="tabcontent">
+			<h4>Username</h4>
+			<p th:text="${dive.diveOwner.username}"> <a th:href="@{'/user/view/'+${dive.diveOwner.username}}"></a></p>
+			<h4>Full Name</h4>
+			<p th:text="${dive.diveOwner.firstName}+' '+${dive.diveOwner.lastName}"></p>
+			<h4>Owner Email</h4>
+			<p th:text="${dive.diveOwner.email}"></p>
+			<h4>Contact Number</h4>
+			<p th:text="${dive.diveOwner.contactNumber}"></p>
+			<h4>Padi Level</h4>
+			<p th:text="${dive.diveOwner.padiLevel}"></p>
+			<h4>Padi No</h4>
+			<p th:text="${dive.diveOwner.padiNo}"></p>
+			<h4>Number Of Dives</h4>
+			<p th:text="${dive.diveOwner.noOfDives}"></p>
+		</div>
 
 
 	</div>

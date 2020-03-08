@@ -20,6 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	http.csrf().disable();
     	
     	http
     		.authorizeRequests()
@@ -29,6 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers(
                 		"/*",
+                		"/uploadMultipleFiles**",
+                		"/getImage/**",
                 		"/index*",
                 		"/meme**",
                         "/user/**",
