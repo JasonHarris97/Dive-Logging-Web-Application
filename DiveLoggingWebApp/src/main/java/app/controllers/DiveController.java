@@ -2,10 +2,9 @@ package app.controllers;
 
 import java.security.Principal;
 import java.time.Duration;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -23,7 +22,6 @@ import app.models.User;
 import app.services.DiveService;
 import app.services.UserService;
 import app.web.QueryDto;
-import app.web.UserDto;
 
 @Controller
 @RequestMapping(value = "/dive", produces = {MediaType.TEXT_HTML_VALUE})

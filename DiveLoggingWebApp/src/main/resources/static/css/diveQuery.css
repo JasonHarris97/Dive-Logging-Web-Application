@@ -98,3 +98,15 @@
 }
 
 
+#queryContainer{
+  width: 100%; /* Full-width */
+}
+
+.radioContainer{
+  position: relative;
+  display: inline-grid;
+  min-width: 150px;
+  max-width: 22%;
+}
+
+
