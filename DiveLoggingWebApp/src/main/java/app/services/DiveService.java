@@ -2,6 +2,8 @@ package app.services;
 
 import java.time.LocalDate;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import app.models.Dive;
@@ -15,6 +17,7 @@ public interface DiveService{
     
     Iterable<Dive> findAll();
     Iterable<Dive> findAll(Sort sort);
+    Page<Dive> findAll(Pageable pageable);
     
     Iterable<Dive> findFifty();
     
@@ -29,4 +32,10 @@ public interface DiveService{
     Iterable<Dive> findAllByDate(LocalDate date, Sort sort);
     Iterable<Dive> findAllByLocation(String location, Sort sort);
     Iterable<Dive> findAllByDiveOwnerPadiLevel(String padiLevel, Sort sort);
+    
+    Page<Dive> findAllByDiveOwner(User diveOwner, Pageable pageable);
+    Page<Dive> findAllByCountry(String country, Pageable pageable);
+    Page<Dive> findAllByDate(LocalDate date, Pageable pageable);
+    Page<Dive> findAllByLocation(String location, Pageable pageable);
+    Page<Dive> findAllByDiveOwnerPadiLevel(String padiLevel, Pageable pageable);
 }

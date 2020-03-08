@@ -2,6 +2,8 @@ package app.repository;
 
 import java.time.LocalDate;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,4 +31,10 @@ public interface DiveRepository extends JpaRepository<Dive, Long> {
 	Iterable<Dive> findTop1000ByDate(LocalDate date, Sort sort);
 	Iterable<Dive> findTop1000ByDiveOwnerPadiLevel(String padiLevel, Sort sort);
 	Iterable<Dive> findTop1000ByLocation(String location, Sort sort);
+	
+	Page<Dive> findTop1000ByDiveOwner(User diveOwner, Pageable pageable);
+	Page<Dive> findTop1000ByCountry(String country, Pageable pageable);
+	Page<Dive> findTop1000ByDate(LocalDate date, Pageable pageable);
+	Page<Dive> findTop1000ByDiveOwnerPadiLevel(String padiLevel, Pageable pageable);
+	Page<Dive> findTop1000ByLocation(String location, Pageable pageable);
 }
