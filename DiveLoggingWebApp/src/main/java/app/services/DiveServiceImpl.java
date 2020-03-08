@@ -109,26 +109,26 @@ public class DiveServiceImpl implements DiveService{
 
 	@Override
 	public Page<Dive> findAllByDiveOwner(User diveOwner, Pageable pageable) {
-		return null;
+		return diveRepository.findTop1000ByDiveOwner(diveOwner, pageable);
 	}
 
 	@Override
 	public Page<Dive> findAllByCountry(String country, Pageable pageable) {
-		return null;
+		return diveRepository.findTop1000ByCountry(country, pageable);
 	}
 
 	@Override
 	public Page<Dive> findAllByDate(LocalDate date, Pageable pageable) {
-		return null;
+		return diveRepository.findTop1000ByDate(date, pageable);
 	}
 
 	@Override
 	public Page<Dive> findAllByLocation(String location, Pageable pageable) {
-		return null;
+		return diveRepository.findTop1000ByLocation(location, pageable);
 	}
 
 	@Override
 	public Page<Dive> findAllByDiveOwnerPadiLevel(String padiLevel, Pageable pageable) {
-		return null;
+		return diveRepository.findTop1000ByDiveOwnerPadiLevel(padiLevel, pageable);
 	}
 }

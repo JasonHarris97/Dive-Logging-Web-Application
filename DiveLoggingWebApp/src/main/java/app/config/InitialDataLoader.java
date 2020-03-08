@@ -45,7 +45,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 	private final static int noOfTestUsers = 10;
 	
-	private final static int noOfTestDives = 20;
+	private final static int noOfTestDives = 2000;
 	
 	@Autowired
 	private UserService userService;
