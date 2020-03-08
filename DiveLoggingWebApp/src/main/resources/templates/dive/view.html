@@ -218,10 +218,11 @@
 			<table id="myTable">
 				<tr class="header">
 					<th>Name</th>	
+					<th>Image</th>
 				</tr>
 				<tr th:each="i : ${dive.images}">
 					<td th:text="${i.fileName}">Filename</td>
-					<img th:src="@{'/getImage/'+${i.id}}">
+					<td><img th:src="@{'/getImage/'+${i.id}}"></td>
 				</tr>
 			</table>
 		</div>
