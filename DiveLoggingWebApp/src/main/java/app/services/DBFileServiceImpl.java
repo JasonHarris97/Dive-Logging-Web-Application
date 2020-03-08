@@ -13,7 +13,7 @@ import app.models.DBFile;
 import app.repository.DBFileRepository;
 
 @Service
-public class DBFileServiceImpl {
+public class DBFileServiceImpl implements DBFileService {
 
     @Autowired
     private DBFileRepository dbFileRepository;
@@ -40,4 +40,28 @@ public class DBFileServiceImpl {
         return dbFileRepository.findById(fileId)
                 .orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
     }
+
+	@Override
+	public DBFile generateDBFile(MultipartFile file) {
+		 // Normalize file name
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+        try {
+            // Check if the file's name contains invalid characters
+            if(fileName.contains("..")) {
+                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+            }
+
+            DBFile dbFile = new DBFile(fileName, file.getContentType(), file.getBytes());
+
+            return dbFile;
+        } catch (IOException ex) {
+            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+        }
+	}
+
+	@Override
+	public void saveDBFile(DBFile file) {
+		dbFileRepository.save(file);
+	}
 }

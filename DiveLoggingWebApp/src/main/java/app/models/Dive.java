@@ -3,15 +3,16 @@ package app.models;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -34,7 +35,7 @@ public class Dive {
 	private String divePurpose; 
 	
 	@NotNull
-	@OneToOne
+	@ManyToOne
 	private User diveOwner; 
 	
 	private String diveBuddy; 
@@ -57,7 +58,7 @@ public class Dive {
 	private String location; 
 	
 	@Column(columnDefinition="varchar(2000)")
-	private String detailedLocation;  
+	private String detailedLocation; 
 	
 	@Column(columnDefinition="varchar(2000)")
 	private String weather; 
@@ -123,16 +124,16 @@ public class Dive {
 	private String description; 
 	
 	@Column(columnDefinition="varchar(500)")
-	private String faunaList; 
+	private String faunaList;
 	
 	@Column(columnDefinition="varchar(500)")
-	private String floraList; 
+	private String floraList;
 	
 	@Column(columnDefinition="varchar(500)")
 	private String observationsList; 
 	
-	@OneToMany
-	private Collection<DBFile> images;
+	@OneToMany(mappedBy = "associatedDive")
+	private List<DBFile> images = new ArrayList<DBFile>(); 
 	
 	// Constructors
 	public Dive() {
@@ -547,11 +548,11 @@ public class Dive {
 		this.diveTitle = diveTitle;
 	}
 
-	public Collection<DBFile> getImages() {
+	public List<DBFile> getImages() {
 		return images;
 	}
 
-	public void setImages(Collection<DBFile> images) {
+	public void setImages(List<DBFile> images) {
 		this.images = images;
 	}
 	

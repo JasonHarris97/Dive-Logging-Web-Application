@@ -40,6 +40,8 @@ public class UserServiceImpl implements UserService {
     public User findById(long id) {
     	return userRepository.findById(id);
     }
+    
+    
 
     @Override
     public User save(UserDto registration) {
@@ -89,4 +91,9 @@ public class UserServiceImpl implements UserService {
             .map(role -> new SimpleGrantedAuthority(role.getName()))
             .collect(Collectors.toList());
     }
+
+	@Override
+	public Iterable<User> findAll() {
+		return userRepository.findAll();
+	}
 }

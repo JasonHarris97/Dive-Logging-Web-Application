@@ -1,3 +1,5 @@
+var currentTab = 0; 
+
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
@@ -29,9 +31,6 @@ function openTab(evt, tabName) {
       break;
     case "Observations":
       currentTab = 3;
-      break;
-    case "ImagesAndFiles":
-      currentTab = 4;
       break;
     default:
       currentTab = 0;
@@ -70,16 +69,12 @@ function nextPrev(n) {
     case 3:
       openTab(new Event("test"), "Observations")
       break;
-    case 4:
-      openTab(new Event("test"), "ImagesAndFiles")
-      break;
     default:
       openTab(new Event("test"), "BasicInfo")
       break;
     // code block
   }
 }
-
 
 
 

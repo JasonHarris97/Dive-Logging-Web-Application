@@ -1,23 +1,22 @@
 package app.models;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "files")
 public class DBFile {
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     @ManyToOne
     private User fileOwner;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="dive_id")
     private Dive associatedDive;
 
     private String fileName;
@@ -38,6 +37,15 @@ public class DBFile {
         this.setFileType(fileType);
         this.data = data;
     }
+    
+ // Id -----------------------------------------
+ 	public Long getId() {
+         return id;
+     }
+
+     public void setId(Long id) {
+         this.id = id;
+     }
 
 	public String getFileName() {
 		return fileName;
@@ -69,5 +77,21 @@ public class DBFile {
 
 	public void setFileUse(String fileUse) {
 		this.fileUse = fileUse;
+	}
+
+	public User getFileOwner() {
+		return fileOwner;
+	}
+
+	public void setFileOwner(User fileOwner) {
+		this.fileOwner = fileOwner;
+	}
+
+	public Dive getAssociatedDive() {
+		return associatedDive;
+	}
+
+	public void setAssociatedDive(Dive associatedDive) {
+		this.associatedDive = associatedDive;
 	}    
 }

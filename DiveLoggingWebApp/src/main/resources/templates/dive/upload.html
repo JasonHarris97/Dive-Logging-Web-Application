@@ -22,7 +22,6 @@
 				<button type="button" class="tablinks" onclick="openTab(event, 'Environment')">Environment</button>
 				<button type="button" class="tablinks" onclick="openTab(event, 'Details')">Details</button>
 				<button type="button" class="tablinks" onclick="openTab(event, 'Observations')">Observations</button>
-				<button type="button" class="tablinks" onclick="openTab(event, 'ImagesAndFiles')">Images and Files</button>
 				<button type="submit" class="uploadButton">Upload</button>
 			</div>
 
@@ -219,7 +218,7 @@
 				<!-- noOfParticipants -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('noOfParticipants')}? 'has-error':''">
 					<label for="noOfParticipants" class="control-label">Number of Participants</label> 
-					<input type="number" value="1" min="1" id="noOfParticipants" class="form-control" th:field="*{noOfParticipants}" />
+					<input type="number" value="1" min="0" id="noOfParticipants" class="form-control" th:field="*{noOfParticipants}" />
 					<p class="error-message" th:each="error: ${#fields.errors('noOfParticipants')}" th:text="${error}">Validation error</p>
 				</div>
 
@@ -389,22 +388,6 @@
 					<div style="float:right;">
 						<button class="buttonStyle" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
 						<button class="buttonStyle" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-					</div>
-				</div>
-			</div>
-
-
-
-
-			<!-- Fifth Tab -->
-			<div id="ImagesAndFiles" class="tabcontent">
-				<h3>Images</h3>
-
-
-				<!-- NAV BUTTONS -->
-				<div style="overflow:auto;">
-					<div style="float:right;">
-						<button class="buttonStyle" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
 					</div>
 				</div>
 			</div>
