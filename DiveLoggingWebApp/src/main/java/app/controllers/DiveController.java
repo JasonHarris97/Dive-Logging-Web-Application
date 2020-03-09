@@ -55,15 +55,15 @@ public class DiveController {
 			BindingResult result) {
 		
 		if (result.hasErrors()) {
-			return "dive/query";
+			return "dive/"+query.getSource();
 		}
 		
 		if(!query.getInputString().isEmpty()) {
 			model = performQuery(query, model);
-			return "dive/query";
+			return "dive/"+query.getSource();
 		} else {
 			model.addAttribute("returnedDives", new ArrayList<String>());
-			return "dive/query";
+			return "dive/"+query.getSource();
 		}
 	}
 	// CURRENT ---------------------------------------------------------------------------
@@ -114,7 +114,7 @@ public class DiveController {
     
     @RequestMapping(value = "/map", method = RequestMethod.GET)
 	public String getWorldMap(Model model) {
-		model.addAttribute("dives", diveService.findFifty());
+		model.addAttribute("returnedDives", diveService.findFifty());
 		return "dive/map";
 	}
     
