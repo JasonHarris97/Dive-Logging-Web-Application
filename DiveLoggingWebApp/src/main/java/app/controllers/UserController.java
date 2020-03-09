@@ -82,7 +82,7 @@ public class UserController{
 			}
 		}
 		model.addAttribute("returnedDives", diveService.findAllByDiveOwner(user));
-		model.addAttribute("user", user);
+		model.addAttribute("userDetails", user);
 		
 		return "user/view";
 	}

@@ -12,7 +12,8 @@ public class DBFile {
     private Long id;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_image_id")
     private User fileOwner;
     
     @ManyToOne(fetch = FetchType.LAZY)
