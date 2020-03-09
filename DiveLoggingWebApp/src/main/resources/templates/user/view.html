@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      	  layout:decorate="~{layouts/default}"
+      	  layout:decorate="~{layouts/diveViewTemplate}"
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
@@ -11,17 +11,45 @@
 
 <body>
 	<!-- MAIN -->
-	<div layout:fragment="content">
-		<h1 th:text="${user.username}"></h1>
-		<p>Name</p>
-		<p th:text="${user.firstName}"></p>
-		<p th:text="${user.lastName}"></p>
-		<p>Country</p>
-		<p th:text="${user.country}"></p>
-		<p>Contact Number</p>
-		<p th:text="${user.contactNumber}"></p>
-		<p>Contact Email</p>
-		<p th:text="${user.email}"></p>
+	<div id="diveContainer" layout:fragment="content">
+
+		<div class="tab">
+			<button class="tablinks" onclick="openTab(event, 'Overview')"  id="defaultOpen">Overview</button>
+			<button class="tablinks" onclick="openTab(event, 'DiveHistory')">Dive History</button>
+			<button class="tablinks" onclick="openTab(event, 'DiveMap')">Dive Map</button>
+			<button class="tablinks" onclick="openTab(event, 'Images')">Images</button>
+		</div>
+
+		<!-- First Tab -->
+		<div id="Overview" class="tabcontent">
+			<h1 th:text="${user.username}"></h1>
+			<h4>Name</h4>
+			<p th:text="${user.firstName}+' '+${user.lastName}"></p>
+			<h4>Country</h4>
+			<p th:text="${user.country}"></p>
+			<h4>Contact Number</h4>
+			<p th:text="${user.contactNumber}"></p>
+			<h4>Contact Email</h4>
+			<p th:text="${user.email}"></p>
+			<h4>PADI Level</h4>
+			<p th:text="${user.padiLevel}"></p>
+			<h4>PADI No</h4>
+			<p th:text="${user.padiNo}"></p>
+			<h4>No of Dives</h4>
+			<p th:text="${user.noOfDives}"></p>
+		</div>
+
+		<!-- Second Tab -->
+		<div id="DiveHistory" class="tabcontent">
+		</div>
+
+		<!-- Third Tab -->
+		<div id="DiveMap" class="tabcontent">
+		</div>
+
+		<!-- Fourth Tab -->
+		<div id="Images" class="tabcontent">
+		</div>
 	</div>
 	<!-- MAIN -->
 </body>

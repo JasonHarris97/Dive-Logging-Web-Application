@@ -206,7 +206,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		testUser.setCountry("England");
 		testUser.setPadiLevel("Discover Scuba Diving");
 		testUser.setPadiNo("789237");
-		testUser.setNoOfDives(0);
+		testUser.setNoOfDives(1);
 		testUser.setNoOfCountries(0);
 		testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
 		userService.save(testUser);
