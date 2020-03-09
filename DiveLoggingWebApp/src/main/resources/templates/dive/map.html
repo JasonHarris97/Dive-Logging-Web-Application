@@ -54,7 +54,7 @@
 
 			var i;
 			var diveList = [[${returnedDives}]];
-			var longitude, latitude, description, detailedLocation, diver, date; 
+			var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date; 
 
 			var map = L.mapbox.map('map')
 			    .setView([0.0, 0.0], 2)
@@ -64,9 +64,11 @@
 			for(i = 0; i < diveList.length; i++){
 				longitude = diveList[i].longitude;
 				latitude = diveList[i].latitude;
-				description = diveList[i].description;
-				detailedLocation = diveList[i].detailedLocation;
-				diver = diveList[i].diveOwner.firstName + " " + diveList[i].diveOwner.lastName;
+				diveTitle = diveList[i].diveTitle;
+				diveCountry = diveList[i].country;
+				diveSite = diveList[i].diveSite;
+				divePurpose = diveList[i].divePurpose;
+				diverName = diveList[i].diveOwner.firstName + " " + diveList[i].diveOwner.lastName;
 				date = diveList[i].date;
 
 				var marker = L.marker([latitude, longitude], {
@@ -77,7 +79,8 @@
 								    	})
 								})
 
-				marker.bindPopup(description + "<br />" + diver + "<br />" + date + "<br />" + String(detailedLocation));
+				marker.bindPopup("<p>Title: "+diveTitle+"<br />Diver: "+diverName+"<br />Country: "+diveCountry+
+							"<br />Site: "+diveSite+"<br />Purpose: "+divePurpose+"<br />Date: "+date+"</p>");
 				marker.addTo(map);
 			}
 		/*]]>*/
