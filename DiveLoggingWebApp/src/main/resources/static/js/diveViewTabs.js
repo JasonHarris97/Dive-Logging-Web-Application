@@ -19,7 +19,7 @@ function openTab(evt, tabName) {
 
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(tabName).style.display = "block";
-  if(tabName == "DiveSiteMap"){
+  if(tabName == "DiveSiteMap" || tabName == "DiveMap"){
 	map.invalidateSize();
   }
   evt.currentTarget.className += " active";

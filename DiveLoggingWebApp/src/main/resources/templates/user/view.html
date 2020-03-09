@@ -6,12 +6,13 @@
 
 <head>
 	<title>User View</title>
+	<link th:href="@{/css/diveQuery.css}" type="text/css" rel="stylesheet" />
 </head>
 
 
 <body>
 	<!-- MAIN -->
-	<div id="diveContainer" layout:fragment="content">
+	<div id="diveContainer" style="width:90%" layout:fragment="content">
 
 		<div class="tab">
 			<button class="tablinks" onclick="openTab(event, 'Overview')"  id="defaultOpen">Overview</button>
@@ -21,7 +22,7 @@
 		</div>
 
 		<!-- First Tab -->
-		<div id="Overview" class="tabcontent">
+		<div id="Overview" style="font-size:16px" class="tabcontent">
 			<h1 th:text="${user.username}"></h1>
 			<h4>Name</h4>
 			<p th:text="${user.firstName}+' '+${user.lastName}"></p>
@@ -41,10 +42,80 @@
 
 		<!-- Second Tab -->
 		<div id="DiveHistory" class="tabcontent">
+			<!-- Table -->
+			<div>
+				<table id="myTable">
+					<tr class="header">
+						<th>Details</th>
+						<th>Date</th>
+						<th>Diver Username</th>
+						<th>PADI Level</th>
+						<th>Participants</th>
+						<th>Country</th>
+						<th>Location</th>
+					</tr>
+					<div th:if="${not #lists.isEmpty(returnedDives)}" >
+						<tr th:each="d : ${returnedDives}">
+							<td><a th:href ="@{'/dive/view/'+${d.id}}" th:text="Click">Link</a></td>
+							<td th:text="${d.date}">Date</td>
+							<td><a th:href ="@{'/user/view/'+${d.diveOwner.username}}" th:text="${d.diveOwner.username}">Dive Owner Username</td>
+							<td th:text="${d.diveOwner.padiLevel}">Dive Owner PADI Level</td>
+							<td th:text="${d.noOfParticipants}">No. of Participants</td>
+							<td th:text="${d.country}">Dive Country</td>
+							<td th:text="${d.location}">Dive Location</td>
+						</tr>
+					</div>
+					<div th:if="${#lists.isEmpty(returnedDives)}">
+						<tr id="empty-results"></tr>
+						<script>
+							document.getElementById("empty-results").innerHTML = "No dives for this query";
+						</script>
+					</div>
+				</table>
+			</div>
 		</div>
 
 		<!-- Third Tab -->
 		<div id="DiveMap" class="tabcontent">
+			<div id='map'></div>
+
+			<script th:inline="javascript">	
+			/*<![CDATA[*/
+				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
+
+				var i;
+				var diveList = [[${returnedDives}]];
+				var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date; 
+
+				var map = L.mapbox.map('map')
+				    .setView([0.0, 0.0], 2)
+				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+				
+
+				for(i = 0; i < diveList.length; i++){
+					longitude = diveList[i].longitude;
+					latitude = diveList[i].latitude;
+					diveTitle = diveList[i].diveTitle;
+					diveCountry = diveList[i].country;
+					diveSite = diveList[i].diveSite;
+					divePurpose = diveList[i].divePurpose;
+					diverName = diveList[i].diveOwner.firstName + " " + diveList[i].diveOwner.lastName;
+					date = diveList[i].date;
+
+					var marker = L.marker([latitude, longitude], {
+									icon: L.mapbox.marker.icon({
+										'marker-size': 'large',
+										'marker-symbol': 'circle',
+										'marker-color': '#4169E1'
+									    	})
+									})
+
+					marker.bindPopup("<p>Title: "+diveTitle+"<br />Diver: "+diverName+"<br />Country: "+diveCountry+
+								"<br />Site: "+diveSite+"<br />Purpose: "+divePurpose+"<br />Date: "+date+"</p>");
+					marker.addTo(map);
+				}
+			/*]]>*/
+			</script>
 		</div>
 
 		<!-- Fourth Tab -->
