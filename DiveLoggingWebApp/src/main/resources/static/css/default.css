@@ -3,7 +3,8 @@
 	margin-top: 65px;
 	position: absolute;
 	display: table;
-	width: 74%;
+	width: 90%;
+	height: 1200px;
 	left: 50%;
 	-ms-transform: translateX(-50%);
 	transform: translateX(-50%);

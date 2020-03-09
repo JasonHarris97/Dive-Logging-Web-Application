@@ -45,7 +45,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 	private final static int noOfTestUsers = 10;
 	
-	private final static int noOfTestDives = 20;
+	private final static int noOfTestDives = 10;
 	
 	@Autowired
 	private UserService userService;
@@ -94,7 +94,11 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testDive.setDiveSite(faker.address().streetName());
 			testDive.setDivePurpose("Recreational");
 			testDive.setDiveOwner(testUsers.get(rand.nextInt(testUsers.size())));
-			testDive.getDiveOwner().setNoOfDives(testDive.getDiveOwner().getNoOfDives()+1);
+			
+			User diveOwner = testDive.getDiveOwner();
+			diveOwner.setNoOfDives(diveOwner.getNoOfDives()+1);
+			userService.save(diveOwner);
+			testDive.getDiveOwner();
 			testDive.setDiveNo(testDive.getDiveOwner().getNoOfDives());
 			testDive.setDiveBuddy(faker.name().fullName());
 			
