@@ -14,6 +14,9 @@ public class QueryDto {
     
     @NotEmpty
     private String orderBy;
+    
+    @NotEmpty
+    private String source;
 
     @AssertTrue
     private Boolean terms;
@@ -44,5 +47,13 @@ public class QueryDto {
     public void setOrderBy(String orderBy) {
         this.orderBy = orderBy;
     }
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
 }
 
