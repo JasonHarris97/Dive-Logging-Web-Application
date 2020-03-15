@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import app.config.InitialDataLoader;
 import app.models.User;
+import app.services.DiveService;
 import app.services.UserService;
 import app.web.UserDto;
 
@@ -29,6 +30,9 @@ public class UserController{
 	
 	@Autowired
     private UserService userService;
+	
+	@Autowired
+    private DiveService diveService;
 
     @ModelAttribute("user")
     public UserDto userDto() {
@@ -77,6 +81,7 @@ public class UserController{
 				log.info("Not an integer");
 			}
 		}
+		model.addAttribute("returnedDives", diveService.findAllByDiveOwner(user));
 		model.addAttribute("user", user);
 		
 		return "user/view";

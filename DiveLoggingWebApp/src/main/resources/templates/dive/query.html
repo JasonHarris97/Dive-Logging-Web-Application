@@ -22,8 +22,12 @@
 				</div>
 				<div class="radioContainer">
 					<h3>Search by:</h3>
+					<label class="container">All
+					  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="all">
+					  <span class="checkmark"></span>
+					</label>
 					<label class="container">Username
-					  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="username">
+					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
 					  <span class="checkmark"></span>
 					</label>
 					<label class="container">Country
