@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
         user.setContactNumber(registration.getContactNumber());
         user.setCountry(registration.getCountry());
         user.setPadiLevel(registration.getPadiLevel());
+        user.setPadiNo(registration.getPadiNo());
         user.setNoOfDives(0);
         user.setNoOfCountries(0);
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));

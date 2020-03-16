@@ -43,6 +43,9 @@ public class UserDto {
     
     @NotEmpty
     private String padiLevel;
+    
+    @NotEmpty
+    private String padiNo;
 
     @AssertTrue
     private Boolean terms;
@@ -133,6 +136,14 @@ public class UserDto {
 
 	public void setPadiLevel(String padiLevel) {
 		this.padiLevel = padiLevel;
+	}
+
+	public String getPadiNo() {
+		return padiNo;
+	}
+
+	public void setPadiNo(String padiNo) {
+		this.padiNo = padiNo;
 	}
 }
 
