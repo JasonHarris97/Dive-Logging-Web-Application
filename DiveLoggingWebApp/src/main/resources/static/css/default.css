@@ -82,9 +82,9 @@
 /* Style the tab */
 .tab {
 	overflow: hidden;
-	border: 1px solid;
-	border-color: #9bb7d0;
-	background-color: #cddbe7 ;
+	border: 1px solid #9bb7d0;
+	background-color: #cddbe7;
+	font-family: Raleway;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -94,7 +94,9 @@
 	border: none;
 	outline: none;
 	cursor: pointer;
-	padding: 14px 16px;
+	padding: 10px 20px;
+	font-size: 17px;
+	font-family: inherit;
 	transition-duration: 0.2s;
 }
 
@@ -115,9 +117,9 @@
 	display: none;
 	margin-bottom: 30px;
 	padding: 6px 12px;
-	border: 1px solid #ccc;
+	border: 1px solid #9bb7d0;
 	border-top: none;
-	animation: fadeEffect 1s; /* Fading effect takes 1 second */
+	animation: fadeEffect 0.3s; /* Fading effect takes 1 second */
 	min-height: inherit;
 }
 
@@ -148,7 +150,7 @@
 .resultsTable {
   border-collapse: collapse; /* Collapse borders */
   width: 100%; /* Full-width */
-  border: 1px solid #ddd; /* Add a grey border */
+  border: 1px solid #9bb7d0; /* Add a grey border */
   font-size: 18px; /* Increase font-size */
 }
 
@@ -159,12 +161,12 @@
 
 .resultsTable tr {
   /* Add a bottom border to all table rows */
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #9bb7d0;
 }
 
 .resultsTable tr.header, .resultsTable tr:hover {
   /* Add a grey background color to the table header and on hover */
-  background-color: #f1f1f1;
+  background-color: #cddbe7;
 }
 
 /* ====================================================================================== */

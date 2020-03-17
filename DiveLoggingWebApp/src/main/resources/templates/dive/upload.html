@@ -5,7 +5,49 @@
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<title>Upload Dive</title>
-	<link th:href="@{/css/diveUpload.css}" type="text/css" rel="stylesheet" />
+
+	<style>
+		/*Style the input fields 
+		input {
+		  padding: 10px;
+		  width: 100%;
+		  font-size: 17px;
+		  font-family: Raleway;
+		  border: 1px solid #aaaaaa;
+		}*/
+
+		/*Mark input boxes that gets an error on validation: */
+		input.invalid {
+		  background-color: #ffdddd;
+		}
+
+		#uploadButton {
+		  background-color: #4CAF50;
+		  color: #ffffff;
+		}
+
+		
+		#uploadButton:hover {
+		  background-color: red;
+		}
+
+		.buttonStyle {
+		  color: #ffffff;
+		  border: none;
+		  padding: 10px 20px;
+		  font-size: 17px;
+		  font-family: Raleway;
+		  cursor: pointer;
+		}
+
+		#prevBtn {
+		  background-color: #bbbbbb;
+		}
+
+		#nextBtn {
+		  background-color: #4CAF50;
+		}
+	</style>
 </head>
 
 <body>
@@ -22,7 +64,7 @@
 				<button type="button" class="tablinks" onclick="openUploadTab(event, 'Environment')">Environment</button>
 				<button type="button" class="tablinks" onclick="openUploadTab(event, 'Details')">Details</button>
 				<button type="button" class="tablinks" onclick="openUploadTab(event, 'Observations')">Observations</button>
-				<button type="submit" class="uploadButton">Upload</button>
+				<button type="submit" id="uploadButton">Upload</button>
 			</div>
 
 			<!-- First Tab -->
