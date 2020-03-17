@@ -1,23 +1,18 @@
+/* Main Container */
 .mainContainer {
-	margin: 0;
+	margin: auto;
 	margin-top: 65px;
-	position: absolute;
-	display: table;
+	margin-bottom: 65px;
 	width: 70%;
 	height: 1200px;
-	left: 50%;
-	-ms-transform: translateX(-50%);
-	transform: translateX(-50%);
 }
 
-.title-custom {
-	font-size: 26px;
-}
-
+/* NavBar */
 .navbar-custom{
 	font-size: 18px;
 }
 
+/* Map */
 #map { 
 	margin: 0;
 	margin-top: 20px;
@@ -28,4 +23,28 @@
 	left: 50%;
 	-ms-transform: translateX(-50%);
 	transform: translateX(-50%);
+}
+
+/* Grey Button */
+.grey-button {
+	font-size: 30px;
+	position: absolute; 
+	bottom: 0;
+	width: 100%;
+	transition-duration: 0.2s;
+	background-color: #555555;
+	color: white;
+	border: 2px solid #555555;
+	text-decoration: none;
+}
+
+.grey-button:hover {
+	background-color: white;
+	color: black;
+}
+
+.grey-button a{
+	background-color: inherit;
+	color: inherit;
+	text-decoration: inherit;
 }
