@@ -5,7 +5,31 @@
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<title>Homepage</title>
-	<link th:href="@{/css/homepage.css}" type="text/css" rel="stylesheet" />
+
+	<style>
+		.descriptionText {
+			text-align: center;
+			font-size: 30px;
+			padding-top: 40px;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+
+		/* Table */
+		.tableDiv {
+			display: table;
+			width: 100%;
+			min-height: inherit;
+		}
+
+		.block {
+			width: 25%;
+			height: 550px;
+			display: table-cell;
+			table-layout: fixed;
+			position: relative; 
+		}
+	</style>
 </head>
 
 <body>

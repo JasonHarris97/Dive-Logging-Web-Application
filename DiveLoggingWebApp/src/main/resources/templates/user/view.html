@@ -6,13 +6,28 @@
 
 <head>
 	<title>User View</title>
-	<link th:href="@{/css/userView.css}" type="text/css" rel="stylesheet" />
+	<style>
+		.userViewMap { 
+			display: inline-block;
+			margin: 0;
+			margin-top: 20px;
+			height: 600px;  
+			width: 95%; 
+		}
+
+		.userViewImg {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 5px;
+			width: 150px;
+		}
+	</style>
 </head>
 
 
 <body>
 	<!-- MAIN -->
-	<div style="width:90%" layout:fragment="content">
+	<div layout:fragment="content">
 
 		<div class="tab">
 			<button class="tablinks" onclick="openGenericTab(event, 'Overview')"  id="defaultOpen">Overview</button>

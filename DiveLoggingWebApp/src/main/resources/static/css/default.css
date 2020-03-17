@@ -82,8 +82,9 @@
 /* Style the tab */
 .tab {
 	overflow: hidden;
-	border: 1px solid #ccc;
-	background-color: #f1f1f1;
+	border: 1px solid;
+	border-color: #9bb7d0;
+	background-color: #cddbe7 ;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -94,17 +95,19 @@
 	outline: none;
 	cursor: pointer;
 	padding: 14px 16px;
-	transition: 0.3s;
+	transition-duration: 0.2s;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-	background-color: #ddd;
+	background-color: #456f93;
+	color: white;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-	background-color: #ccc;
+	background-color: #456f93;
+	color: white;
 }
 
 /* Style the tab content */
@@ -115,6 +118,7 @@
 	border: 1px solid #ccc;
 	border-top: none;
 	animation: fadeEffect 1s; /* Fading effect takes 1 second */
+	min-height: inherit;
 }
 
 /* Go from zero to full opacity */
