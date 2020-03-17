@@ -1,11 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      	  layout:decorate="~{layouts/diveUploadTemplate}"
+      	  layout:decorate="~{layouts/default}"
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<title>Upload Dive</title>
+
+	<style>
+		/*Style the input fields 
+		input {
+		  padding: 10px;
+		  width: 100%;
+		  font-size: 17px;
+		  font-family: Raleway;
+		  border: 1px solid #aaaaaa;
+		}*/
+
+		/*Mark input boxes that gets an error on validation: */
+		input.invalid {
+		  background-color: #ffdddd;
+		}
+
+		#uploadButton {
+		  background-color: #4CAF50;
+		  color: #ffffff;
+		}
+
+		
+		#uploadButton:hover {
+		  background-color: red;
+		}
+
+		.buttonStyle {
+		  color: #ffffff;
+		  border: none;
+		  padding: 10px 20px;
+		  font-size: 17px;
+		  font-family: Raleway;
+		  cursor: pointer;
+		}
+
+		#prevBtn {
+		  background-color: #bbbbbb;
+		}
+
+		#nextBtn {
+		  background-color: #4CAF50;
+		}
+	</style>
 </head>
 
 <body>
@@ -18,11 +60,11 @@
 			<h1>Upload Dive Log</h1>
 
 			<div class="tab">
-				<button type="button" class="tablinks" onclick="openTab(event, 'BasicInfo')"  id="defaultOpen">Basic Information</button>
-				<button type="button" class="tablinks" onclick="openTab(event, 'Environment')">Environment</button>
-				<button type="button" class="tablinks" onclick="openTab(event, 'Details')">Details</button>
-				<button type="button" class="tablinks" onclick="openTab(event, 'Observations')">Observations</button>
-				<button type="submit" class="uploadButton">Upload</button>
+				<button type="button" class="tablinks" onclick="openUploadTab(event, 'BasicInfo')"  id="defaultOpen">Basic Information</button>
+				<button type="button" class="tablinks" onclick="openUploadTab(event, 'Environment')">Environment</button>
+				<button type="button" class="tablinks" onclick="openUploadTab(event, 'Details')">Details</button>
+				<button type="button" class="tablinks" onclick="openUploadTab(event, 'Observations')">Observations</button>
+				<button type="submit" id="uploadButton">Upload</button>
 			</div>
 
 			<!-- First Tab -->
@@ -118,7 +160,7 @@
 				<!-- NAV BUTTONS -->
 				<div style="overflow:auto;">
 					<div style="float:right;">
-						<button class="buttonStyle" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+						<button class="buttonStyle" type="button" id="nextBtn" onclick="nextUploadPrev(1)">Next</button>
 					</div>
 				</div>
 			</div>
@@ -196,8 +238,8 @@
 				<!-- NAV BUTTONS -->
 				<div style="overflow:auto;">
 					<div style="float:right;">
-						<button class="buttonStyle" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-						<button class="buttonStyle" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+						<button class="buttonStyle" type="button" id="prevBtn" onclick="nextUploadPrev(-1)">Previous</button>
+						<button class="buttonStyle" type="button" id="nextBtn" onclick="nextUploadPrev(1)">Next</button>
 					</div>
 				</div>
 			</div>
@@ -344,8 +386,8 @@
 				<!-- NAV BUTTONS -->
 				<div style="overflow:auto;">
 					<div style="float:right;">
-						<button class="buttonStyle" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-						<button class="buttonStyle" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+						<button class="buttonStyle" type="button" id="prevBtn" onclick="nextUploadPrev(-1)">Previous</button>
+						<button class="buttonStyle" type="button" id="nextBtn" onclick="nextUploadPrev(1)">Next</button>
 					</div>
 				</div>
 			</div>
@@ -386,8 +428,8 @@
 				<!-- NAV BUTTONS -->
 				<div style="overflow:auto;">
 					<div style="float:right;">
-						<button class="buttonStyle" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-						<button class="buttonStyle" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+						<button class="buttonStyle" type="button" id="prevBtn" onclick="nextUploadPrev(-1)">Previous</button>
+						<button class="buttonStyle" type="button" id="nextBtn" onclick="nextUploadPrev(1)">Next</button>
 					</div>
 				</div>
 			</div>

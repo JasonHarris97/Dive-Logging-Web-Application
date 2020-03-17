@@ -1,50 +1,65 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      	  layout:decorate="~{layouts/diveViewTemplate}"
+      	  layout:decorate="~{layouts/default}"
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 	<title>User View</title>
-	<link th:href="@{/css/diveQuery.css}" type="text/css" rel="stylesheet" />
+	<style>
+		.userViewMap { 
+			display: inline-block;
+			margin: 0;
+			margin-top: 20px;
+			height: 600px;  
+			width: 95%; 
+		}
+
+		.userViewImg {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 5px;
+			width: 150px;
+		}
+	</style>
 </head>
 
 
 <body>
 	<!-- MAIN -->
-	<div id="diveContainer" style="width:90%" layout:fragment="content">
+	<div layout:fragment="content">
 
 		<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'Overview')"  id="defaultOpen">Overview</button>
-			<button class="tablinks" onclick="openTab(event, 'DiveHistory')">Dive History</button>
-			<button class="tablinks" onclick="openTab(event, 'DiveMap')">Dive Map</button>
-			<button class="tablinks" onclick="openTab(event, 'Images')">Images</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Overview')"  id="defaultOpen">Overview</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiveHistory')">Dive History</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiveMap')">Dive Map</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Images')">Images</button>
 		</div>
 
 		<!-- First Tab -->
 		<div id="Overview" style="font-size:16px" class="tabcontent">
-			<h1 th:text="${user.username}"></h1>
+			<h1 th:text="${returnedUser.username}"></h1>
 			<h4>Name</h4>
-			<p th:text="${user.firstName}+' '+${user.lastName}"></p>
+			<p th:text="${returnedUser.firstName}+' '+${returnedUser.lastName}"></p>
 			<h4>Country</h4>
-			<p th:text="${user.country}"></p>
+			<p th:text="${returnedUser.country}"></p>
 			<h4>Contact Number</h4>
-			<p th:text="${user.contactNumber}"></p>
+			<p th:text="${returnedUser.contactNumber}"></p>
 			<h4>Contact Email</h4>
-			<p th:text="${user.email}"></p>
+			<p th:text="${returnedUser.email}"></p>
 			<h4>PADI Level</h4>
-			<p th:text="${user.padiLevel}"></p>
+			<p th:text="${returnedUser.padiLevel}"></p>
 			<h4>PADI No</h4>
-			<p th:text="${user.padiNo}"></p>
+			<p th:text="${returnedUser.padiNo}"></p>
 			<h4>No of Dives</h4>
-			<p th:text="${user.noOfDives}"></p>
+			<p th:text="${returnedUser.noOfDives}"></p>
 		</div>
 
 		<!-- Second Tab -->
 		<div id="DiveHistory" class="tabcontent">
 			<!-- Table -->
 			<div>
-				<table id="myTable">
+				<table id="myTable" class="resultsTable">
 					<tr class="header">
 						<th>Details</th>
 						<th>Date</th>
@@ -77,46 +92,44 @@
 
 		<!-- Third Tab -->
 		<div id="DiveMap" class="tabcontent">
-			<div id='map'></div>
-
-			<script th:inline="javascript">	
+			<div id='map' class="userViewMap"></div>
+			<script th:inline="javascript">
 			/*<![CDATA[*/
 				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
-
-				var i;
-				var diveList = [[${returnedDives}]];
-				var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date; 
+				var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date, marker; 
 
 				var map = L.mapbox.map('map')
-				    .setView([0.0, 0.0], 2)
-				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
-				
+				    .setView([0, 0], 3)
+				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
 
-				for(i = 0; i < diveList.length; i++){
-					longitude = diveList[i].longitude;
-					latitude = diveList[i].latitude;
-					diveTitle = diveList[i].diveTitle;
-					diveCountry = diveList[i].country;
-					diveSite = diveList[i].diveSite;
-					divePurpose = diveList[i].divePurpose;
-					diverName = diveList[i].diveOwner.firstName + " " + diveList[i].diveOwner.lastName;
-					date = diveList[i].date;
+				/*[# th:each="d : ${returnedDives}"]*/
+					longitude = /*[[${d.longitude}]]*/ 0;
+					latitude = /*[[${d.latitude}]]*/ 0;
+					diveTitle = /*[[${d.diveTitle}]]*/ "null";
+					diveCountry = /*[[${d.country}]]*/ "null";
+					diveSite = /*[[${d.diveSite}]]*/ "null";
+					divePurpose = /*[[${d.divePurpose}]]*/ "null";
+					detailedLocation = /*[[${d.detailedLocation}]]*/ "null";
+					diverName = /*[[${d.diveOwner.firstName}+' '+${d.diveOwner.lastName}]]*/ "null";
+					date = /*[[${d.date}]]*/ "null";
 
-					var marker = L.marker([latitude, longitude], {
-									icon: L.mapbox.marker.icon({
-										'marker-size': 'large',
-										'marker-symbol': 'circle',
-										'marker-color': '#4169E1'
-									    	})
-									})
+					marker = L.marker([latitude, longitude], {
+					icon: L.mapbox.marker.icon({
+						'marker-size': 'large',
+						'marker-symbol': 'circle',
+						'marker-color': '#4169E1'
+					    	})
+					})
 
 					marker.bindPopup("<p>Title: "+diveTitle+"<br />Diver: "+diverName+"<br />Country: "+diveCountry+
-								"<br />Site: "+diveSite+"<br />Purpose: "+divePurpose+"<br />Date: "+date+"</p>");
+							"<br />Site: "+diveSite+"<br />Purpose: "+divePurpose+"<br />Date: "+date+"</p>");
+
+
 					marker.addTo(map);
-				}
+				/*[/]*/
 			/*]]>*/
 			</script>
-		</div>
+		</div> 
 
 		<!-- Fourth Tab -->
 		<div id="Images" class="tabcontent">
@@ -126,3 +139,4 @@
 </body>
 
 </html>
+

@@ -1,7 +1,7 @@
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
-function openTab(evt, tabName) {
+function openGenericTab(evt, tabName) {
   // Declare all variables
   var i, tabcontent, tablinks;
 

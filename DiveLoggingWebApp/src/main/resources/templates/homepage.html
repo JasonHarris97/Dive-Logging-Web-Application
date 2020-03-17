@@ -4,32 +4,56 @@
       	  layout:decorate="~{layouts/default}"
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<link th:href="@{/css/homepage.css}" type="text/css" rel="stylesheet" />
 	<title>Homepage</title>
+
+	<style>
+		.descriptionText {
+			text-align: center;
+			font-size: 30px;
+			padding-top: 40px;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+
+		/* Table */
+		.tableDiv {
+			display: table;
+			width: 100%;
+			min-height: inherit;
+		}
+
+		.block {
+			width: 25%;
+			height: 550px;
+			display: table-cell;
+			table-layout: fixed;
+			position: relative; 
+		}
+	</style>
 </head>
 
 <body>
 	<!-- MAIN -->
 	<div layout:fragment="content">
-		<div id="container">
+		<div class="tableDiv">
 			<div class="block" style="background-color:#aaa;">
 				<h1 class="descriptionText">Query our database of dive logs from all across the world!</h1>
-				<button type="button" class="custom-btn"><a th:href="@{/dive/query}">Query</a></button>
+				<button type="button" class="grey-button"><a th:href="@{/dive/query}">Query</a></button>
 			</div>
 
 			<div class="block" style="background-color:#bbb;">
 				<h1 class="descriptionText">Find other divers and see what they have discovered!</h1>
-				<button type="button" class="custom-btn"><a th:href="@{/user/find}">Find</a></button>
+				<button type="button" class="grey-button"><a th:href="@{/user/find}">Find</a></button>
 			</div>
 
 			<div class="block" style="background-color:#ccc;">
 				<h1 class="descriptionText">Contribute to our ever growing databse of dive logs!</h1>
-				<button type="button" class="custom-btn"><a th:href="@{/dive/upload}">Upload</a></button>
+				<button type="button" class="grey-button"><a th:href="@{/dive/upload}">Upload</a></button>
 			</div>
 
 			<div class="block" style="background-color:#ddd;">
 				<h1 class="descriptionText">Register to start uploading and get your own personlised experience!</h1>
-				<button type="button" class="custom-btn"><a th:href="@{/user/registration}">Register</a></button>
+				<button type="button" class="grey-button"><a th:href="@{/user/registration}">Register</a></button>
 			</div>
 		</div>
 	</div>

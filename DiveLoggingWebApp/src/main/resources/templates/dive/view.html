@@ -1,26 +1,43 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      	  layout:decorate="~{layouts/diveViewTemplate}"
+      	  layout:decorate="~{layouts/default}"
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 	<title>Dive View</title>
+	<style>
+		.diveViewMap { 
+			display: inline-block;
+			margin: 0;
+			margin-top: 20px;
+			height: 600px;  
+			width: 95%; 
+		}
+
+		.diveImg {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 5px;
+			width: 150px;
+		}
+	</style>
+	
 </head>
 
 
 <body>
 	<!-- MAIN -->
-	<div id="diveContainer" layout:fragment="content">
+	<div layout:fragment="content">
 
 		<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'Overview')"  id="defaultOpen">Overview</button>
-			<button class="tablinks" onclick="openTab(event, 'Environment')">Environment</button>
-			<button class="tablinks" onclick="openTab(event, 'DiveDetails')">Dive Details</button>
-			<button class="tablinks" onclick="openTab(event, 'Observations')">Observations</button>
-			<button class="tablinks" onclick="openTab(event, 'DiveSiteMap')">Dive Site Map</button>
-			<button class="tablinks" onclick="openTab(event, 'Images')">Images</button>
-			<button class="tablinks" onclick="openTab(event, 'DiverDetails')">Diver Details</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Overview')"  id="defaultOpen">Overview</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Environment')">Environment</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiveDetails')">Dive Details</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Observations')">Observations</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiveSiteMap')">Dive Site Map</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Images')">Images</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiverDetails')">Diver Details</button>
 		</div>
 
 		<!-- First Tab -->
@@ -181,7 +198,7 @@
 
 		<!-- Fifth Tab -->
 		<div id="DiveSiteMap" class="tabcontent">
-			<div id='map'></div>
+			<div id='map' class="diveViewMap"></div>
 
 			<script th:inline="javascript">
 				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';

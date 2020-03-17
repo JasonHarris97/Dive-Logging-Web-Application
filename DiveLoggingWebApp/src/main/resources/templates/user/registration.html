@@ -5,16 +5,24 @@
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<title>Registration</title>
-	<link th:href="@{/css/registration.css}" type="text/css" rel="stylesheet" />
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+
+		#prevBtn {
+		  background-color: #bbbbbb;
+		}
+	</style>
 </head>
 
 <body>
 	<!-- MAIN -->
 	<div layout:fragment="content">
 		<!-- Registration Form -->
-		<form id="regForm" th:action="@{/user/registration}" th:object="${user}" method="post">
+		<form id="regForm" class="multiStepForm" th:action="@{/user/registration}" th:object="${user}" method="post">
 
-			<div class="tab">
+			<div class="multiStepTab">
 				<h1>Username, Email and Password</h1>
 				<p class="error-message" th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error</p>
 
@@ -54,7 +62,7 @@
 				</div>
 			</div>
 
-			<div class="tab">
+			<div class="multiStepTab">
 				<h1>Personal Details</h1>
 				<!-- firstName -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
@@ -85,7 +93,7 @@
 				</div>
 			</div>
 
-			<div class="tab">
+			<div class="multiStepTab">
 				<h1>Diver Details</h1>
 
 				<!-- padiLevel -->
@@ -112,13 +120,13 @@
 
 			<div style="overflow:auto;">
 				<div style="float:right;">
-					<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-					<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+					<button type="button" id="prevBtn" onclick="nextRegPrev(-1)">Previous</button>
+					<button type="button" id="nextBtn" onclick="nextRegPrev(1)">Next</button>
 				</div>
 			</div>
 
 			  <!-- Circles which indicates the steps of the form: -->
-			<div style="text-align:center;margin-top:40px;">
+			<div style="text-align:center; margin-top:40px;">
 				<span class="step"></span>
 				<span class="step"></span>
 				<span class="step"></span>
