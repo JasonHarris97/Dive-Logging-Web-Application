@@ -133,18 +133,32 @@
 /* QUERYING */
 /* ====================================================================================== */
 
+.querySearchBarContainer {
+  position: inline-block;
+  max-width: 1000px;
+  margin: auto;	
+  width: 100%;
+}
+
 .querySearchBar {
-  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-  background-position: 10px 12px; /* Position the search icon */
-  background-repeat: no-repeat; /* Do not repeat the icon image */
-  width: 100%; /* Full-width */
+  width: 85%; /* Full-width */
   font-size: 16px; /* Increase font-size */
-  padding: 12px 20px 12px 40px; /* Add some padding */
-  border: 1px solid #ddd; /* Add a grey border */
+  font-family: Raleway;
+  padding: 12px 20px 12px 30px; /* Add some padding */
+  border: 1px solid #9bb7d0; /* Add a grey border */
   margin-bottom: 12px; /* Add some space below the input */
-  position: relative;
   opacity: 100;
   cursor: pointer;
+}
+
+.querySearchButton {
+  padding: 15px 20px 13px 20px; /* Add some padding */
+  border: 1px solid black; /* Add a grey border */
+  background-color: #6993b8;
+}
+
+.querySearchButton:hover {
+  background-color: white;
 }
 
 .resultsTable {
