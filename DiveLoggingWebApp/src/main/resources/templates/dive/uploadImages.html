@@ -6,22 +6,48 @@
 
 <head>
 	<title>Dives</title>
-	<link th:href="@{/css/diveUploadImages.css}" type="text/css" rel="stylesheet" />
+	<style>
+		/* input[type="file"] {
+		    border: 1px solid #4CAF50;
+		    padding: 6px;
+		    max-width: 80%;
+		} */
+
+		.file-input {
+			width: 80%;
+			border: 1px solid #9bb7d0;
+			padding: 6px;
+			margin: auto;
+		}
+
+		.upload-response {
+			overflow-x: hidden;
+			word-break: break-all;
+			font-size: 17px;
+		  	font-family: Raleway;
+			border: 1px solid #9bb7d0;
+			margin: 10px auto;
+			padding: 20px;
+			min-height: 100px;
+			width: 80%;
+		}
+	</style>
 </head>
 
 <body>
 	<!-- MAIN -->
 	<div layout:fragment="content">
-		<div id="ImagesAndFiles" class="tabcontent">
-			<h3>Images</h3>
 
+		<div class="tab">
+			<button class="tablinks" id="defaultOpen">Images</button>
+		</div>
+
+		<div id="ImagesAndFiles" class="tabcontent" style="display:block;">
 			<div class="multiple-upload">
-				<h3>Upload Multiple Files</h3>
-
 				<form id="multipleUploadForm" name="multipleUploadForm">
 					<input id="multipleFileUploadInputDive" type="hidden" name="diveId" th:value="${dive.id}" />
 					<input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
-					<button type="submit" class="primary submit-btn">Submit</button>
+					<button type="submit" class="green-button file-upload-button">Upload</button>
 				</form>
 
 				<div class="upload-response">
@@ -30,7 +56,7 @@
 				</div>
 			</div>
 
-			<button type="button" class="primary submit-btn"><a th:href="@{'/dive/view/'+${dive.id}}">Finish</a></button>
+			<button type="button" class="green-button file-upload-button"><a th:href="@{'/dive/view/'+${dive.id}}">Finish</a></button>
 		</div>
 	</div>
 	<!-- MAIN -->

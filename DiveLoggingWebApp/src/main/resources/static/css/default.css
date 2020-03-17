@@ -49,6 +49,33 @@
 }
 
 /* ====================================================================================== */
+/* Green button styling */
+/* ====================================================================================== */
+
+.green-button {
+	background-color: #4CAF50;
+	color: #ffffff;
+	border: 1px solid #4CAF50;
+	padding: 10px 20px;
+	font-size: 17px;
+	font-family: Raleway;
+	cursor: pointer;
+	text-decoration: none;
+	transition-duration: 0.2s;
+}
+
+.green-button:hover {
+	background-color: white;
+	color: #4CAF50;
+}
+
+.green-button a{
+	background-color: inherit;
+	color: inherit;
+	text-decoration: inherit;
+}
+
+/* ====================================================================================== */
 /* Grey Button */
 /* ====================================================================================== */
 
@@ -116,7 +143,7 @@
 .tabcontent {
 	display: none;
 	margin-bottom: 30px;
-	padding: 6px 12px;
+	padding: 15px 12px;
 	border: 1px solid #9bb7d0;
 	border-top: none;
 	animation: fadeEffect 0.3s; /* Fading effect takes 1 second */
@@ -329,5 +356,20 @@
 /* Mark the steps that are finished and valid: */
 .step.finish {
   background-color: #4CAF50;
+}
+
+/* ====================================================================================== */
+/* FILE UPLOAD */
+/* ====================================================================================== */
+
+.file-upload-button { 
+	width: 80%;
+	margin:20px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.file-upload-button:hover { 
+	background-color: red;
 }
 
