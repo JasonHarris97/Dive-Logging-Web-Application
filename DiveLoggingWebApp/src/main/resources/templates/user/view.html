@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      	  layout:decorate="~{layouts/diveViewTemplate}"
+      	  layout:decorate="~{layouts/default}"
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 	<title>User View</title>
-	<link th:href="@{/css/diveQuery.css}" type="text/css" rel="stylesheet" />
+	<link th:href="@{/css/userView.css}" type="text/css" rel="stylesheet" />
 </head>
 
 
@@ -15,10 +15,10 @@
 	<div id="diveContainer" style="width:90%" layout:fragment="content">
 
 		<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'Overview')"  id="defaultOpen">Overview</button>
-			<button class="tablinks" onclick="openTab(event, 'DiveHistory')">Dive History</button>
-			<button class="tablinks" onclick="openTab(event, 'DiveMap')">Dive Map</button>
-			<button class="tablinks" onclick="openTab(event, 'Images')">Images</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Overview')"  id="defaultOpen">Overview</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiveHistory')">Dive History</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiveMap')">Dive Map</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Images')">Images</button>
 		</div>
 
 		<!-- First Tab -->

@@ -1,9 +1,9 @@
-var currentTab = 0; 
+var currentUploadTab = 0; 
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
-function openTab(evt, tabName) {
+function openUploadTab(evt, tabName) {
   // Declare all variables
   var i, tabcontent, tablinks;
 
@@ -21,56 +21,56 @@ function openTab(evt, tabName) {
 
  switch(tabName) {
     case "BasicInfo":
-      currentTab = 0;
+      currentUploadTab = 0;
       break;
     case "Environment":
-      currentTab = 1;
+      currentUploadTab = 1;
       break;
     case "Details":
-      currentTab = 2;
+      currentUploadTab = 2;
       break;
     case "Observations":
-      currentTab = 3;
+      currentUploadTab = 3;
       break;
     default:
-      currentTab = 0;
+      currentUploadTab = 0;
       break;
     // code block
   }
 
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(tabName).style.display = "block";
-  tablinks[currentTab].className += " active";
+  tablinks[currentUploadTab].className += " active";
 }
 
-function nextPrev(n) {
+function nextUploadPrev(n) {
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tabcontent");
   // Hide the current tab:
-  x[currentTab].style.display = "none";
+  x[currentUploadTab].style.display = "none";
   // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
+  currentUploadTab = currentUploadTab + n;
   // if you have reached the end of the form...
-  if (currentTab >= x.length) {
-    currentTab = currentTab - 1;
+  if (currentUploadTab >= x.length) {
+    currentUploadTab = currentUploadTab - 1;
   }
   // Otherwise, display the correct tab:
   // This function will display the specified tab of the form...
-   switch(currentTab) {
+   switch(currentUploadTab) {
     case 0:
-      openTab(new Event("test"), "BasicInfo");
+      openUploadTab(new Event("test"), "BasicInfo");
       break;
     case 1:
-      openTab(new Event("test"), "Environment")
+      openUploadTab(new Event("test"), "Environment")
       break;
     case 2:
-      openTab(new Event("test"), "Details")
+      openUploadTab(new Event("test"), "Details")
       break;
     case 3:
-      openTab(new Event("test"), "Observations")
+      openUploadTab(new Event("test"), "Observations")
       break;
     default:
-      openTab(new Event("test"), "BasicInfo")
+      openUploadTab(new Event("test"), "BasicInfo")
       break;
     // code block
   }

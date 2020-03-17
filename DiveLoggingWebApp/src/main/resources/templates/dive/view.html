@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      	  layout:decorate="~{layouts/diveViewTemplate}"
+      	  layout:decorate="~{layouts/default}"
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 	<title>Dive View</title>
+	<link th:href="@{/css/diveView.css}" type="text/css" rel="stylesheet" />
 </head>
 
 
@@ -14,13 +15,13 @@
 	<div id="diveContainer" layout:fragment="content">
 
 		<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'Overview')"  id="defaultOpen">Overview</button>
-			<button class="tablinks" onclick="openTab(event, 'Environment')">Environment</button>
-			<button class="tablinks" onclick="openTab(event, 'DiveDetails')">Dive Details</button>
-			<button class="tablinks" onclick="openTab(event, 'Observations')">Observations</button>
-			<button class="tablinks" onclick="openTab(event, 'DiveSiteMap')">Dive Site Map</button>
-			<button class="tablinks" onclick="openTab(event, 'Images')">Images</button>
-			<button class="tablinks" onclick="openTab(event, 'DiverDetails')">Diver Details</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Overview')"  id="defaultOpen">Overview</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Environment')">Environment</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiveDetails')">Dive Details</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Observations')">Observations</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiveSiteMap')">Dive Site Map</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'Images')">Images</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiverDetails')">Diver Details</button>
 		</div>
 
 		<!-- First Tab -->
