@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -132,8 +133,8 @@ public class Dive {
 	@Column(columnDefinition="varchar(500)")
 	private String observationsList; 
 	
-	@OneToMany(mappedBy = "associatedDive")
-	private List<DBFile> images = new ArrayList<DBFile>(); 
+	@OneToOne
+	private ImageList imageList;
 	
 	// Constructors
 	public Dive() {
@@ -548,12 +549,11 @@ public class Dive {
 		this.diveTitle = diveTitle;
 	}
 
-	public List<DBFile> getImages() {
-		return images;
+	public ImageList getImageList() {
+		return imageList;
 	}
 
-	public void setImages(List<DBFile> images) {
-		this.images = images;
+	public void setImageList(ImageList imageList) {
+		this.imageList = imageList;
 	}
-	
 }

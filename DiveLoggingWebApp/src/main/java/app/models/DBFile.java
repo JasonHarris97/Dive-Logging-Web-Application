@@ -16,8 +16,8 @@ public class DBFile {
     private User fileOwner;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="dive_id")
-    private Dive associatedDive;
+    @JoinColumn(name="list_id")
+    private ImageList associatedList;
 
     private String fileName;
 
@@ -87,11 +87,11 @@ public class DBFile {
 		this.fileOwner = fileOwner;
 	}
 
-	public Dive getAssociatedDive() {
-		return associatedDive;
+	public ImageList getAssociatedList() {
+		return associatedList;
 	}
 
-	public void setAssociatedDive(Dive associatedDive) {
-		this.associatedDive = associatedDive;
+	public void setAssociatedList(ImageList associatedList) {
+		this.associatedList = associatedList;
 	}    
 }

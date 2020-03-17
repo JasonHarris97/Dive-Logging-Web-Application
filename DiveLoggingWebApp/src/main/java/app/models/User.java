@@ -11,29 +11,29 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;//d
+    private Long id;
 
-    private String firstName;//d
+    private String firstName;
+   
+    private String lastName;
     
-    private String lastName;//d
+    private String username;
     
-    private String username;//d
+    private String email;
     
-    private String email;//d
+    private String password;
     
-    private String password;//d
+    private String contactNumber;
     
-    private String contactNumber;//d
+    private String country;
     
-    private String country;//d
+    private String padiLevel;
     
-    private String padiLevel;//d
+    private String padiNo; 
     
-    private String padiNo; //d
+    private int noOfDives;
     
-    private int noOfDives;//d
-    
-    private int noOfCountries;//d
+    private int noOfCountries;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
