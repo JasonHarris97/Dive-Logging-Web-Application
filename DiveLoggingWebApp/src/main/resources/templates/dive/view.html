@@ -12,7 +12,7 @@
 
 <body>
 	<!-- MAIN -->
-	<div id="diveContainer" layout:fragment="content">
+	<div layout:fragment="content">
 
 		<div class="tab">
 			<button class="tablinks" onclick="openGenericTab(event, 'Overview')"  id="defaultOpen">Overview</button>
@@ -182,7 +182,7 @@
 
 		<!-- Fifth Tab -->
 		<div id="DiveSiteMap" class="tabcontent">
-			<div id='map'></div>
+			<div id='map' class="diveViewMap"></div>
 
 			<script th:inline="javascript">
 				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';

@@ -1,0 +1,12 @@
+/* Map */
+.diveWorldMap { 
+	display: inline-block;
+	width: 100%; 
+	margin-top: 20px;
+}
+
+#map {
+	display: inline-block;
+	height: 800px;  
+	width: 100%; 
+}

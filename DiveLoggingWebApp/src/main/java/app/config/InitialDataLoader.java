@@ -43,9 +43,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	private final static Random rand = new Random();
 	private final static StringLists stringLists = new StringLists();
 	
-	private final static int noOfTestUsers = 20;
+	private final static int noOfTestUsers = 2;
 	
-	private final static int noOfTestDives = 20;
+	private final static int noOfTestDives = 2;
 	
 	@Autowired
 	private UserService userService;
