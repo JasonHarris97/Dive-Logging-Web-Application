@@ -12,7 +12,7 @@
 
 <body>
 	<!-- MAIN -->
-	<div id="diveContainer" style="width:90%" layout:fragment="content">
+	<div style="width:90%" layout:fragment="content">
 
 		<div class="tab">
 			<button class="tablinks" onclick="openGenericTab(event, 'Overview')"  id="defaultOpen">Overview</button>
@@ -44,7 +44,7 @@
 		<div id="DiveHistory" class="tabcontent">
 			<!-- Table -->
 			<div>
-				<table id="myTable">
+				<table id="myTable" class="resultsTable">
 					<tr class="header">
 						<th>Details</th>
 						<th>Date</th>
@@ -77,7 +77,7 @@
 
 		<!-- Third Tab -->
 		<div id="DiveMap" class="tabcontent">
-			<div id='map'></div>
+			<div id='map' class="userViewMap"></div>
 
 			<script th:inline="javascript">	
 			/*<![CDATA[*/
