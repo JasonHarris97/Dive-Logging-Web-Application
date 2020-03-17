@@ -38,21 +38,21 @@
 
 		<!-- First Tab -->
 		<div id="Overview" style="font-size:16px" class="tabcontent">
-			<h1 th:text="${user.username}"></h1>
+			<h1 th:text="${returnedUser.username}"></h1>
 			<h4>Name</h4>
-			<p th:text="${user.firstName}+' '+${user.lastName}"></p>
+			<p th:text="${returnedUser.firstName}+' '+${returnedUser.lastName}"></p>
 			<h4>Country</h4>
-			<p th:text="${user.country}"></p>
+			<p th:text="${returnedUser.country}"></p>
 			<h4>Contact Number</h4>
-			<p th:text="${user.contactNumber}"></p>
+			<p th:text="${returnedUser.contactNumber}"></p>
 			<h4>Contact Email</h4>
-			<p th:text="${user.email}"></p>
+			<p th:text="${returnedUser.email}"></p>
 			<h4>PADI Level</h4>
-			<p th:text="${user.padiLevel}"></p>
+			<p th:text="${returnedUser.padiLevel}"></p>
 			<h4>PADI No</h4>
-			<p th:text="${user.padiNo}"></p>
+			<p th:text="${returnedUser.padiNo}"></p>
 			<h4>No of Dives</h4>
-			<p th:text="${user.noOfDives}"></p>
+			<p th:text="${returnedUser.noOfDives}"></p>
 		</div>
 
 		<!-- Second Tab -->
@@ -131,7 +131,7 @@
 				}
 			/*]]>*/
 			</script>
-		</div>
+		</div> 
 
 		<!-- Fourth Tab -->
 		<div id="Images" class="tabcontent">
