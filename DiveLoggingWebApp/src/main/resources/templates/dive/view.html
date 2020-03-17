@@ -237,7 +237,7 @@
 					<th>Name</th>	
 					<th>Image</th>
 				</tr>
-				<tr th:each="i : ${dive.images}">
+				<tr th:each="i : ${dive.imageList.images}">
 					<td th:text="${i.fileName}">Filename</td>
 					<td><img class="diveImg" th:src="@{'/getImage/'+${i.id}}"></td>
 				</tr>

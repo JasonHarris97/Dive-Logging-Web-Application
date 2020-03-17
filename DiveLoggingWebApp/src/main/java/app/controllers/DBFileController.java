@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import app.models.DBFile;
+import app.models.Dive;
+import app.models.ImageList;
 import app.models.User;
 import app.services.DBFileService;
 import app.services.DiveService;
@@ -45,7 +47,8 @@ public class DBFileController {
         
         User currentUser = userService.findByUsername(principal.getName());
         dbFile.setFileOwner(currentUser);
-        dbFile.setAssociatedDive(diveService.findById(diveId));
+        Dive dive = diveService.findById(diveId);
+        dbFile.setAssociatedList(dive.getImageList());
         dbFileService.saveDBFile(dbFile);
 
         return new UploadFileResponse(dbFile.getFileName(),file.getContentType(), file.getSize());

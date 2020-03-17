@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import app.models.Dive;
+import app.models.ImageList;
 import app.models.User;
 import app.services.DiveService;
 import app.services.UserService;
@@ -110,6 +111,7 @@ public class DiveController {
 		
 		currentUser.setNoOfDives(currentUser.getNoOfDives()+1);
 		dive.setDiveNo(currentUser.getNoOfDives());
+		dive.setImageList(new ImageList(dive));
         diveService.save(dive);
         
         return "redirect:/dive/uploadImages/" + dive.getId();

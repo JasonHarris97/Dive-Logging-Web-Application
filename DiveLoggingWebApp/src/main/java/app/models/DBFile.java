@@ -15,7 +15,7 @@ public class DBFile {
     @ManyToOne
     private User fileOwner;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="list_id")
     private ImageList associatedList;
 
