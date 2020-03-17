@@ -96,7 +96,7 @@
 			<script th:inline="javascript">
 			/*<![CDATA[*/
 				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
-				var longitude, latitude, description, detailedLocation, diver, date, diveNo, marker;
+				var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date, marker; 
 
 				var map = L.mapbox.map('map')
 				    .setView([0, 0], 3)
@@ -105,9 +105,12 @@
 				/*[# th:each="d : ${returnedDives}"]*/
 					longitude = /*[[${d.longitude}]]*/ 0;
 					latitude = /*[[${d.latitude}]]*/ 0;
-					description = /*[[${d.description}]]*/ "null";
+					diveTitle = /*[[${d.diveTitle}]]*/ "null";
+					diveCountry = /*[[${d.country}]]*/ "null";
+					diveSite = /*[[${d.diveSite}]]*/ "null";
+					divePurpose = /*[[${d.divePurpose}]]*/ "null";
 					detailedLocation = /*[[${d.detailedLocation}]]*/ "null";
-					diver = /*[[${d.diveOwner.firstName}+' '+${d.diveOwner.lastName}]]*/ "null";
+					diverName = /*[[${d.diveOwner.firstName}+' '+${d.diveOwner.lastName}]]*/ "null";
 					date = /*[[${d.date}]]*/ "null";
 
 					marker = L.marker([latitude, longitude], {
@@ -118,7 +121,10 @@
 					    	})
 					})
 
-					marker.bindPopup(description + "<br />" + diver + "<br />" + date + "<br />" + String(detailedLocation));
+					marker.bindPopup("<p>Title: "+diveTitle+"<br />Diver: "+diverName+"<br />Country: "+diveCountry+
+							"<br />Site: "+diveSite+"<br />Purpose: "+divePurpose+"<br />Date: "+date+"</p>");
+
+
 					marker.addTo(map);
 				/*[/]*/
 			/*]]>*/
