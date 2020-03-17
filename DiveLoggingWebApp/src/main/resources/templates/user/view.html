@@ -93,42 +93,40 @@
 		<!-- Third Tab -->
 		<div id="DiveMap" class="tabcontent">
 			<div id='map' class="userViewMap"></div>
-
-			<script th:inline="javascript">	
+			<script th:inline="javascript">
 			/*<![CDATA[*/
 				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
-
-				var i;
-				var diveList = [[${returnedDives}]];
-				var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date; 
+				var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date, marker; 
 
 				var map = L.mapbox.map('map')
-				    .setView([0.0, 0.0], 2)
-				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
-				
+				    .setView([0, 0], 3)
+				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
 
-				for(i = 0; i < diveList.length; i++){
-					longitude = diveList[i].longitude;
-					latitude = diveList[i].latitude;
-					diveTitle = diveList[i].diveTitle;
-					diveCountry = diveList[i].country;
-					diveSite = diveList[i].diveSite;
-					divePurpose = diveList[i].divePurpose;
-					diverName = diveList[i].diveOwner.firstName + " " + diveList[i].diveOwner.lastName;
-					date = diveList[i].date;
+				/*[# th:each="d : ${returnedDives}"]*/
+					longitude = /*[[${d.longitude}]]*/ 0;
+					latitude = /*[[${d.latitude}]]*/ 0;
+					diveTitle = /*[[${d.diveTitle}]]*/ "null";
+					diveCountry = /*[[${d.country}]]*/ "null";
+					diveSite = /*[[${d.diveSite}]]*/ "null";
+					divePurpose = /*[[${d.divePurpose}]]*/ "null";
+					detailedLocation = /*[[${d.detailedLocation}]]*/ "null";
+					diverName = /*[[${d.diveOwner.firstName}+' '+${d.diveOwner.lastName}]]*/ "null";
+					date = /*[[${d.date}]]*/ "null";
 
-					var marker = L.marker([latitude, longitude], {
-									icon: L.mapbox.marker.icon({
-										'marker-size': 'large',
-										'marker-symbol': 'circle',
-										'marker-color': '#4169E1'
-									    	})
-									})
+					marker = L.marker([latitude, longitude], {
+					icon: L.mapbox.marker.icon({
+						'marker-size': 'large',
+						'marker-symbol': 'circle',
+						'marker-color': '#4169E1'
+					    	})
+					})
 
 					marker.bindPopup("<p>Title: "+diveTitle+"<br />Diver: "+diverName+"<br />Country: "+diveCountry+
-								"<br />Site: "+diveSite+"<br />Purpose: "+divePurpose+"<br />Date: "+date+"</p>");
+							"<br />Site: "+diveSite+"<br />Purpose: "+divePurpose+"<br />Date: "+date+"</p>");
+
+
 					marker.addTo(map);
-				}
+				/*[/]*/
 			/*]]>*/
 			</script>
 		</div> 
@@ -141,3 +139,4 @@
 </body>
 
 </html>
+
