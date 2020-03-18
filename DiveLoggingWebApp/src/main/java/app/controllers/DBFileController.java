@@ -40,23 +40,37 @@ public class DBFileController {
 	@Autowired
 	private DiveService diveService;
 	
-    public UploadFileResponse uploadFile(MultipartFile file, long diveId, Principal principal) {
+	@RequestMapping(value = {"/uploadFile"}, method = RequestMethod.POST)
+    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, 
+    		@RequestParam("diveId") long diveId, @RequestParam("fileUse") String fileUse, 
+    			Principal principal) {
         DBFile dbFile = dbFileService.generateDBFile(file);
         
         User currentUser = userService.findByUsername(principal.getName());
         dbFile.setFileOwner(currentUser);
-        dbFile.setAssociatedDive(diveService.findById(diveId));
+        dbFile.setFileUse(fileUse);
+        
+        if(fileUse.equals("diveImage")) {
+        	dbFile.setAssociatedDive(diveService.findById(diveId));
+        } else if(fileUse.equals("profilePicture")) {
+        	currentUser.setProfilePicture(dbFile);
+        } else if(fileUse.equals("profileBanner")) {
+        	currentUser.setProfileBanner(dbFile);
+        }
+        
         dbFileService.saveDBFile(dbFile);
+        userService.save(currentUser);
 
         return new UploadFileResponse(dbFile.getFileName(),file.getContentType(), file.getSize());
     }
 
     @RequestMapping(value = {"/uploadMultipleFiles"}, method = RequestMethod.POST)
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, 
-    		@RequestParam("diveId") String diveId, Principal principal) {
+    		@RequestParam("diveId") String diveId, @RequestParam("fileUse") String fileUse,
+    			Principal principal) {
         return Arrays.asList(files)
                 .stream()
-                .map(file -> uploadFile(file, Long.parseLong(diveId), principal))
+                .map(file -> uploadFile(file, Long.parseLong(diveId), fileUse, principal))
                 .collect(Collectors.toList());
     }
     

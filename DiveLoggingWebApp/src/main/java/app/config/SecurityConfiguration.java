@@ -31,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                 		"/*",
                 		"/uploadMultipleFiles**",
+                		"/uploadFile**",
                 		"/getImage/**",
                 		"/index*",
                 		"/meme**",

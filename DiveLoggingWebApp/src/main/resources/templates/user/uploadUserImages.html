@@ -5,7 +5,7 @@
 	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-	<title>Dives</title>
+	<title>Upload User Images</title>
 	<style>
 		/* input[type="file"] {
 		    border: 1px solid #4CAF50;
@@ -37,27 +37,43 @@
 <body>
 	<!-- MAIN -->
 	<div layout:fragment="content">
-
+		<!-- Tab Header -->
 		<div class="tab">
-			<button class="tablinks" id="defaultOpen">Images</button>
+			<button class="tablinks" id="defaultOpen">User Images</button>
 		</div>
 
+		<!-- CONTENT -->
 		<div id="ImagesAndFiles" class="tabcontent" style="display:block;">
-			<div class="multiple-upload">
-				<form id="multipleUploadForm" name="multipleUploadForm">
-					<input id="multipleFileUploadInputDive" type="hidden" name="diveId" th:value="${dive.id}" />
-					<input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
-					<button type="submit" class="green-button file-upload-button">Upload</button>
+			<!-- Profile Pic -->
+			<div class="profilePic-upload">
+				<h3>Upload Profile Picture</h3>
+				<form id="profilePicUploadForm" name="profilePicUploadForm">
+					<input id="profilePicUploadInputUse" type="hidden" name="fileUse" value="profilePicture" />
+					<input id="profilePicUploadInput" type="file" name="file" class="file-input" required />
+					<button type="submit" class="green-button file-upload-button">Upload Profile Pic</button>
 				</form>
-
-				<div class="upload-response">
-					<div id="multipleFileUploadError"></div>
-					<div id="multipleFileUploadSuccess"></div>
-				</div>
 			</div>
 
-			<button type="button" class="green-button file-upload-button"><a th:href="@{'/dive/view/'+${dive.id}}">Finish</a></button>
+			<!-- Profile Banner -->
+			<!--<div class="profileBanner-upload">
+				<h3>Upload Profile Banner</h3>
+				<form id="profileBannerUploadForm" name="profileBannerUploadForm">
+					<input id="profileBannerUploadInputUse" type="hidden" name="fileUse" value="profileBanner" />
+					<input id="profileBannerUploadInput" type="file" name="file" class="file-input" required />
+					<button type="submit" class="green-button file-upload-button">Upload Profile Banner</button>
+				</form>
+			</div>-->
+
+			<!-- Upload Response -->
+			<div class="upload-response">
+				<div id="singleFileUploadError"></div>
+				<div id="singleFileUploadSuccess"></div>
+			</div>
+
+			<!-- Finish Button -->
+			<button type="button" class="green-button file-upload-button"><a th:href="@{'/user/view/'+${newUser.id}}">Finish</a></button>
 		</div>
+		<!-- CONTENT -->
 	</div>
 	<!-- MAIN -->
 </body>

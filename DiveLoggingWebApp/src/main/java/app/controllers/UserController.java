@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import app.config.InitialDataLoader;
+import app.models.Dive;
 import app.models.User;
 import app.services.DiveService;
 import app.services.UserService;
@@ -68,8 +69,16 @@ public class UserController{
         }
 
         userService.save(userDto);
-        return "redirect:/user/login?regSuccess";
+        return "redirect:/user/uploadUserImages/" + userService.findByUsername(userDto.getUsername()).getId();
     }
+    
+    @RequestMapping(value = "/uploadUserImages/{userId}", method = RequestMethod.GET)
+	public String showUploadUserImages(@PathVariable("userId") String userId, Model model) {
+    	User user = userService.findById(Long.parseLong(userId));
+		model.addAttribute("newUser", user);
+		
+		return "user/uploadUserImages";
+	}
     
     @RequestMapping(value="/view/{identification}", method = RequestMethod.GET)
 	public String getUserProfilePage(@PathVariable("identification") String identification, Model model) {
@@ -86,6 +95,5 @@ public class UserController{
 		
 		return "user/view";
 	}
-
 }
 

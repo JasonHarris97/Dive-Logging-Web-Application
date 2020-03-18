@@ -38,10 +38,10 @@ public class User {
     
     private int noOfCountries;//d
     
-    @OneToMany
+    @OneToOne
 	private DBFile profilePicture;
 	
-    @OneToMany
+    @OneToOne
 	private DBFile profileBanner;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
