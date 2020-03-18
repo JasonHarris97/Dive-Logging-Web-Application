@@ -3,7 +3,10 @@
 package app.models;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="user", uniqueConstraints = @UniqueConstraint(columnNames = {"email", "username"}))
@@ -34,6 +37,12 @@ public class User {
     private int noOfDives;//d
     
     private int noOfCountries;//d
+    
+    @OneToMany
+	private DBFile profilePicture;
+	
+    @OneToMany
+	private DBFile profileBanner;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -175,5 +184,21 @@ public class User {
 
 	public void setPadiNo(String padiNo) {
 		this.padiNo = padiNo;
+	}
+
+	public DBFile getProfilePicture() {
+		return profilePicture;
+	}
+
+	public void setProfilePicture(DBFile profilePicture) {
+		this.profilePicture = profilePicture;
+	}
+
+	public DBFile getProfileBanner() {
+		return profileBanner;
+	}
+
+	public void setProfileBanner(DBFile profileBanner) {
+		this.profileBanner = profileBanner;
 	}
 }
