@@ -10,7 +10,7 @@
 	<style>
 		#queryContainer{
 			width: 100%; /* Full-width */
-		}	
+		}		
 	</style>
 
 </head>
@@ -125,17 +125,17 @@
 		<div>
 			<table id="myTable" class="resultsTable">
 				<tr class="header">
-					<th>Details</th>
-					<th>Date</th>
+					<th class="detailsCol">Details</th>
+					<th class="dateCol">Date</th>
 					<th>Diver Username</th>
 					<th>PADI Level</th>
-					<th>Participants</th>
+					<th class="participantsCol">Participants</th>
 					<th>Country</th>
 					<th>Location</th>
 				</tr>
 				<div th:if="${not #lists.isEmpty(returnedDives)}" >
 					<tr th:each="d : ${returnedDives}">
-						<td><a th:href ="@{'/dive/view/'+${d.id}}" th:text="Click">Link</a></td>
+						<td class="green-button"><a th:href ="@{'/dive/view/'+${d.id}}" th:text="View">Link</a></td>
 						<td th:text="${d.date}">Date</td>
 						<td><a th:href ="@{'/user/view/'+${d.diveOwner.username}}" th:text="${d.diveOwner.username}">Dive Owner Username</td>
 						<td th:text="${d.diveOwner.padiLevel}">Dive Owner PADI Level</td>
