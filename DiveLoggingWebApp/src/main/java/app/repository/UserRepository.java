@@ -16,9 +16,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	Iterable<User> findByPadiNo(String padiNo);
 	
-    Iterable<User> findTop1000ByCountry(String country, Sort sort);
+	Iterable<User> findTop1000ByUsernameContaining(String username, Sort sort);
+	
+    Iterable<User> findTop1000ByCountryContaining(String country, Sort sort);
     
-    Iterable<User> findTop1000ByFullNameContaining(String string, Sort sort);
+    Iterable<User> findTop1000ByFullNameContaining(String fullName, Sort sort);
     
     Iterable<User> findTop1000ByPadiLevel(String padiLevel, Sort sort);
 }

@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
+    public Iterable<User> findByUsernameContaining(String username, Sort sort) {
+    	return userRepository.findTop1000ByUsernameContaining(username, sort);
+    }
+    
+    @Override
     public User findById(long id) {
     	return userRepository.findById(id);
     }
@@ -114,7 +119,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Iterable<User> findAllByCountry(String country, Sort sort) {
 		// TODO Auto-generated method stub
-		return userRepository.findTop1000ByCountry(country, sort);
+		return userRepository.findTop1000ByCountryContaining(country, sort);
 	}
 
 	@Override

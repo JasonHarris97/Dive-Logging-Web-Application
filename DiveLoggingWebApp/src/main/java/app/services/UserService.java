@@ -20,6 +20,7 @@ public interface UserService extends UserDetailsService {
     
     Iterable<User> findAll(Sort sort);
     
+    Iterable<User> findByUsernameContaining(String username, Sort sort);
     Iterable<User> findAllByCountry(String country, Sort sort);
     Iterable<User> findAllByName(String fullName, Sort sort);
     Iterable<User> findAllByPadiLevel(String padiLevel, Sort sort);   
