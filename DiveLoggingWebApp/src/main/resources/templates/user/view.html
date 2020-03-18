@@ -134,6 +134,11 @@
 
 		<!-- Fourth Tab -->
 		<div id="Images" class="tabcontent">
+			<div th:each="d : ${returnedDives}">
+				<div th:each="i : ${d.images}" style="display:inline-grid;">
+					<img class="profileImg" th:src="@{'/getImage/'+${i.id}}">
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- MAIN -->
