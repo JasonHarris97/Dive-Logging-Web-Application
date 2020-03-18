@@ -138,8 +138,7 @@ public class DiveController {
     	if(query.getSearchOption().equals("country")) {
 			model.addAttribute("returnedDives", diveService.findAllByCountry(query.getInputString(), Sort.by(Sort.Direction.ASC, orderBy)));
 		} else if (query.getSearchOption().equals("username")){
-			User diveOwner = userService.findByUsername(query.getInputString());
-			model.addAttribute("returnedDives", diveService.findAllByDiveOwner(diveOwner, Sort.by(Sort.Direction.ASC, orderBy)));
+			model.addAttribute("returnedDives", diveService.findAllByDiveOwner(query.getInputString(), Sort.by(Sort.Direction.ASC, orderBy)));
 		} else if (query.getSearchOption().equals("date")){
 			model.addAttribute("returnedDives", diveService.findAll(Sort.by(Sort.Direction.ASC, orderBy)));
 		} else if (query.getSearchOption().equals("location")){

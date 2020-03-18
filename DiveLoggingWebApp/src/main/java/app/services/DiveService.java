@@ -24,7 +24,7 @@ public interface DiveService{
     Iterable<Dive> findAllByLocation(String location);
     Iterable<Dive> findAllByDiveOwnerPadiLevel(String padiLevel);
     
-    Iterable<Dive> findAllByDiveOwner(User diveOwner, Sort sort);
+    Iterable<Dive> findAllByDiveOwner(String fullName, Sort sort);
     Iterable<Dive> findAllByCountry(String country, Sort sort);
     Iterable<Dive> findAllByDate(LocalDate date, Sort sort);
     Iterable<Dive> findAllByLocation(String location, Sort sort);
