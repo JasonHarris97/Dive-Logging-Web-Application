@@ -373,3 +373,21 @@
 	background-color: red;
 }
 
+/* ====================================================================================== */
+/* Images */
+/* ====================================================================================== */
+
+.diveImg {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 5px;
+			width: 150px;
+}
+
+.profileImg {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 5px;
+			width: 150px;
+}
+

@@ -24,7 +24,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     	
     	http
     		.authorizeRequests()
-    			.antMatchers("/dive/upload**").authenticated();
+    			.antMatchers(
+    					"/dive/upload**", 
+    					"/dive/uploadImages/**",
+    					"/user/uploadUserImages/**").authenticated();
     	
         http
             .authorizeRequests()

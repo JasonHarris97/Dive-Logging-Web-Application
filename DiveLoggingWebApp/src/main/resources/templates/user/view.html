@@ -38,6 +38,7 @@
 
 		<!-- First Tab -->
 		<div id="Overview" style="font-size:16px" class="tabcontent">
+		    <img th:if="${returnedUser.profilePicture != null}" class="profileImage" th:src="@{'/getImage/'+${returnedUser.profilePicture.id}}">
 			<h1 th:text="${returnedUser.username}"></h1>
 			<h4>Name</h4>
 			<p th:text="${returnedUser.firstName}+' '+${returnedUser.lastName}"></p>
