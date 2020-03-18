@@ -78,7 +78,7 @@ function uploadSingleFile(file, fileUse) {
         var response = JSON.parse(xhr.responseText);
         if(xhr.status == 200) {
             singleFileUploadError.style.display = "none";
-            singleFileUploadSuccess.innerHTML = "<p>File Uploaded Successfully.</p><p>Image: " + response[i].fileName + "</p>";
+            singleFileUploadSuccess.innerHTML = "<p>File Uploaded Successfully.</p><p>Image: " + response.fileName + "</p>";
             singleFileUploadSuccess.style.display = "block";
         } else {
             singleFileUploadSuccess.style.display = "none";
@@ -93,41 +93,47 @@ function uploadSingleFile(file, fileUse) {
 // EVENT LISTENERS
 // ==============================================================================================================
 
-// MULTIPLE FILES
-multipleUploadForm.addEventListener('submit', function(event){
-    var files = multipleFileUploadInput.files;
-    var diveId = multipleFileUploadInputDive.value;
-    if(files.length === 0) {
-        multipleFileUploadError.innerHTML = "Please select at least one file";
-        multipleFileUploadError.style.display = "block";
-    }
-    uploadMultipleFiles(files, diveId);
-    event.preventDefault();
-}, true);
+if (multipleUploadForm != null){
+	// MULTIPLE FILES
+	multipleUploadForm.addEventListener('submit', function(event){
+	    var files = multipleFileUploadInput.files;
+	    var diveId = multipleFileUploadInputDive.value;
+	    if(files.length === 0) {
+		multipleFileUploadError.innerHTML = "Please select at least one file";
+		multipleFileUploadError.style.display = "block";
+	    }
+	    uploadMultipleFiles(files, diveId);
+	    event.preventDefault();
+	}, true);
+}
 
-// PROFILE PICTURE
-profilePicUploadForm.addEventListener('submit', function(event){
-    var files = profilePicUploadInput.files;
-    var fileUse = profilePicUploadInputUse.value;
-    if(files.length === 0) {
-        singleFileUploadError.innerHTML = "Please select a file";
-        singleFileUploadError.style.display = "block";
-    }
-    console.log(fileUse);
-    console.log("Running uploadSingleFiles");
-    uploadSingleFile(files[0], fileUse);
-    event.preventDefault();
-}, true);
+if(profilePicUploadForm != null) {
+	// PROFILE PICTURE
+	profilePicUploadForm.addEventListener('submit', function(event){
+	    var files = profilePicUploadInput.files;
+	    var fileUse = profilePicUploadInputUse.value;
+	    if(files.length === 0) {
+		singleFileUploadError.innerHTML = "Please select a file";
+		singleFileUploadError.style.display = "block";
+	    }
+	    console.log(fileUse);
+	    console.log("Running uploadSingleFiles");
+	    uploadSingleFile(files[0], fileUse);
+	    event.preventDefault();
+	}, true);
+}
 
-// PROFILE BANNER
-profileBannerUploadForm.addEventListener('submit', function(event){
-    var files = profileBannerUploadInput.files;
-    var fileUse = profileBannerUploadInputUse.value;
-    if(files.length === 0) {
-        singleFileUploadError.innerHTML = "Please select a file";
-        singleFileUploadError.style.display = "block";
-    }
-    uploadSingleFile(files[0], fileUse);
-    event.preventDefault();
-}, true);
+if (profileBannerUploadForm != null) {
+	// PROFILE BANNER
+	profileBannerUploadForm.addEventListener('submit', function(event){
+	    var files = profileBannerUploadInput.files;
+	    var fileUse = profileBannerUploadInputUse.value;
+	    if(files.length === 0) {
+		singleFileUploadError.innerHTML = "Please select a file";
+		singleFileUploadError.style.display = "block";
+	    }
+	    uploadSingleFile(files[0], fileUse);
+	    event.preventDefault();
+	}, true);
+}
 
