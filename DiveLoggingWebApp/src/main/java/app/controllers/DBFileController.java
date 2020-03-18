@@ -40,7 +40,6 @@ public class DBFileController {
 	@Autowired
 	private DiveService diveService;
 	
-	@RequestMapping(value = {"/uploadFile"}, method = RequestMethod.POST)
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, 
     		@RequestParam("diveId") long diveId, @RequestParam("fileUse") String fileUse, 
     			Principal principal) {
@@ -52,7 +51,24 @@ public class DBFileController {
         
         if(fileUse.equals("diveImage")) {
         	dbFile.setAssociatedDive(diveService.findById(diveId));
-        } else if(fileUse.equals("profilePicture")) {
+        }
+        
+        dbFileService.saveDBFile(dbFile);
+        userService.save(currentUser);
+
+        return new UploadFileResponse(dbFile.getFileName(),file.getContentType(), file.getSize());
+    }
+	
+	@RequestMapping(value = {"/uploadSingleFile"}, method = RequestMethod.POST)
+    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, 
+    		@RequestParam("fileUse") String fileUse, Principal principal) {
+        DBFile dbFile = dbFileService.generateDBFile(file);
+        
+        User currentUser = userService.findByUsername(principal.getName());
+        dbFile.setFileOwner(currentUser);
+        dbFile.setFileUse(fileUse);
+        
+        if(fileUse.equals("profilePicture")) {
         	currentUser.setProfilePicture(dbFile);
         } else if(fileUse.equals("profileBanner")) {
         	currentUser.setProfileBanner(dbFile);

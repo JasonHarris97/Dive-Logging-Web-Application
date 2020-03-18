@@ -66,11 +66,10 @@ function uploadSingleFile(file, fileUse) {
 
     formData.append("file", file);
     formData.set("fileUse", fileUse);
-    formData.set("diveId", 0);
     console.log(String(formData.get("fileUse")));
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/uploadFile");
+    xhr.open("POST", "/uploadSingleFile");
 
     xhr.onload = function() {
 	console.log("HELLO FROM UPLOAD SINGLE FILE");
