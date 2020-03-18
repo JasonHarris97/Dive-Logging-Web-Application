@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	  layout:decorate="~{layouts/default}"
+	    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>Find Users</title>
+	
+	<style>
+		#queryContainer{
+			width: 100%; /* Full-width */
+		}	
+	</style>
+
+</head>
+
+<body>
+	<!-- MAIN -->
+	<div layout:fragment="content">
+
+		<!-- Search Bar -->
+		<div id="queryContainer">
+			<form th:object="${query}" th:action="@{/user/find}" method="post">
+
+				<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
+					<input placeholder="Search for dives..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
+					<button class="querySearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+				</div>
+
+				<div class="radioContainer">
+					<h3>Search by:</h3>
+					<label class="container">All
+					  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="all">
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container">Username <!-- DONE -->
+					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container">Name <!-- DONE -->
+					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="name">
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container">Country <!-- DONE -->
+					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container">PADI Level
+					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container">PADI No
+					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiNo">
+					  <span class="checkmark"></span>
+					</label>
+				</div>
+
+				<div class="radioContainer">
+					<h3>Order by:</h3>
+					<label class="container">Username
+					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="username">
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container">Name
+					  <input type="radio" checked="checked" name="orderBy" th:field="*{orderBy}" th:value="fullName">
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container">Country
+					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="country">
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container">PADI Level
+					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="padiLevel">
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container">No. of Dives
+					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="noOfDives">
+					  <span class="checkmark"></span>
+					</label>
+				</div>
+
+				<input type="hidden" name="source" th:value="find">
+			</form>
+		</div>
+
+		<!-- Table -->
+		<div>
+			<table id="myTable" class="resultsTable">
+				<tr class="header">
+					<th>Username</th>
+					<th>Name</th>
+					<th>Country</th>
+					<th>PADI Level</th>
+					<th>PADI No</th>
+					<th>No of Dives</th>
+				</tr>
+				<div th:if="${not #lists.isEmpty(returnedUsers)}" >
+					<tr th:each="u : ${returnedUsers}">
+						<td><a th:href ="@{'/user/view/'+${u.id}}" th:text="${u.username}">Username</a></td>
+						<td th:text="${u.firstName}+' '+${u.lastName}">Name</td>
+						<td th:text="${u.country}">Country</td>
+						<td th:text="${u.padiLevel}">PADI Level</td>
+						<td th:text="${u.padiNo}">PADI No</td>
+						<td th:text="${u.noOfDives}">No of Dives</td>
+					</tr>
+				</div>
+				<div th:if="${#lists.isEmpty(returnedUsers)}">
+					<tr id="empty-results"></tr>
+					<script>
+						document.getElementById("empty-results").innerHTML = "No dives for this query";
+					</script>
+				</div>
+			</table>
+		</div>
+	</div>
+	<!-- MAIN -->
+</body>
+
+</html>
+

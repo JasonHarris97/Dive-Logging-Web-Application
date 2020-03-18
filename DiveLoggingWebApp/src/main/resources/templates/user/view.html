@@ -41,7 +41,7 @@
 		    <img th:if="${returnedUser.profilePicture != null}" class="profileImage" th:src="@{'/getImage/'+${returnedUser.profilePicture.id}}">
 			<h1 th:text="${returnedUser.username}"></h1>
 			<h4>Name</h4>
-			<p th:text="${returnedUser.firstName}+' '+${returnedUser.lastName}"></p>
+			<p th:text="${returnedUser.fullName}"></p>
 			<h4>Country</h4>
 			<p th:text="${returnedUser.country}"></p>
 			<h4>Contact Number</h4>

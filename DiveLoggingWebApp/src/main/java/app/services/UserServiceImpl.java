@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,6 +50,7 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(registration.getFirstName());
         user.setLastName(registration.getLastName());
         user.setUsername(registration.getUsername());
+        user.setFullName(registration.getFirstName()+" "+registration.getLastName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
         user.setContactNumber(registration.getContactNumber());
@@ -96,5 +98,33 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Iterable<User> findAll() {
 		return userRepository.findAll();
+	}
+
+	@Override
+	public Iterable<User> findByPadiNo(String padiNo) {
+		return userRepository.findByPadiNo(padiNo);
+	}
+
+	@Override
+	public Iterable<User> findAll(Sort sort) {
+		// TODO Auto-generated method stub
+		return userRepository.findAll(sort);
+	}
+
+	@Override
+	public Iterable<User> findAllByCountry(String country, Sort sort) {
+		// TODO Auto-generated method stub
+		return userRepository.findTop1000ByCountry(country, sort);
+	}
+
+	@Override
+	public Iterable<User> findAllByName(String fullName, Sort sort) {
+		return userRepository.findTop1000ByFullNameContaining(fullName, sort);
+	}
+
+	@Override
+	public Iterable<User> findAllByPadiLevel(String padiLevel, Sort sort) {
+		// TODO Auto-generated method stub
+		return userRepository.findTop1000ByPadiLevel(padiLevel, sort);
 	}
 }

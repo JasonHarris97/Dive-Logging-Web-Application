@@ -4,9 +4,7 @@ package app.models;
 
 import javax.persistence.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name="user", uniqueConstraints = @UniqueConstraint(columnNames = {"email", "username"}))
@@ -19,6 +17,8 @@ public class User {
     private String firstName;//d
     
     private String lastName;//d
+    
+    private String fullName;
     
     private String username;//d
     
@@ -200,5 +200,13 @@ public class User {
 
 	public void setProfileBanner(DBFile profileBanner) {
 		this.profileBanner = profileBanner;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 }

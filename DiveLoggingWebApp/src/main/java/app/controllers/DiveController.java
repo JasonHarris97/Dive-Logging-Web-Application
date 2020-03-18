@@ -44,7 +44,7 @@ public class DiveController {
     }
 	
 	@RequestMapping(value = {"/query", "/"}, method = RequestMethod.GET)
-	public String getAllDives(Model model) {
+	public String showQueryDivesPage(Model model) {
 		model.addAttribute("returnedDives", diveService.findAll());
 		return "dive/query";
 	}
