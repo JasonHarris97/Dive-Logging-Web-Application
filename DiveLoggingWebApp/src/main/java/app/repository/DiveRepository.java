@@ -24,9 +24,9 @@ public interface DiveRepository extends JpaRepository<Dive, Long> {
 	Iterable<Dive> findTop1000ByLocation(String location);
 	Iterable<Dive> findTop1000ByDiveOwnerPadiLevel(String padiLevel);
 	
-	Iterable<Dive> findTop1000ByDiveOwner(User diveOwner, Sort sort);
-	Iterable<Dive> findTop1000ByCountry(String country, Sort sort);
+	Iterable<Dive> findTop1000ByDiveOwnerFullNameContaining(String fullName, Sort sort);
+	Iterable<Dive> findTop1000ByCountryContaining(String country, Sort sort);
 	Iterable<Dive> findTop1000ByDate(LocalDate date, Sort sort);
 	Iterable<Dive> findTop1000ByDiveOwnerPadiLevel(String padiLevel, Sort sort);
-	Iterable<Dive> findTop1000ByLocation(String location, Sort sort);
+	Iterable<Dive> findTop1000ByLocationContaining(String location, Sort sort);
 }

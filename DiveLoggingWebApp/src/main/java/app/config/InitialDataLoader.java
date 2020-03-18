@@ -43,9 +43,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	private final static Random rand = new Random();
 	private final static StringLists stringLists = new StringLists();
 	
-	private final static int noOfTestUsers = 2;
+	private final static int noOfTestUsers = 100;
 	
-	private final static int noOfTestDives = 2;
+	private final static int noOfTestDives = 1000;
 	
 	@Autowired
 	private UserService userService;
@@ -179,6 +179,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testUser.setFirstName(faker.name().firstName());
 			testUser.setLastName(faker.name().lastName());
 			testUser.setUsername(testUser.getFirstName() + " " + testUser.getLastName());
+			testUser.setFullName(testUser.getFirstName()+" "+testUser.getLastName());
 			testUser.setEmail(testUser.getUsername() + "." + fakeValuesService.bothify("????##@gmail.com"));
 			testUser.setCountry(faker.address().country());
 			testUser.setPassword(passwordEncoder.encode("test"));
@@ -199,6 +200,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		User testUser = new User();
 		testUser.setFirstName("Jason");
 		testUser.setLastName("Harris");
+		testUser.setFullName("Jason Harris");
 		testUser.setUsername("JasonHarris");
 		testUser.setEmail("test@gmail.com");
 		testUser.setPassword(passwordEncoder.encode("test"));

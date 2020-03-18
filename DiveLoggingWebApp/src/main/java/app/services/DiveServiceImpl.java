@@ -71,13 +71,13 @@ public class DiveServiceImpl implements DiveService{
 	}
 
 	@Override
-	public Iterable<Dive> findAllByDiveOwner(User diveOwner, Sort sort) {
-		return diveRepository.findTop1000ByDiveOwner(diveOwner, sort);
+	public Iterable<Dive> findAllByDiveOwner(String fullName, Sort sort) {
+		return diveRepository.findTop1000ByDiveOwnerFullNameContaining(fullName, sort);
 	}
 
 	@Override
 	public Iterable<Dive> findAllByCountry(String country, Sort sort) {
-		return diveRepository.findTop1000ByCountry(country, sort);
+		return diveRepository.findTop1000ByCountryContaining(country, sort);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class DiveServiceImpl implements DiveService{
 
 	@Override
 	public Iterable<Dive> findAllByLocation(String location, Sort sort) {
-		return diveRepository.findTop1000ByLocation(location, sort);
+		return diveRepository.findTop1000ByLocationContaining(location, sort);
 	}
 
 	@Override
