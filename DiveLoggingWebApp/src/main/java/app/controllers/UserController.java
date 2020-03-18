@@ -1,5 +1,9 @@
 package app.controllers;
 
+import java.security.Principal;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -52,7 +56,7 @@ public class UserController{
     
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registerUserAccount(@ModelAttribute("user") @Valid UserDto userDto,
-        BindingResult result) {
+        BindingResult result, HttpServletRequest request) {
 
         User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null) {
@@ -69,6 +73,13 @@ public class UserController{
         }
 
         userService.save(userDto);
+        
+        try {
+            request.login(userDto.getUsername(), userDto.getPassword());
+        } catch (ServletException e) {
+            log.error("Error while login ", e);
+        }
+        
         return "redirect:/user/uploadUserImages/" + userService.findByUsername(userDto.getUsername()).getId();
     }
     
