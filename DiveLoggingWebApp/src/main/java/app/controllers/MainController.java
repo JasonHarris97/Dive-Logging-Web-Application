@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
     @GetMapping("/")
-    public String root() {
+    public String root(Model model) {
+    	model.addAttribute("query", null);
         return "homepage";
     }
 }

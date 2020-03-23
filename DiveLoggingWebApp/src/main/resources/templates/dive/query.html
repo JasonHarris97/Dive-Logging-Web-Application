@@ -6,13 +6,6 @@
 
 <head>
 	<title>Dives</title>
-	
-	<style>
-		#queryContainer{
-			width: 100%; /* Full-width */
-		}		
-	</style>
-
 </head>
 
 <body>
@@ -20,106 +13,107 @@
 	<div layout:fragment="content">
 
 		<!-- Search Bar -->
-		<div id="queryContainer">
-			<form th:object="${query}" th:action="@{/dive/query}" method="post">
 
-				<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
-					<input placeholder="Search for dives..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
-					<button class="querySearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-				</div>
+		<form id="queryForm" style="width: 100%;" th:object="${query}" th:action="@{/dive/query}" method="post">
 
-				<div class="radioContainer">
-					<h3>Search by:</h3>
-					<label class="container">All
-					  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="all">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Username
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Country
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Date
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="date">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Location
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="location">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">PADI Level
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
+			<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
+				<input placeholder="Search for dives..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
+				<button class="querySearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+			</div>
 
-				<div class="radioContainer">
-					<h3>Order by:</h3>
-					<label class="container">Date
-					  <input type="radio" checked="checked" name="orderBy" th:field="*{orderBy}" th:value="date">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Username
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="diveOwnerUsername">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Dive Duration
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="diveDuration">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Country
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="country">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Location
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="location">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
+			<div class="radioContainer">
+				<h3>Search by:</h3>
+				<label class="container">All
+				  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="all">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Username
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Country
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Date
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="date">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Location
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="location">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">PADI Level
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
 
-				<div class="radioContainer">
-					<label class="container">Water Type
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="waterType">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Air Temperature
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="airTemperature">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Water Termperature
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="waterTemperature">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">No. of Participants
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="noOfParticipants">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Weather
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="weather">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
+			<div class="radioContainer">
+				<h3>Order by:</h3>
+				<label class="container">Date
+				  <input type="radio" checked="checked" name="orderBy" th:field="*{orderBy}" th:value="date">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Username
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="diveOwnerUsername">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Dive Duration
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="diveDuration">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Country
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="country">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Location
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="location">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
 
-				<div class="radioContainer">
-					<label class="container">Max Depth
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="maxDepth">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Altitude
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="altitude">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">PADI Level
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="diveOwnerPadiLevel">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
-				<input type="hidden" name="source" th:value="query">
-			</form>
-		</div>
+			<div class="radioContainer">
+				<label class="container">Water Type
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="waterType">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Air Temperature
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="airTemperature">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Water Termperature
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="waterTemperature">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">No. of Participants
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="noOfParticipants">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Weather
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="weather">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+
+			<div class="radioContainer">
+				<label class="container">Max Depth
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="maxDepth">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Altitude
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="altitude">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">PADI Level
+				  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="diveOwnerPadiLevel">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+			<input type="hidden" name="source" th:value="query">
+			<input id="pageNo"type="hidden" name="pageNo" th:value="1">
+		</form>
+	
 
 		<!-- Table -->
 		<div>
@@ -159,8 +153,8 @@
 
 			<!-- Previous -->
 			<li class="page-item" th:classappend="${returnedDives.number eq 0} ? 'disabled'">
-				<a class="page-link"
-				th:href="@{/dive/query?page={pageNo}(pageNo=${customers.number lt 2 ? 1 : customers.number})}"
+				<a th:onclick="|submitPage(${returnedDives.number lt 2 ? 1 : returnedDives.number})|" 
+				class="page-link"
 				aria-label="Previous"
 				title="Previous Page" rel="tooltip">
 					<!-- <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20"></span> -->
@@ -172,7 +166,8 @@
 			<!-- Page Links -->
 			<li class="page-item" th:classappend="${i eq returnedDives.number + 1} ? 'active'"
 				th:each="i : ${#numbers.sequence( returnedDives.number + 1, returnedDives.totalPages > 10 + returnedDives.number ? returnedDives.number + 10 : returnedDives.totalPages, 1)}">
-				<a class="page-link" th:href="@{/dive/query?page={pageNo}(pageNo=${i})}" th:text="${i}"
+				<a th:onclick="|submitPage(${i})|" 
+				class="page-link" th:text="${i}"
 				th:title="${'Page '+ i}"
 				rel="tooltip"></a>
 			</li>
@@ -189,7 +184,8 @@
 			<!-- Next -->
 
 			<li class="page-item" th:classappend="${returnedDives.number + 1 eq returnedDives.totalPages} ? 'disabled'">
-				<a class="page-link" th:href="@{/dive/query?page={pageNo}(pageNo=${returnedDives.number + 2})}"
+				<a th:onclick="|submitPage(${returnedDives.number + 2})|" 
+				class="page-link" 
 				aria-label="Next"
 				title="Next Page" rel="tooltip">
 					<!--- <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20"></span> -->
@@ -203,6 +199,29 @@
 
 	</div>
 	<!-- MAIN -->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var query = /*[[${query}]]*/ null;
+		var source = /*[[${query.source}]]*/ null;
+
+		var searchOption = document.getElementsByName("searchOption");
+		var orderBy = document.getElementsByName("orderBy");
+
+		if(query != null) {
+			if(source.equals("query")){
+				document.getElementById("inputString").text = /*[[${query.getInputString}]]*/ null;
+				var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
+				var orderByToCheck = /*[[${query.orderBy}]]*/ null;
+
+				searchOption.querySelector('input[value=' + searchOptionToCheck + ']').checked = true;
+				orderBy.querySelector('input[value=' + orderByToCheck + ']').checked = true;
+			} else {
+				searchOption.querySelector("input[value='all']").checked = true;
+				orderBy.querySelector("input[value='username']").checked = true;	
+			}
+		} 
+		/*]]>*/
+	</script>
 </body>
 
 </html>

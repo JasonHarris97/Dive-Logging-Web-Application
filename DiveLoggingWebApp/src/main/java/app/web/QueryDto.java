@@ -17,6 +17,8 @@ public class QueryDto {
     
     @NotEmpty
     private String source;
+    
+    private String pageNo;
 
     @AssertTrue
     private Boolean terms;
@@ -54,6 +56,14 @@ public class QueryDto {
 
 	public void setSource(String source) {
 		this.source = source;
+	}
+
+	public String getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(String pageNo) {
+		this.pageNo = pageNo;
 	}
 }
 

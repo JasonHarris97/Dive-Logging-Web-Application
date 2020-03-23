@@ -3,6 +3,8 @@ package app.services;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -98,5 +100,41 @@ public class DiveServiceImpl implements DiveService{
 	@Override
 	public Iterable<Dive> findAll(Sort sort) {
 		return diveRepository.findAll(sort);
+	}
+	
+	// PAGEABLE FINDS // 
+	@Override
+	public Page<Dive> findAll(Pageable pageable) {
+		return diveRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Dive> findAllByDiveOwner(String fullName, Pageable pageable) {
+		return diveRepository.findByDiveOwnerFullNameContaining(fullName, pageable);
+	}
+
+	@Override
+	public Page<Dive> findAllByCountry(String country, Pageable pageable) {
+		return diveRepository.findByCountryContaining(country, pageable);
+	}
+
+	@Override
+	public Page<Dive> findAllByDate(LocalDate date, Pageable pageable) {
+		return diveRepository.findByDate(date, pageable);
+	}
+
+	@Override
+	public Page<Dive> findAllByLocation(String location, Pageable pageable) {
+		return diveRepository.findByLocationContaining(location, pageable);
+	}
+
+	@Override
+	public Page<Dive> findAllByDiveOwnerPadiLevel(String padiLevel, Pageable pageable) {
+		return diveRepository.findByDiveOwnerPadiLevel(padiLevel, pageable);
+	}
+
+	@Override
+	public Page<Dive> findAllByDiveOwnerUsername(String username, Pageable pageable) {
+		return diveRepository.findByDiveOwnerUsernameContaining(username, pageable);
 	}
 }
