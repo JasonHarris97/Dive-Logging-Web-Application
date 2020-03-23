@@ -18,10 +18,10 @@
 
 .mainContainer {
 	margin: auto;
-	margin-top: 90px;
-	margin-bottom: 42px;
+	margin-top: 50px;
+	margin-bottom: 16px;
 	width: 66%;
-	min-height: 700px;
+	min-height: 950px;
 }
 
 /* ====================================================================================== */
@@ -166,14 +166,13 @@
 /* ====================================================================================== */
 
 .querySearchBarContainer {
-  position: inline-block;
-  max-width: 1000px;
+  display: inline-grid;
   margin: auto;	
-  width: 100%;
+  width: 38%;
 }
 
 .querySearchBar {
-  width: 85%; /* Full-width */
+  width: 95%; /* Full-width */
   font-size: 16px; /* Increase font-size */
   font-family: Raleway;
   padding: 12px 20px 12px 30px; /* Add some padding */
@@ -184,6 +183,7 @@
 }
 
 .querySearchButton {
+  width: 95%;
   padding: 15px 20px 13px 20px; /* Add some padding */
   border: 1px solid black; /* Add a grey border */
   background-color: #6993b8;
@@ -231,6 +231,16 @@
 	width: 12%;
 }
 
+/* ====================================================================================== */
+/* Pagination
+/* ====================================================================================== */
+ .pagination-custom {
+	display: table;
+	position: relative;
+	margin: auto;
+	margin-top: 16px;
+	font-size: 20px;
+}
 
 /* ====================================================================================== */
 /* RADIO BUTTONS */
@@ -300,10 +310,9 @@
 }
 
 .radioContainer{
-	  position: relative;
-	  display: inline-grid;
-	  min-width: 150px;
-	  max-width: 22%;
+	position: relative;
+	display: inline-grid;
+	width: 15%;
 }
 
 /* ====================================================================================== */
@@ -313,6 +322,7 @@
 .multiStepForm {
   background-color: #cddbe7;
   margin: auto;
+  margin-top: 68px;
   padding: 40px;
   padding-right: 80px;
   padding-left: 80px;

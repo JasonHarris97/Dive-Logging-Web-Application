@@ -54,7 +54,7 @@ public class DiveController {
 	@RequestMapping(value = {"/query", "/"}, method = RequestMethod.GET)
 	public String showQueryDivesPage(HttpServletRequest request, Model model) {
 		int page = 0; //default page number is 0 (yes it is weird)
-        int size = 10; //default page size is 10
+        int size = 13; //default page size is 10
         
         QueryDto query = new QueryDto();
         query.setSearchOption("all");
@@ -75,7 +75,7 @@ public class DiveController {
 			HttpServletRequest request, BindingResult result) {
 		
 		int page = 0; //default page number is 0 (yes it is weird)
-        int size = 10; //default page size is 10
+        int size = 13; //default page size is 10
         
         if (query.getPageNo() != null) {
             page = Integer.parseInt(query.getPageNo()) - 1;

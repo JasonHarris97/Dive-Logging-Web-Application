@@ -15,12 +15,6 @@
 		<!-- Search Bar -->
 
 		<form id="queryForm" style="width: 100%;" th:object="${query}" th:action="@{/dive/query}" method="post">
-
-			<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
-				<input placeholder="Search for dives..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
-				<button class="querySearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-			</div>
-
 			<div class="radioContainer">
 				<h3>Search by:</h3>
 				<label class="container">All
@@ -110,6 +104,13 @@
 				  <span class="checkmark"></span>
 				</label>
 			</div>
+
+			<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
+				<h3>Search</h3>
+				<input placeholder="Search for dives..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
+				<button class="querySearchButton" type="submit">Search</button>
+			</div>
+
 			<input type="hidden" name="source" th:value="query">
 			<input id="pageNo"type="hidden" name="pageNo" th:value="1">
 		</form>
@@ -149,18 +150,14 @@
 
 		<!-- Page Links -->
 		<nav aria-label="Pagination" th:if="${returnedDives.totalPages gt 0}">
-			<ul class="pagination">
+			<ul class="pagination pagination-custom">
 
 			<!-- Previous -->
 			<li class="page-item" th:classappend="${returnedDives.number eq 0} ? 'disabled'">
 				<a th:onclick="|submitPage(${returnedDives.number lt 2 ? 1 : returnedDives.number})|" 
 				class="page-link"
 				aria-label="Previous"
-				title="Previous Page" rel="tooltip">
-					<!-- <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20"></span> -->
-					<span aria-hidden="true">&laquo;</span>
-					<span class="sr-only">Previous</span>
-				</a>
+				title="Previous Page" rel="tooltip">Prev</a>
 			</li>
 
 			<!-- Page Links -->
@@ -187,11 +184,7 @@
 				<a th:onclick="|submitPage(${returnedDives.number + 2})|" 
 				class="page-link" 
 				aria-label="Next"
-				title="Next Page" rel="tooltip">
-					<!--- <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20"></span> -->
-					<span aria-hidden="true">&raquo;</span>
-					<span class="sr-only">Next</span>
-				</a>
+				title="Next Page" rel="tooltip">Next</a>
 			</li>
 
 			</ul>
