@@ -152,6 +152,55 @@
 				</div>
 			</table>
 		</div>
+
+		<!-- Page Links -->
+		<nav aria-label="Pagination" th:if="${returnedDives.totalPages gt 0}">
+			<ul class="pagination">
+
+			<!-- Previous -->
+			<li class="page-item" th:classappend="${returnedDives.number eq 0} ? 'disabled'">
+				<a class="page-link"
+				th:href="@{/dive/query?page={pageNo}(pageNo=${customers.number lt 2 ? 1 : customers.number})}"
+				aria-label="Previous"
+				title="Previous Page" rel="tooltip">
+					<!-- <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20"></span> -->
+					<span aria-hidden="true">&laquo;</span>
+					<span class="sr-only">Previous</span>
+				</a>
+			</li>
+
+			<!-- Page Links -->
+			<li class="page-item" th:classappend="${i eq returnedDives.number + 1} ? 'active'"
+				th:each="i : ${#numbers.sequence( returnedDives.number + 1, returnedDives.totalPages > 10 + returnedDives.number ? returnedDives.number + 10 : returnedDives.totalPages, 1)}">
+				<a class="page-link" th:href="@{/dive/query?page={pageNo}(pageNo=${i})}" th:text="${i}"
+				th:title="${'Page '+ i}"
+				rel="tooltip"></a>
+			</li>
+
+			<!-- More Pages -->
+			<li class="page-item disabled" th:if="${returnedDives.number + 10 < returnedDives.totalPages}">
+				<a class="page-link" href="#">
+					<!-- <span data-feather="more-horizontal" width="20" height="20"></span> -->
+					<span aria-hidden="true">&raquo;</span>
+					<span class="sr-only">Next</span>
+				</a>
+			</li>
+
+			<!-- Next -->
+
+			<li class="page-item" th:classappend="${returnedDives.number + 1 eq returnedDives.totalPages} ? 'disabled'">
+				<a class="page-link" th:href="@{/dive/query?page={pageNo}(pageNo=${returnedDives.number + 2})}"
+				aria-label="Next"
+				title="Next Page" rel="tooltip">
+					<!--- <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20"></span> -->
+					<span aria-hidden="true">&raquo;</span>
+					<span class="sr-only">Next</span>
+				</a>
+			</li>
+
+			</ul>
+		</nav>
+
 	</div>
 	<!-- MAIN -->
 </body>
