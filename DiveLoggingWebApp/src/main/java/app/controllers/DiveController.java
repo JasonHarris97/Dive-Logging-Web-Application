@@ -65,7 +65,6 @@ public class DiveController {
         
         model.addAttribute("query", query);
         model.addAttribute("returnedDives", diveService.findAll(PageRequest.of(page, size)));
-        log.info("Querying all dives - Page: " + page + " Size: " + size);
          
 		return "dive/query";
 	}
@@ -79,7 +78,6 @@ public class DiveController {
         int size = 10; //default page size is 10
         
         if (query.getPageNo() != null) {
-        	log.info("/n PageNo:" + query.getPageNo() + "/n");
             page = Integer.parseInt(query.getPageNo()) - 1;
         }
 		
@@ -89,10 +87,9 @@ public class DiveController {
 		
 		if(query.getSource().equals("query")) {
 			if(query.getSearchOption().equals("all")) {
-				model = performQueryPageable(query, model, page, 10);
+				model = performQueryPageable(query, model, page, size);
 			} else if(!query.getInputString().isEmpty()) {
-				log.debug("Querying:" + query.getInputString() + " Order By: " + query.getOrderBy() + " Page No: " + page);
-				model = performQueryPageable(query, model, page, 10);
+				model = performQueryPageable(query, model, page, size);
 			} else {
 				model.addAttribute("returnedDives", new ArrayList<String>());
 			}
@@ -220,6 +217,5 @@ public class DiveController {
     
     	return model;
     }
-
 
 }
