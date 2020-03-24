@@ -131,7 +131,7 @@
 					</label>
 				</div>
 
-				<button class="green-button" type="submit">GO</button>
+				<button onclick="submitQuery()" class="green-button" type="button">GO</button>
 			</div>
 
 			<input type="hidden" name="source" th:value="query">
@@ -271,12 +271,36 @@
 				} 
 			}
 			
+			function submitQuery(){
+				var searchOption = document.querySelector("input[name='searchOption'][value='date']");
+				if(searchOption.checked == true){
+					console.log("Checking Dates");
+					var startDateInput = document.getElementById("startDate");
+					var endDateInput = document.getElementById("endDate");
+					var startDate = new Date(startDateInput.value);
+					var endDate = new Date(endDateInput.value);
+					if(startDate > endDate){
+						console.log("Invalid Dates");
+						alert("End date must be the same as or after start date");
+						startDateInput.style.backgroundColor = "#ffb3b3";
+						endDateInput.style.backgroundColor = "#ffb3b3";
+					} else {
+						console.log("Valid Dates");
+						document.getElementById("queryForm").submit();
+					}
+				} else {
+					document.getElementById("queryForm").submit();
+				}
+			}
+
 			/*<![CDATA[*/
 			function searchByOnClick(radioValue) {
 				var inputString = document.getElementById("inputString");
 				var inputStringHeader = document.getElementById("inputStringHeader"); 
 				var inputDateContainer = document.getElementById("inputDateContainer");
 				var orderByHeader = document.getElementById("orderByHeader");
+				var startDateInput = document.getElementById("startDate");
+				var endDateInput = document.getElementById("endDate");
 
 				orderByHeader.innerHTML = orderByColumnTitle(/*[[${query.orderBy}]]*/);
 
@@ -295,6 +319,8 @@
 				} else {
 					inputString.style.display = "inline-block";
 					inputDateContainer.style.display = "none";
+					startDateInput.style.backgroundColor = "white";
+					endDateInput.style.backgroundColor = "white";
 				}
 
 				if(radioValue == "all") {
