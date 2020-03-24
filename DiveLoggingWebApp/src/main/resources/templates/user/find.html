@@ -20,12 +20,12 @@
 				  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="all">
 				  <span class="checkmark"></span>
 				</label>
-				<label class="container">Username 
-				  <input onclick="searchByOnClick('username')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
-				  <span class="checkmark"></span>
-				</label>
 				<label class="container">Name 
 				  <input onclick="searchByOnClick('name')"type="radio" name="searchOption" th:field="*{searchOption}" th:value="name">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Username 
+				  <input onclick="searchByOnClick('username')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Country 
@@ -45,12 +45,12 @@
 			<!-- ORDER BY -->
 			<div class="radioContainer">
 				<h3>Order by:</h3>
-				<label class="container">Username
-				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" th:value="username">
-				  <span class="checkmark"></span>
-				</label>
 				<label class="container">Name
 				  <input onclick="submitOnClick()" type="radio" checked="checked" name="orderBy" th:field="*{orderBy}" th:value="fullName">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Username
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" th:value="username">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Country
