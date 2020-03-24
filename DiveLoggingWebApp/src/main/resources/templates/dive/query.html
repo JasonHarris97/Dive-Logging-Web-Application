@@ -6,13 +6,6 @@
 
 <head>
 	<title>Dives</title>
-	
-	<style>
-		#queryContainer{
-			width: 100%; /* Full-width */
-		}	
-	</style>
-
 </head>
 
 <body>
@@ -20,128 +13,181 @@
 	<div layout:fragment="content">
 
 		<!-- Search Bar -->
-		<div id="queryContainer">
-			<form th:object="${query}" th:action="@{/dive/query}" method="post">
 
-				<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
-					<input placeholder="Search for dives..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
-					<button class="querySearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+		<form id="queryForm" style="width: 100%;" th:object="${query}" th:action="@{/dive/query}" method="post">
+			<div class="radioContainer">
+				<h3>Search by:</h3>
+				<label class="container">All
+				  <input onclick="searchByOnClick('all')" type="radio" name="searchOption" th:field="*{searchOption}" value="all">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Date
+				  <input onclick="searchByOnClick('date')" type="radio" name="searchOption" th:field="*{searchOption}" value="date">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Username
+				  <input onclick="searchByOnClick('username')" type="radio" name="searchOption" th:field="*{searchOption}" value="username">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Country
+				  <input onclick="searchByOnClick('country')" type="radio" name="searchOption" th:field="*{searchOption}" value="country">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Location
+				  <input onclick="searchByOnClick('location')" type="radio" name="searchOption" th:field="*{searchOption}" value="location">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">PADI Level
+				  <input onclick="searchByOnClick('padiLevel')" type="radio" name="searchOption" th:field="*{searchOption}" value="padiLevel">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+
+			<div class="radioContainer">
+				<h3>Order by:</h3>
+				<label class="container">Date
+				  <input onclick="orderByOnClick('date')" type="radio" name="orderBy" th:field="*{orderBy}" value="date">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Username
+				  <input onclick="orderByOnClick('diveOwnerUsername')" type="radio" name="orderBy" th:field="*{orderBy}" value="diveOwnerUsername">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Country
+				  <input onclick="orderByOnClick('country')" type="radio" name="orderBy" th:field="*{orderBy}" value="country">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Location
+				  <input onclick="orderByOnClick('location')" type="radio" name="orderBy" th:field="*{orderBy}" value="location">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">PADI Level
+				  <input onclick="orderByOnClick('diveOwnerPadiLevel')" type="radio" name="orderBy" th:field="*{orderBy}" value="diveOwnerPadiLevel">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Dive Duration
+				  <input onclick="orderByOnClick('diveDuration')" type="radio" name="orderBy" th:field="*{orderBy}" value="diveDuration">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+
+			<div class="radioContainer" style="margin-top: 9px">
+				<label class="container">Air Temp
+				  <input onclick="orderByOnClick('airTemperature')" type="radio" name="orderBy" th:field="*{orderBy}" value="airTemperature">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Water Temp
+				  <input onclick="orderByOnClick('waterTemperature')" type="radio" name="orderBy" th:field="*{orderBy}" value="waterTemperature">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">No. Participants
+				  <input onclick="orderByOnClick('noOfParticipants')" type="radio" name="orderBy" th:field="*{orderBy}" value="noOfParticipants">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Weather
+				  <input onclick="orderByOnClick('weather')" type="radio" name="orderBy" th:field="*{orderBy}" value="weather">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Max Depth
+				  <input onclick="orderByOnClick('maxDepth')" type="radio" name="orderBy" th:field="*{orderBy}" value="maxDepth">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Altitude
+				  <input onclick="orderByOnClick('altitude')" type="radio" name="orderBy" th:field="*{orderBy}" value="altitude">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Water Type
+				  <input onclick="orderByOnClick('waterType')" type="radio" name="orderBy" th:field="*{orderBy}" value="waterType">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+
+			<div class="radioContainer">
+				<h3>Sort by:</h3>
+				<label class="container">Ascending
+				  <input onclick="sortByOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="ascending">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Descending
+				  <input onclick="sortByOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="descending">
+				  <span class="checkmark"></span>
+				</label>
+				<h3>Page Size:</h3>
+				<label class="container">12
+				  <input onclick="sortByOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="12">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">25
+				  <input onclick="sortByOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="25">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">50
+				  <input onclick="sortByOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="50">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+
+			<!-- Search Bars -->
+			<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
+				<!-- Input string -->
+				<h3 id="inputStringHeader">Search</h3>
+				<input placeholder="Enter text..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
+
+				<div id="inputDateContainer">
+					<!-- Date from -->
+					<label class="custom-label">From
+						<input placeholder="Select start date..." type="date" name="startDate" id="startDate" class="querySearchBar" th:field="*{startDate}">
+					</label >
+					<!-- Date till -->
+					<label class="custom-label">Until
+						<input onclick="copyStartDate()" placeholder="Select end date..." type="date" name="endDate" id="endDate" class="querySearchBar" th:field="*{endDate}">
+					</label>
 				</div>
 
-				<div class="radioContainer">
-					<h3>Search by:</h3>
-					<label class="container">All
-					  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="all">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Username
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Country
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Date
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="date">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Location
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="location">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">PADI Level
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
+				<button onclick="submitQuery()" class="green-button" type="button">GO</button>
+			</div>
 
-				<div class="radioContainer">
-					<h3>Order by:</h3>
-					<label class="container">Date
-					  <input type="radio" checked="checked" name="orderBy" th:field="*{orderBy}" th:value="date">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Username
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="diveOwnerUsername">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Dive Duration
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="diveDuration">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Country
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="country">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Location
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="location">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
-
-				<div class="radioContainer">
-					<label class="container">Water Type
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="waterType">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Air Temperature
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="airTemperature">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Water Termperature
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="waterTemperature">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">No. of Participants
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="noOfParticipants">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Weather
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="weather">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
-
-				<div class="radioContainer">
-					<label class="container">Max Depth
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="maxDepth">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Altitude
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="altitude">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">PADI Level
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="diveOwnerPadiLevel">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
-				<input type="hidden" name="source" th:value="query">
-			</form>
-		</div>
+			<input type="hidden" name="source" th:value="query">
+			<input id="pageNo"type="hidden" name="pageNo" th:value="1">
+		</form>
+	
 
 		<!-- Table -->
 		<div>
 			<table id="myTable" class="resultsTable">
 				<tr class="header">
-					<th>Details</th>
-					<th>Date</th>
+					<th class="detailsCol">Details</th>
+					<th class="dateCol">Date</th>
 					<th>Diver Username</th>
-					<th>PADI Level</th>
-					<th>Participants</th>
+					<th class="participantsCol">Participants</th>
 					<th>Country</th>
 					<th>Location</th>
+					<th id="orderByHeader"></th>
 				</tr>
 				<div th:if="${not #lists.isEmpty(returnedDives)}" >
 					<tr th:each="d : ${returnedDives}">
-						<td><a th:href ="@{'/dive/view/'+${d.id}}" th:text="Click">Link</a></td>
+						<td class="green-button"><a th:href ="@{'/dive/view/'+${d.id}}" th:text="View">Link</a></td>
 						<td th:text="${d.date}">Date</td>
 						<td><a th:href ="@{'/user/view/'+${d.diveOwner.username}}" th:text="${d.diveOwner.username}">Dive Owner Username</td>
-						<td th:text="${d.diveOwner.padiLevel}">Dive Owner PADI Level</td>
 						<td th:text="${d.noOfParticipants}">No. of Participants</td>
 						<td th:text="${d.country}">Dive Country</td>
 						<td th:text="${d.location}">Dive Location</td>
+						<td th:switch="${query.orderBy}">
+							<span th:case="'date'" th:text="${d.date}"></span>
+							<span th:case="'diveOwnerUsername'" th:text="${d.diveOwner.username}"></span>
+							<span th:case="'country'" th:text="${d.country}"></span>
+							<span th:case="'location'" th:text="${d.location}"></span>
+							<span th:case="'diveOwnerPadiLevel'" th:text="${d.diveOwner.padiLevel}"></span>
+							<span th:case="'diveDuration'" th:text="${d.diveDuration}"></span>
+							<span th:case="'airTemperature'" th:text="${d.airTemperature}"></span>
+							<span th:case="'waterTemperature'" th:text="${d.waterTemperature}"></span>
+							<span th:case="'noOfParticipants'" th:text="${d.noOfParticipants}"></span>
+							<span th:case="'weather'" th:text="${d.weather}"></span>
+							<span th:case="'maxDepth'" th:text="${d.maxDepth}"></span>
+							<span th:case="'altitude'" th:text="${d.altitude}"></span>
+							<span th:case="'waterType'" th:text="${d.waterType}"></span>
+						</td>
+						
 					</tr>
 				</div>
 				<div th:if="${#lists.isEmpty(returnedDives)}">
@@ -152,8 +198,214 @@
 				</div>
 			</table>
 		</div>
+
+		<!-- Page Links -->
+		<nav aria-label="Pagination" th:if="${returnedDives.totalPages gt 0}">
+			<ul class="pagination pagination-custom">
+
+			<!-- Previous -->
+			<li class="page-item" th:classappend="${returnedDives.number eq 0} ? 'disabled'">
+				<a th:onclick="|submitPage(${returnedDives.number lt 2 ? 1 : returnedDives.number})|" 
+				class="page-link"
+				aria-label="Previous"
+				title="Previous Page" rel="tooltip">Prev</a>
+			</li>
+
+			<!-- First Page -->
+			<li class="page-item">
+				<a th:onclick="submitPage(1)" 
+				class="page-link" 
+				title="Page 1">
+					<span aria-hidden="true">&laquo;</span>
+					<span class="sr-only">First</span>
+				</a>
+			</li>
+
+			<!-- Page Links -->
+			<li class="page-item" th:classappend="${i eq returnedDives.number + 1} ? 'active'"
+				th:each="i : ${#numbers.sequence( returnedDives.number + 1, returnedDives.totalPages > 10 + returnedDives.number ? returnedDives.number + 10 : returnedDives.totalPages, 1)}">
+				<a th:onclick="|submitPage(${i})|" 
+				class="page-link" th:text="${i}"
+				th:title="${'Page '+ i}"
+				rel="tooltip"></a>
+			</li>
+
+			<!-- Last Page -->
+			<li class="page-item" th:if="${returnedDives.number + 10 < returnedDives.totalPages}">
+				<a th:onclick="|submitPage(${returnedDives.totalPages})|" 
+				class="page-link" 
+				th:title="${'Page '+ returnedDives.totalPages}">
+					<span aria-hidden="true">&raquo;</span>
+					<span class="sr-only">Last</span>
+				</a>
+			</li>
+
+			<!-- Next -->
+
+			<li class="page-item" th:classappend="${returnedDives.number + 1 eq returnedDives.totalPages} ? 'disabled'">
+				<a th:onclick="|submitPage(${returnedDives.number + 2})|" 
+				class="page-link" 
+				aria-label="Next"
+				title="Next Page" rel="tooltip">Next</a>
+			</li>
+
+			</ul>
+		</nav>
+
+		<!-- MAIN -->
+		<script th:inline="javascript">
+			function orderByColumnTitle(orderBy){
+				if(orderBy == "date"){
+					return "Date";
+				} else if(orderBy == "diveOwnerUsername"){
+					return "Diver Username";
+				} else if(orderBy == "country"){
+					return "Country";
+				} else if(orderBy == "location"){
+					return "Location";
+				} else if(orderBy == "diveOwnerPadiLevel"){
+					return "Diver PADI Level";
+				} else if(orderBy == "diveDuration"){
+					return "Duration";
+				} else if(orderBy == "airTemperature"){
+					return "Air Temp";
+				} else if(orderBy == "waterTemperature"){
+					return "Water Temp";
+				} else if(orderBy == "noOfParticipants"){
+					return "No. Participants";
+				} else if(orderBy == "weather"){
+					return "Weather";
+				} else if(orderBy == "maxDepth"){
+					return "Max Depth";
+				} else if(orderBy == "altitude"){
+					return "Altitude";
+				} else if(orderBy == "waterType"){
+					return "Water Type";
+				} 
+			}
+			
+			function submitQuery(){
+				var searchOption = document.querySelector("input[name='searchOption'][value='date']");
+				if(searchOption.checked == true){
+					console.log("Checking Dates");
+					var startDateInput = document.getElementById("startDate");
+					var endDateInput = document.getElementById("endDate");
+					var startDate = new Date(startDateInput.value);
+					var endDate = new Date(endDateInput.value);
+					if(startDate > endDate){
+						console.log("Invalid Dates");
+						alert("End date must be the same as or after start date");
+						startDateInput.style.backgroundColor = "#ffb3b3";
+						endDateInput.style.backgroundColor = "#ffb3b3";
+					} else {
+						console.log("Valid Dates");
+						document.getElementById("queryForm").submit();
+					}
+				} else {
+					document.getElementById("queryForm").submit();
+				}
+			}
+
+			function copyStartDate(){
+				var startDateInput = document.getElementById("startDate");
+				var endDateInput = document.getElementById("endDate");
+				console.log(endDateInput.value);
+				
+				if(!endDateInput.value){
+					endDateInput.value = startDateInput.value;
+				}
+			}
+
+			/*<![CDATA[*/
+			function searchByOnClick(radioValue) {
+				var inputString = document.getElementById("inputString");
+				var inputStringHeader = document.getElementById("inputStringHeader"); 
+				var inputDateContainer = document.getElementById("inputDateContainer");
+				var orderByHeader = document.getElementById("orderByHeader");
+				var startDateInput = document.getElementById("startDate");
+				var endDateInput = document.getElementById("endDate");
+
+				orderByHeader.innerHTML = orderByColumnTitle(/*[[${query.orderBy}]]*/);
+
+				// Enable/Disable the search bar 
+				if(radioValue == "all"){
+					inputString.disabled = true;
+					inputString.innerHTML = "";
+				} else {
+					inputString.disabled = false;
+				}
+
+				if(radioValue == "date"){
+					inputString.style.display = "none";
+					inputDateContainer.style.display = "inline-block";
+					
+				} else {
+					inputString.style.display = "inline-block";
+					inputDateContainer.style.display = "none";
+					startDateInput.style.backgroundColor = "white";
+					endDateInput.style.backgroundColor = "white";
+				}
+
+				if(radioValue == "all") {
+					inputStringHeader.innerHTML = "All";
+					inputString.placeholder = "No input text required...";
+				} else if(radioValue == "username") {
+					inputStringHeader.innerHTML = "Username";
+					inputString.placeholder = "Enter a username...";
+				} else if(radioValue == "country") {
+					inputStringHeader.innerHTML = "Country";
+					inputString.placeholder = "Enter a country...";
+				} else if(radioValue == "date") {
+					inputStringHeader.innerHTML = "Date";
+				} else if(radioValue == "location") {
+					inputStringHeader.innerHTML = "Location";
+					inputString.placeholder = "Enter a location...";
+				} else if(radioValue == "padiLevel") {
+					inputStringHeader.innerHTML = "PADI Level";
+					inputString.placeholder = "Select a PADI Level...";
+					// Select PADI Level
+				}
+			}
+
+			function orderByOnClick(orderBy){
+				document.getElementById("queryForm").submit();
+			}
+
+			function sortByOnClick(){
+				document.getElementById("queryForm").submit();
+			}
+
+			var query = /*[[${query}]]*/ null;
+			var source = /*[[${query.source}]]*/ null;
+
+			if(query != null) {
+				if(source == "query"){
+					document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
+					var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
+					var orderByToCheck = /*[[${query.orderBy}]]*/ null;
+					var sortByToCheck = /*[[${query.sortBy}]]*/ null;
+					var pageSizeToCheck = /*[[${query.pageSize}]]*/ null;
+
+					var query1 = "input[name='searchOption'][value='".concat(searchOptionToCheck, "']");
+					var query2 = "input[name='orderBy'][value='".concat(orderByToCheck, "']");
+					var query3 = "input[name='sortBy'][value='".concat(sortByToCheck, "']");
+					var query4 = "input[name='pageSize'][value='".concat(pageSizeToCheck, "']");
+
+					document.querySelector(query1).click();
+					document.querySelector(query2).checked = true;
+					document.querySelector(query3).checked = true;
+					document.querySelector(query4).checked = true;
+				} else {
+					document.querySelector("input[name='searchOption'][value='all']").click();
+					document.querySelector("input[name='orderBy'][value='username']").checked = true;	
+					document.querySelector("input[name='sortBy'][value='descending']").checked = true;
+					document.querySelector("input[name='pageSize'][value='12']").checked = true;
+				}
+			} 
+			/*]]>*/
+		</script> 
+
 	</div>
-	<!-- MAIN -->
 </body>
 
 </html>

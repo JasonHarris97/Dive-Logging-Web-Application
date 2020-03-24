@@ -18,10 +18,10 @@
 
 .mainContainer {
 	margin: auto;
-	margin-top: 90px;
-	margin-bottom: 42px;
+	margin-top: 65px;
+	margin-bottom: 18px;
 	width: 66%;
-	min-height: 700px;
+	min-height: 850px;
 }
 
 /* ====================================================================================== */
@@ -61,6 +61,7 @@
 	font-family: Raleway;
 	cursor: pointer;
 	text-decoration: none;
+	text-align: center;
 	transition-duration: 0.2s;
 }
 
@@ -73,6 +74,10 @@
 	background-color: inherit;
 	color: inherit;
 	text-decoration: inherit;
+	text-align: inherit;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
 }
 
 /* ====================================================================================== */
@@ -112,6 +117,7 @@
 	border: 1px solid #9bb7d0;
 	background-color: #cddbe7;
 	font-family: Raleway;
+	margin-top: 68px;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -159,45 +165,65 @@
 /* ====================================================================================== */
 /* QUERYING */
 /* ====================================================================================== */
-
-.querySearchBarContainer {
-  position: inline-block;
-  max-width: 1000px;
-  margin: auto;	
+.custom-label {
   width: 100%;
+  margin: 0px;
+}
+.querySearchBarContainer {
+  display: block;
+  float: right;
+  margin: auto;	
+  width: 40%;
+}
+
+.querySearchBarContainer h3 {
+	margin-top: 2px;
 }
 
 .querySearchBar {
-  width: 85%; /* Full-width */
+  width: 100%; /* Full-width */
   font-size: 16px; /* Increase font-size */
   font-family: Raleway;
-  padding: 12px 20px 12px 30px; /* Add some padding */
+  padding: 8px 16px 8px 16px; /* Add some padding */
   border: 1px solid #9bb7d0; /* Add a grey border */
-  margin-bottom: 12px; /* Add some space below the input */
+  margin-bottom: 9px; /* Add some space below the input */
   opacity: 100;
   cursor: pointer;
 }
 
-.querySearchButton {
-  padding: 15px 20px 13px 20px; /* Add some padding */
-  border: 1px solid black; /* Add a grey border */
-  background-color: #6993b8;
+.querySearchBar:disabled {
+  background-color: #ffb3b3;
 }
 
 .querySearchButton:hover {
   background-color: white;
 }
 
+.radioContainer{
+	position: relative;
+	float: left;
+	display: block;
+	max-width: 15%;
+	margin-bottom: 8px;
+}
+
+.radioContainer h3{
+	margin-top: 2px;
+}
+
 .resultsTable {
   border-collapse: collapse; /* Collapse borders */
   width: 100%; /* Full-width */
   border: 1px solid #9bb7d0; /* Add a grey border */
-  font-size: 18px; /* Increase font-size */
+  font-size: 17px; /* Increase font-size */
 }
 
 .resultsTable th, .resultsTable td {
-  text-align: left; /* Left-align text */
-  padding: 12px; /* Add padding */
+  padding: 9px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 0px;
 }
 
 .resultsTable tr {
@@ -210,6 +236,30 @@
   background-color: #cddbe7;
 }
 
+.detailsCol {
+	width: 7%;
+	text-align: center;
+}
+
+.dateCol {
+	width: 11%;
+}
+
+.participantsCol {
+	width: 12%;
+}
+
+/* ====================================================================================== */
+/* Pagination
+/* ====================================================================================== */
+ .pagination-custom {
+	display: table;
+	position: relative;
+	margin: auto;
+	margin-top: 16px;
+	font-size: 17px;
+}
+
 /* ====================================================================================== */
 /* RADIO BUTTONS */
 /* ====================================================================================== */
@@ -218,9 +268,10 @@
 .container {
   position: relative;
   padding-left: 35px;
-  margin-bottom: 12px;
+  margin-bottom: 11px;
+  max-width: 190px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -239,8 +290,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   background-color: #eee;
   border-radius: 50%;
 }
@@ -269,19 +320,12 @@
 
 /* Style the indicator (dot/circle) */
 .container .checkmark:after {
- 	top: 9px;
-	left: 9px;
+ 	top: 6px;
+	left: 6px;
 	width: 8px;
 	height: 8px;
 	border-radius: 50%;
 	background: white;
-}
-
-.radioContainer{
-	  position: relative;
-	  display: inline-grid;
-	  min-width: 150px;
-	  max-width: 22%;
 }
 
 /* ====================================================================================== */
@@ -291,6 +335,7 @@
 .multiStepForm {
   background-color: #cddbe7;
   margin: auto;
+  margin-top: 68px;
   padding: 40px;
   padding-right: 80px;
   padding-left: 80px;

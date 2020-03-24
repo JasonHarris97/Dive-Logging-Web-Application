@@ -88,16 +88,18 @@
 		<div>
 			<table id="myTable" class="resultsTable">
 				<tr class="header">
+					<th class="detailsCol">Profile</th>
 					<th>Username</th>
 					<th>Name</th>
 					<th>Country</th>
 					<th>PADI Level</th>
-					<th>PADI No</th>
-					<th>No of Dives</th>
+					<th class="participantsCol">PADI No</th>
+					<th class="participantsCol">No of Dives</th>
 				</tr>
 				<div th:if="${not #lists.isEmpty(returnedUsers)}" >
 					<tr th:each="u : ${returnedUsers}">
-						<td><a th:href ="@{'/user/view/'+${u.id}}" th:text="${u.username}">Username</a></td>
+						<td class="green-button"><a th:href ="@{'/user/view/'+${u.id}}" th:text="View">View</a></td>
+						<td th:text="${u.username}">Username</td>
 						<td th:text="${u.firstName}+' '+${u.lastName}">Name</td>
 						<td th:text="${u.country}">Country</td>
 						<td th:text="${u.padiLevel}">PADI Level</td>

@@ -1,7 +1,9 @@
 var currentUploadTab = 0; 
 
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+if(document.getElementById("defaultOpen") != null){
+	document.getElementById("defaultOpen").click();
+}
 
 function openUploadTab(evt, tabName) {
   // Declare all variables
