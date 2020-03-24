@@ -52,13 +52,13 @@ public class DiveController {
     }
 	
 	@RequestMapping(value = {"/query", "/"}, method = RequestMethod.GET)
-	public String showQueryDivesPage(HttpServletRequest request, Model model) {
+	public String showQueryDivesPage(Model model) {
 		int page = 0; //default page number is 0 (yes it is weird)
         int size = 12; //default page size is 12
         
         QueryDto query = new QueryDto();
-        query.setSearchOption("all");
         query.setInputString("");
+        query.setSearchOption("all");
         query.setOrderBy("date");
         query.setSortBy("descending");
         query.setPageNo("1");
@@ -161,7 +161,21 @@ public class DiveController {
     
     @RequestMapping(value = "/map", method = RequestMethod.GET)
 	public String getWorldMap(Model model) {
-		model.addAttribute("returnedDives", diveService.findFifty());
+    	int page = 0; //default page number is 0 (yes it is weird)
+        int size = 12; //default page size is 12
+        
+        QueryDto query = new QueryDto();
+        query.setInputString("");
+        query.setSearchOption("all");
+        query.setOrderBy("date");
+        query.setSortBy("descending");
+        query.setPageNo("1");
+        query.setSource("query");
+        query.setPageSize("12");
+        
+        model.addAttribute("query", query);
+        model.addAttribute("returnedDives", diveService.findAll(PageRequest.of(page, size)));
+	
 		return "dive/map";
 	}
     
