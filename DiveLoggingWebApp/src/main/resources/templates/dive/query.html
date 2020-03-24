@@ -46,58 +46,58 @@
 			<div class="radioContainer">
 				<h3>Order by:</h3>
 				<label class="container">Date
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="date">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="date">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Username
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="diveOwnerUsername">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="diveOwnerUsername">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Country
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="country">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="country">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Location
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="location">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="location">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">PADI Level
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="diveOwnerPadiLevel">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="diveOwnerPadiLevel">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Dive Duration
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="diveDuration">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="diveDuration">
 				  <span class="checkmark"></span>
 				</label>
 			</div>
 
 			<div class="radioContainer">
 				<label class="container">Air Temp
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="airTemperature">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="airTemperature">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Water Temp
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="waterTemperature">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="waterTemperature">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">No. Participants
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="noOfParticipants">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="noOfParticipants">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Weather
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="weather">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="weather">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Max Depth
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="maxDepth">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="maxDepth">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Altitude
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="altitude">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="altitude">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Water Type
-				  <input type="radio" name="orderBy" th:field="*{orderBy}" value="waterType">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="waterType">
 				  <span class="checkmark"></span>
 				</label>
 			</div>
@@ -105,11 +105,11 @@
 			<div class="radioContainer">
 				<h3>Sort by:</h3>
 				<label class="container">Ascending
-				  <input type="radio" name="sortBy" th:field="*{sortBy}" value="ascending">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="ascending">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Descending
-				  <input type="radio" name="sortBy" th:field="*{sortBy}" value="descending">
+				  <input onclick="orderAndSortByOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="descending">
 				  <span class="checkmark"></span>
 				</label>
 			</div>
@@ -223,6 +223,7 @@
 				// Enable/Disable the search bar 
 				if(radioValue == "all"){
 					inputString.disabled = true;
+					inputString.innerHTML = "";
 				} else {
 					inputString.disabled = false;
 				}
@@ -238,7 +239,7 @@
 
 				if(radioValue == "all") {
 					inputStringHeader.innerHTML = "All";
-					inputString.placeholder = "Just press go :)";
+					inputString.placeholder = "No input text required...";
 				} else if(radioValue == "username") {
 					inputStringHeader.innerHTML = "Username";
 					inputString.placeholder = "Enter a username...";
@@ -255,6 +256,10 @@
 					inputString.placeholder = "Select a PADI Level...";
 					// Select PADI Level
 				}
+			}
+			
+			function orderAndSortByOnClick(){
+				document.getElementById("queryForm").submit();
 			}
 
 			/*<![CDATA[*/
