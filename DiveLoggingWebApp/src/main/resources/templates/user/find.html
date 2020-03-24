@@ -6,83 +6,103 @@
 
 <head>
 	<title>Find Users</title>
-	
-	<style>
-		#queryContainer{
-			width: 100%; /* Full-width */
-		}	
-	</style>
-
 </head>
 
 <body>
 	<!-- MAIN -->
 	<div layout:fragment="content">
 
-		<!-- Search Bar -->
-		<div id="queryContainer">
-			<form th:object="${query}" th:action="@{/user/find}" method="post">
+		<form id="queryForm" th:object="${query}" th:action="@{/user/find}" method="post">
+			<!-- SEARCH BY -->
+			<div class="radioContainer">
+				<h3>Search by:</h3>
+				<label class="container">All
+				  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="all">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Username 
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Name 
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="name">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Country 
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">PADI Level
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">PADI No
+				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiNo">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+			
+			<!-- ORDER BY -->
+			<div class="radioContainer">
+				<h3>Order by:</h3>
+				<label class="container">Username
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" th:value="username">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Name
+				  <input onclick="submitOnClick()" type="radio" checked="checked" name="orderBy" th:field="*{orderBy}" th:value="fullName">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Country
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" th:value="country">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">PADI Level
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" th:value="padiLevel">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">No. of Dives
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" th:value="noOfDives">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
 
-				<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
-					<input placeholder="Search for dives..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
-					<button class="querySearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-				</div>
+			<div class="radioContainer">
+				<h3>Sort by:</h3>
+				<label class="container">Ascending
+				  <input onclick="submitOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="ascending">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Descending
+				  <input onclick="submitOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="descending">
+				  <span class="checkmark"></span>
+				</label>
+				<h3>Page Size:</h3>
+				<label class="container">12
+				  <input onclick="submitOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="12">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">25
+				  <input onclick="submitOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="25">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">50
+				  <input onclick="submitOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="50">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
 
-				<div class="radioContainer">
-					<h3>Search by:</h3>
-					<label class="container">All
-					  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="all">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Username <!-- DONE -->
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Name <!-- DONE -->
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="name">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Country <!-- DONE -->
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">PADI Level
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">PADI No
-					  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiNo">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
+			<!-- Input string -->
+			<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
+				<h3 id="inputStringHeader">Search</h3>
+				<input placeholder="Enter text..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
+				<button onclick="submitOnClick()" class="green-button" type="button">GO</button>
+			</div>
 
-				<div class="radioContainer">
-					<h3>Order by:</h3>
-					<label class="container">Username
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="username">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Name
-					  <input type="radio" checked="checked" name="orderBy" th:field="*{orderBy}" th:value="fullName">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">Country
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="country">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">PADI Level
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="padiLevel">
-					  <span class="checkmark"></span>
-					</label>
-					<label class="container">No. of Dives
-					  <input type="radio" name="orderBy" th:field="*{orderBy}" th:value="noOfDives">
-					  <span class="checkmark"></span>
-					</label>
-				</div>
+			<input type="hidden" name="source" th:value="find">
+			<input id="pageNo"type="hidden" name="pageNo" th:value="1">
+		</form>
 
-				<input type="hidden" name="source" th:value="find">
-			</form>
-		</div>
 
 		<!-- Table -->
 		<div>
@@ -115,6 +135,121 @@
 				</div>
 			</table>
 		</div>
+
+		<nav aria-label="Pagination" th:if="${returnedUsers.totalPages gt 0}">
+			<ul class="pagination pagination-custom">
+
+			<!-- Previous -->
+			<li class="page-item" th:classappend="${returnedUsers.number eq 0} ? 'disabled'">
+				<a th:onclick="|submitPage(${returnedUsers.number lt 2 ? 1 : returnedUsers.number})|" 
+				class="page-link"
+				aria-label="Previous"
+				title="Previous Page" rel="tooltip">Prev</a>
+			</li>
+
+			<!-- First Page -->
+			<li class="page-item">
+				<a th:onclick="submitPage(1)" 
+				class="page-link" 
+				title="Page 1">
+					<span aria-hidden="true">&laquo;</span>
+					<span class="sr-only">First</span>
+				</a>
+			</li>
+
+			<!-- Page Links -->
+			<li class="page-item" th:classappend="${i eq returnedUsers.number + 1} ? 'active'"
+				th:each="i : ${#numbers.sequence( returnedUsers.number + 1, returnedUsers.totalPages > 10 + returnedUsers.number ? returnedUsers.number + 10 : returnedUsers.totalPages, 1)}">
+				<a th:onclick="|submitPage(${i})|" 
+				class="page-link" th:text="${i}"
+				th:title="${'Page '+ i}"
+				rel="tooltip"></a>
+			</li>
+
+			<!-- Last Page -->
+			<li class="page-item" th:if="${returnedUsers.number + 10 < returnedUsers.totalPages}">
+				<a th:onclick="|submitPage(${returnedUsers.totalPages})|" 
+				class="page-link" 
+				th:title="${'Page '+ returnedUsers.totalPages}">
+					<span aria-hidden="true">&raquo;</span>
+					<span class="sr-only">Last</span>
+				</a>
+			</li>
+
+			<!-- Next -->
+
+			<li class="page-item" th:classappend="${returnedUsers.number + 1 eq returnedUsers.totalPages} ? 'disabled'">
+				<a th:onclick="|submitPage(${returnedUsers.number + 2})|" 
+				class="page-link" 
+				aria-label="Next"
+				title="Next Page" rel="tooltip">Next</a>
+			</li>
+
+			</ul>
+		</nav>
+
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			function searchByOnClick(radioValue) {
+				var inputString = document.getElementById("inputString");
+				var inputStringHeader = document.getElementById("inputStringHeader"); 
+
+				// Enable/Disable the search bar 
+				if(radioValue == "all"){
+					inputString.disabled = true;
+					inputString.innerHTML = "";
+				} else {
+					inputString.disabled = false;
+				}
+
+				if(radioValue == "all") {
+					inputStringHeader.innerHTML = "All";
+					inputString.placeholder = "No input text required...";
+				} else if(radioValue == "username") {
+					inputStringHeader.innerHTML = "Username";
+					inputString.placeholder = "Enter a username...";
+				} else if(radioValue == "name") {
+					inputStringHeader.innerHTML = "Name";
+					inputString.placeholder = "Enter a name...";
+				} else if(radioValue == "country") {
+					inputStringHeader.innerHTML = "Country";
+					inputString.placeholder = "Enter a country...";
+				} else if(radioValue == "padiLevel") {
+					inputStringHeader.innerHTML = "PADI Level";
+					inputString.placeholder = "Select a PADI Level...";
+				} else if(radioValue == "padiNo") {
+					inputStringHeader.innerHTML = "PADI No";
+					inputString.placeholder = "Enter a PADI Number...";
+				}
+			}
+
+
+			function submitOnClick(){
+				document.getElementById("queryForm").submit();
+			}
+
+ 			var query = /*[[${query}]]*/ null;
+			var source = /*[[${query.source}]]*/ null;
+
+			if(query != null) {
+				document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
+				var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
+				var orderByToCheck = /*[[${query.orderBy}]]*/ null;
+				var sortByToCheck = /*[[${query.sortBy}]]*/ null;
+				var pageSizeToCheck = /*[[${query.pageSize}]]*/ null;
+
+				var query1 = "input[name='searchOption'][value='".concat(searchOptionToCheck, "']");
+				var query2 = "input[name='orderBy'][value='".concat(orderByToCheck, "']");
+				var query3 = "input[name='sortBy'][value='".concat(sortByToCheck, "']");
+				var query4 = "input[name='pageSize'][value='".concat(pageSizeToCheck, "']");
+
+				document.querySelector(query1).click();
+				document.querySelector(query2).checked = true;
+				document.querySelector(query3).checked = true;
+				document.querySelector(query4).checked = true;
+			} 
+			/*]]>*/
+		</script>
 	</div>
 	<!-- MAIN -->
 </body>

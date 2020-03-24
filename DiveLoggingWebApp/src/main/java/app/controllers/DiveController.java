@@ -74,7 +74,7 @@ public class DiveController {
 	// CURRENT ---------------------------------------------------------------------------
 	@RequestMapping(value = {"/query"}, method = RequestMethod.POST)
 	public String performDiveQuery(@ModelAttribute("query") QueryDto query, Model model,
-			HttpServletRequest request, BindingResult result) {
+			BindingResult result) {
 		
 		int page = 0; //default page number is 0 (yes it is weird)
         int size = 12; //default page size is 12
