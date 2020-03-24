@@ -11,12 +11,11 @@
 		.diveWorldMap { 
 			display: inline-block;
 			width: 100%; 
-			margin-top: 20px;
 		}
 
 		#map {
 			display: inline-block;
-			height: 800px;  
+			height: 600px;  
 			width: 100%; 
 		}
 	</style>
@@ -26,37 +25,147 @@
 	<!-- MAIN -->
 	<div layout:fragment="content">
 
-		<form th:object="${query}" th:action="@{/dive/query}" method="post">
-			<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
-				<input placeholder="Search for dives..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
-				<button class="querySearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-			</div>
+		<form id="queryForm" th:object="${query}" th:action="@{/dive/query}" method="post">
+			<!-- SEARCH BY -->
 			<div class="radioContainer">
 				<h3>Search by:</h3>
-				<label class="container">Username
-				  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="username">
-				  <span class="checkmark"></span>
-				</label>
-				<label class="container">Country
-				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
+				<label class="container">All
+				  <input onclick="searchByOnClick('all')" type="radio" name="searchOption" th:field="*{searchOption}" value="all">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Date
-				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="date">
+				  <input onclick="searchByOnClick('date')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="date">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Username
+				  <input onclick="searchByOnClick('username')" type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="username">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Country
+				  <input onclick="searchByOnClick('country')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Location
-				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="location">
+				  <input onclick="searchByOnClick('location')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="location">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">PADI Level
-				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
+				  <input onclick="searchByOnClick('padiLevel')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
 				  <span class="checkmark"></span>
 				</label>
 			</div>
+
+			<div class="radioContainer">
+				<h3>Order by:</h3>
+				<label class="container">Date
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="date">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Username
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="diveOwnerUsername">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Country
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="country">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Location
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="location">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">PADI Level
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="diveOwnerPadiLevel">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Dive Duration
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="diveDuration">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+
+			<div class="radioContainer" style="margin-top: 9px">
+				<label class="container">Air Temp
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="airTemperature">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Water Temp
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="waterTemperature">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">No. Participants
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="noOfParticipants">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Weather
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="weather">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Max Depth
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="maxDepth">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Altitude
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="altitude">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Water Type
+				  <input onclick="submitOnClick()" type="radio" name="orderBy" th:field="*{orderBy}" value="waterType">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+
+			<!-- Sort by and Size -->
+			<div class="radioContainer">
+				<h3>Top/Bot:</h3>
+				<label class="container">Top
+				  <input onclick="submitOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="descending">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Bottom
+				  <input onclick="submitOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="ascending">
+				  <span class="checkmark"></span>
+				</label>
+				<h3>Top/Bot No:</h3>
+				<label class="container">12
+				  <input onclick="submitOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="12">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">100
+				  <input onclick="submitOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="100">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">All
+				  <input onclick="submitOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="2000">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+
+			<!-- Search Bars -->
+			<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
+				<!-- Input string -->
+				<h3 id="inputStringHeader">Search</h3>
+				<input placeholder="Enter text..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
+
+				<div id="inputDateContainer">
+					<!-- Date from -->
+					<label class="custom-label">From
+						<input placeholder="Select start date..." type="date" name="startDate" id="startDate" class="querySearchBar" th:field="*{startDate}">
+					</label >
+					<!-- Date till -->
+					<label class="custom-label">Until
+						<input onclick="copyStartDate()" placeholder="Select end date..." type="date" name="endDate" id="endDate" class="querySearchBar" th:field="*{endDate}">
+					</label>
+				</div>
+
+				<button onclick="submitQuery()" class="green-button" type="button">GO</button>
+			</div>
+
+			<!-- HIDDEN INPUTS -->
 			<input type="hidden" name="source" th:value="map">
+			<input id="pageNo"type="hidden" name="pageNo" th:value="1">
 		</form>
 		
+		<!-- MAP -->
 		<div class="diveWorldMap">
 			<div id='map'></div>
 
@@ -66,7 +175,7 @@
 				var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date, marker; 
 
 				var map = L.mapbox.map('map')
-				    .setView([0, 0], 3)
+				    .setView([0, 0], 2)
 				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
 
 				/*[# th:each="d : ${returnedDives}"]*/
@@ -82,9 +191,9 @@
 
 					marker = L.marker([latitude, longitude], {
 					icon: L.mapbox.marker.icon({
-						'marker-size': 'large',
+						'marker-size': 'small',
 						'marker-symbol': 'circle',
-						'marker-color': '#4169E1'
+						'marker-color': '#e60000'
 					    	})
 					})
 
@@ -98,6 +207,113 @@
 			</script>
 		</div>
 
+		<script th:inline="javascript">
+			function submitQuery(){
+				var searchOption = document.querySelector("input[name='searchOption'][value='date']");
+				if(searchOption.checked == true){
+					console.log("Checking Dates");
+					var startDateInput = document.getElementById("startDate");
+					var endDateInput = document.getElementById("endDate");
+					var startDate = new Date(startDateInput.value);
+					var endDate = new Date(endDateInput.value);
+					if(startDate > endDate){
+						console.log("Invalid Dates");
+						alert("End date must be the same as or after start date");
+						startDateInput.style.backgroundColor = "#ffb3b3";
+						endDateInput.style.backgroundColor = "#ffb3b3";
+					} else {
+						console.log("Valid Dates");
+						document.getElementById("queryForm").submit();
+					}
+				} else {
+					document.getElementById("queryForm").submit();
+				}
+			}
+			function copyStartDate(){
+				var startDateInput = document.getElementById("startDate");
+				var endDateInput = document.getElementById("endDate");
+				console.log(endDateInput.value);
+				
+				if(!endDateInput.value){
+					endDateInput.value = startDateInput.value;
+				}
+			}
+
+			/*<![CDATA[*/
+			function searchByOnClick(radioValue) {
+				var inputString = document.getElementById("inputString");
+				var inputStringHeader = document.getElementById("inputStringHeader"); 
+				var inputDateContainer = document.getElementById("inputDateContainer");
+				var startDateInput = document.getElementById("startDate");
+				var endDateInput = document.getElementById("endDate");
+
+				// Enable/Disable the search bar 
+				if(radioValue == "all"){
+					inputString.disabled = true;
+					inputString.innerHTML = "";
+				} else {
+					inputString.disabled = false;
+				}
+
+				if(radioValue == "date"){
+					inputString.style.display = "none";
+					inputDateContainer.style.display = "inline-block";
+					
+				} else {
+					inputString.style.display = "inline-block";
+					inputDateContainer.style.display = "none";
+					startDateInput.style.backgroundColor = "white";
+					endDateInput.style.backgroundColor = "white";
+				}
+
+				if(radioValue == "all") {
+					inputStringHeader.innerHTML = "All";
+					inputString.placeholder = "No input text required...";
+				} else if(radioValue == "username") {
+					inputStringHeader.innerHTML = "Username";
+					inputString.placeholder = "Enter a username...";
+				} else if(radioValue == "country") {
+					inputStringHeader.innerHTML = "Country";
+					inputString.placeholder = "Enter a country...";
+				} else if(radioValue == "date") {
+					inputStringHeader.innerHTML = "Date";
+				} else if(radioValue == "location") {
+					inputStringHeader.innerHTML = "Location";
+					inputString.placeholder = "Enter a location...";
+				} else if(radioValue == "padiLevel") {
+					inputStringHeader.innerHTML = "PADI Level";
+					inputString.placeholder = "Select a PADI Level...";
+					// Select PADI Level
+				}
+			}
+
+
+			function submitOnClick(){
+				document.getElementById("queryForm").submit();
+			}
+
+ 			var query = /*[[${query}]]*/ null;
+			var source = /*[[${query.source}]]*/ null;
+
+			if(query != null) {
+				document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
+				var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
+				var orderByToCheck = /*[[${query.orderBy}]]*/ null;
+				var sortByToCheck = /*[[${query.sortBy}]]*/ null;
+				var pageSizeToCheck = /*[[${query.pageSize}]]*/ null;
+
+				var query1 = "input[name='searchOption'][value='".concat(searchOptionToCheck, "']");
+				var query2 = "input[name='orderBy'][value='".concat(orderByToCheck, "']");
+				var query3 = "input[name='sortBy'][value='".concat(sortByToCheck, "']");
+				var query4 = "input[name='pageSize'][value='".concat(pageSizeToCheck, "']");
+
+				document.querySelector(query1).click();
+				document.querySelector(query2).checked = true;
+				document.querySelector(query3).checked = true;
+				document.querySelector(query4).checked = true;
+			} 
+			/*]]>*/
+		</script>
 	</div>
 	<!-- MAIN -->
 </body>

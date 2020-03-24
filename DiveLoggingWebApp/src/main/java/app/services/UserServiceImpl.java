@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -46,8 +48,6 @@ public class UserServiceImpl implements UserService {
     public User findById(long id) {
     	return userRepository.findById(id);
     }
-    
-    
 
     @Override
     public User save(UserDto registration) {
@@ -112,13 +112,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Iterable<User> findAll(Sort sort) {
-		// TODO Auto-generated method stub
 		return userRepository.findAll(sort);
 	}
 
 	@Override
 	public Iterable<User> findAllByCountry(String country, Sort sort) {
-		// TODO Auto-generated method stub
 		return userRepository.findTop1000ByCountryContaining(country, sort);
 	}
 
@@ -129,7 +127,36 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Iterable<User> findAllByPadiLevel(String padiLevel, Sort sort) {
-		// TODO Auto-generated method stub
 		return userRepository.findTop1000ByPadiLevel(padiLevel, sort);
+	}
+
+	@Override
+	public Page<User> findAll(Pageable pageable) {
+		return userRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<User> findByPadiNo(String padiNo, Pageable pageable) {
+		return userRepository.findByPadiNo(padiNo, pageable);
+	}
+
+	@Override
+	public Page<User> findByUsernameContaining(String username, Pageable pageable) {
+		return userRepository.findByUsernameContaining(username, pageable);
+	}
+
+	@Override
+	public Page<User> findByCountry(String country, Pageable pageable) {
+		return userRepository.findByCountryContaining(country, pageable);
+	}
+
+	@Override
+	public Page<User> findByName(String fullName, Pageable pageable) {
+		return userRepository.findByFullNameContaining(fullName, pageable);
+	}
+
+	@Override
+	public Page<User> findByPadiLevel(String padiLevel, Pageable pageable) {
+		return userRepository.findByPadiLevel(padiLevel, pageable);
 	}
 }

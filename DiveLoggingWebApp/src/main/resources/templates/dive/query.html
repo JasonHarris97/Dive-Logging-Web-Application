@@ -13,7 +13,6 @@
 	<div layout:fragment="content">
 
 		<!-- Search Bar -->
-
 		<form id="queryForm" style="width: 100%;" th:object="${query}" th:action="@{/dive/query}" method="post">
 			<div class="radioContainer">
 				<h3>Search by:</h3>
@@ -397,14 +396,13 @@
 					document.querySelector(query4).checked = true;
 				} else {
 					document.querySelector("input[name='searchOption'][value='all']").click();
-					document.querySelector("input[name='orderBy'][value='username']").checked = true;	
+					document.querySelector("input[name='orderBy'][value='diveOwnerUsername']").checked = true;	
 					document.querySelector("input[name='sortBy'][value='descending']").checked = true;
 					document.querySelector("input[name='pageSize'][value='12']").checked = true;
 				}
 			} 
 			/*]]>*/
 		</script> 
-
 	</div>
 </body>
 
