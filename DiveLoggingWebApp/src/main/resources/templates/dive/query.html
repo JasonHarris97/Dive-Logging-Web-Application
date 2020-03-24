@@ -198,6 +198,16 @@
 				title="Previous Page" rel="tooltip">Prev</a>
 			</li>
 
+			<!-- First Page -->
+			<li class="page-item">
+				<a th:onclick="submitPage(1)" 
+				class="page-link" 
+				title="Page 1">
+					<span aria-hidden="true">&laquo;</span>
+					<span class="sr-only">First</span>
+				</a>
+			</li>
+
 			<!-- Page Links -->
 			<li class="page-item" th:classappend="${i eq returnedDives.number + 1} ? 'active'"
 				th:each="i : ${#numbers.sequence( returnedDives.number + 1, returnedDives.totalPages > 10 + returnedDives.number ? returnedDives.number + 10 : returnedDives.totalPages, 1)}">
@@ -207,7 +217,7 @@
 				rel="tooltip"></a>
 			</li>
 
-			<!-- More Pages -->
+			<!-- Last Page -->
 			<li class="page-item" th:if="${returnedDives.number + 10 < returnedDives.totalPages}">
 				<a th:onclick="|submitPage(${returnedDives.totalPages})|" 
 				class="page-link" 
