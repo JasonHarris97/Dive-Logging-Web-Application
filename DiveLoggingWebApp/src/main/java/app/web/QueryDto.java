@@ -1,12 +1,15 @@
 package app.web;
 
+import java.time.LocalDate;
+
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class QueryDto {
 
-    @NotEmpty
     private String inputString;
     
     @NotEmpty
@@ -17,6 +20,14 @@ public class QueryDto {
     
     @NotEmpty
     private String source;
+    
+    private String pageNo;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endDate;
 
     @AssertTrue
     private Boolean terms;
@@ -54,6 +65,30 @@ public class QueryDto {
 
 	public void setSource(String source) {
 		this.source = source;
+	}
+
+	public String getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(String pageNo) {
+		this.pageNo = pageNo;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 }
 

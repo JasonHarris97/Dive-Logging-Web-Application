@@ -5,8 +5,13 @@ import java.time.Duration;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import app.config.InitialDataLoader;
 import app.models.Dive;
 import app.models.User;
 import app.services.DiveService;
@@ -26,6 +32,8 @@ import app.web.QueryDto;
 @Controller
 @RequestMapping(value = "/dive", produces = {MediaType.TEXT_HTML_VALUE})
 public class DiveController {
+	
+	private final static Logger log = LoggerFactory.getLogger(InitialDataLoader.class);
 	
 	@Autowired
 	private DiveService diveService;
@@ -44,30 +52,60 @@ public class DiveController {
     }
 	
 	@RequestMapping(value = {"/query", "/"}, method = RequestMethod.GET)
-	public String showQueryDivesPage(Model model) {
-		model.addAttribute("returnedDives", diveService.findAll());
+	public String showQueryDivesPage(HttpServletRequest request, Model model) {
+		int page = 0; //default page number is 0 (yes it is weird)
+        int size = 12; //default page size is 10
+        
+        QueryDto query = new QueryDto();
+        query.setSearchOption("all");
+        query.setInputString("");
+        query.setOrderBy("date");
+        query.setPageNo("1");
+        query.setSource("query");
+        
+        model.addAttribute("query", query);
+        model.addAttribute("returnedDives", diveService.findAll(PageRequest.of(page, size)));
+         
 		return "dive/query";
 	}
 	
 	// CURRENT ---------------------------------------------------------------------------
 	@RequestMapping(value = {"/query"}, method = RequestMethod.POST)
 	public String performDiveQuery(@ModelAttribute("query") QueryDto query, Model model,
-			BindingResult result) {
+			HttpServletRequest request, BindingResult result) {
+		
+		int page = 0; //default page number is 0 (yes it is weird)
+        int size = 12; //default page size is 10
+        
+        if (query.getPageNo() != null) {
+            page = Integer.parseInt(query.getPageNo()) - 1;
+        }
 		
 		if (result.hasErrors()) {
 			return "dive/"+query.getSource();
 		}
 		
-		if(query.getSearchOption().equals("all")) {
-			model = performQuery(query, model);
-			return "dive/"+query.getSource();
-		} else if(!query.getInputString().isEmpty()) {
-			model = performQuery(query, model);
-			return "dive/"+query.getSource();
+		if(query.getSource().equals("query")) {
+			if(query.getSearchOption().equals("all") || query.getSearchOption().equals("date")) {
+				model = performQueryPageable(query, model, page, size);
+			} else if(!query.getInputString().isEmpty()) {
+				model = performQueryPageable(query, model, page, size);
+			} else {
+				model.addAttribute("returnedDives", new ArrayList<String>());
+			}
 		} else {
-			model.addAttribute("returnedDives", new ArrayList<String>());
-			return "dive/"+query.getSource();
+			if(query.getSearchOption().equals("all")) {
+				model = performQuery(query, model);
+			} else if(!query.getInputString().isEmpty()) {
+				model = performQuery(query, model);
+			} else {
+				model.addAttribute("returnedDives", new ArrayList<String>());
+			}
 		}
+		
+		model.addAttribute("query", query);
+		
+		return "dive/"+query.getSource();
 	}
 	// CURRENT ---------------------------------------------------------------------------
 	
@@ -152,6 +190,33 @@ public class DiveController {
 		}
     	return model;
     }
-
+    
+    private Model performQueryPageable(QueryDto query, Model model, int page, int size) {
+    	String orderBy = query.getOrderBy();
+    	if(orderBy == null) {
+    		orderBy = "diveOwnerUsername";
+    	}
+    	
+    	if(query.getSearchOption().equals("country")) {
+			model.addAttribute("returnedDives", diveService.findAllByCountry(query.getInputString(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+		} else if (query.getSearchOption().equals("username")){
+			Page<Dive> returnedDives = diveService.findAllByDiveOwnerUsername(query.getInputString(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy)));
+			model.addAttribute("returnedDives", returnedDives);
+		} else if (query.getSearchOption().equals("date")){
+			log.info("SEARCHING BY DATE");
+			model.addAttribute("returnedDives", diveService.findAllByDateBetween(query.getStartDate(), query.getEndDate(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+		} else if (query.getSearchOption().equals("location")){
+			model.addAttribute("returnedDives", diveService.findAllByLocation(query.getInputString(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+		} else if (query.getSearchOption().equals("padiLevel")) {
+			model.addAttribute("returnedDives", diveService.findAllByDiveOwnerPadiLevel(query.getInputString(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+		} else if (query.getSearchOption().equals("all")){
+			Page<Dive> returnedDives = diveService.findAll(PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy)));
+			model.addAttribute("returnedDives", returnedDives);
+		} else {
+			model.addAttribute("returnedDives", diveService.findAll(PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+		}
+    
+    	return model;
+    }
 
 }

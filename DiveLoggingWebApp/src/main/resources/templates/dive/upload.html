@@ -55,9 +55,9 @@
 	<div layout:fragment="content">
 
 		<!-- Upload Dive Form -->
-		<form id="regForm" th:action="@{/dive/upload}" th:object="${dive}" method="post">
+		<form style="margin-top: 68px;" id="regForm" th:action="@{/dive/upload}" th:object="${dive}" method="post">
 
-			<h1>Upload Dive Log</h1>
+			<h1>Upload Dive - Step 1: Enter the details from the dive</h1>
 
 			<div class="tab">
 				<button type="button" class="tablinks" onclick="openUploadTab(event, 'BasicInfo')"  id="defaultOpen">Basic Information</button>

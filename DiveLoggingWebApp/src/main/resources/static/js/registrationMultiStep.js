@@ -1,5 +1,8 @@
 var currentRegTab = 0; // Current tab is set to be the first tab (0)
-showRegTab(currentRegTab); // Display the current tab
+
+if(document.getElementsByClassName("multiStepTab").length >= 1){
+  showRegTab(currentRegTab);
+}
 
 function showRegTab(n) {
   // This function will display the specified tab of the form...
