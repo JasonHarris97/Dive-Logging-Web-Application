@@ -165,9 +165,12 @@
 /* ====================================================================================== */
 /* QUERYING */
 /* ====================================================================================== */
-
+.custom-label {
+  width: 100%;
+  margin: 0px;
+}
 .querySearchBarContainer {
-  display: inline-grid;
+  display: inline-table;
   margin: auto;	
   width: 38%;
 }
@@ -178,10 +181,15 @@
   font-family: Raleway;
   padding: 8px 16px 8px 16px; /* Add some padding */
   border: 1px solid #9bb7d0; /* Add a grey border */
-  margin-bottom: 12px; /* Add some space below the input */
+  margin-bottom: 9px; /* Add some space below the input */
   opacity: 100;
   cursor: pointer;
 }
+
+.querySearchBar:disabled {
+  background-color: #ffb3b3;
+}
+
 
 .querySearchButton:hover {
   background-color: white;
@@ -242,16 +250,16 @@
 
 /* The container */
 .container {
-	position: relative;
-	padding-left: 35px;
-	margin-bottom: 11px;
-	max-width: 190px;
-	cursor: pointer;
-	font-size: 16px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 11px;
+  max-width: 190px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Hide the browser's default radio button */
@@ -306,8 +314,8 @@
 
 .radioContainer{
 	position: relative;
-	display: inline-grid;
-	width: 15%;
+	display: inline-table;
+	max-width: 14%;
 }
 
 /* ====================================================================================== */

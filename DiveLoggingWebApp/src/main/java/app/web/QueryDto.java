@@ -1,12 +1,13 @@
 package app.web;
 
+import java.time.LocalDate;
+
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
 
 
 public class QueryDto {
 
-    @NotEmpty
     private String inputString;
     
     @NotEmpty
@@ -19,6 +20,9 @@ public class QueryDto {
     private String source;
     
     private String pageNo;
+    
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @AssertTrue
     private Boolean terms;
@@ -64,6 +68,22 @@ public class QueryDto {
 
 	public void setPageNo(String pageNo) {
 		this.pageNo = pageNo;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 }
 
