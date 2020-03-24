@@ -137,4 +137,9 @@ public class DiveServiceImpl implements DiveService{
 	public Page<Dive> findAllByDiveOwnerUsername(String username, Pageable pageable) {
 		return diveRepository.findByDiveOwnerUsernameContaining(username, pageable);
 	}
+
+	@Override
+	public Page<Dive> findAllByDateBetween(LocalDate startDate, LocalDate endDate, Pageable pageable) {
+		return diveRepository.findByDateBetween(startDate, endDate, pageable);
+	}
 }

@@ -38,5 +38,6 @@ public interface DiveRepository extends JpaRepository<Dive, Long> {
 	Page<Dive> findByDate(LocalDate date, Pageable pageable);
 	Page<Dive> findByDiveOwnerPadiLevel(String padiLevel, Pageable pageable);
 	Page<Dive> findByLocationContaining(String location, Pageable pageable);
+	Page<Dive> findByDateBetween(LocalDate startDate, LocalDate endDate, Pageable pageable);
 
 }

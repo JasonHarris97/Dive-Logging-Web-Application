@@ -40,5 +40,6 @@ public interface DiveService{
     Page<Dive> findAllByDate(LocalDate date, Pageable pageable);
     Page<Dive> findAllByLocation(String location, Pageable pageable);
     Page<Dive> findAllByDiveOwnerPadiLevel(String padiLevel, Pageable pageable);
+    Page<Dive> findAllByDateBetween(LocalDate startDate, LocalDate endDate, Pageable pageable);
 
 }

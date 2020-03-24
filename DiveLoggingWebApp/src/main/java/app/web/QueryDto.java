@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class QueryDto {
 
@@ -21,7 +23,10 @@ public class QueryDto {
     
     private String pageNo;
     
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
     @AssertTrue
