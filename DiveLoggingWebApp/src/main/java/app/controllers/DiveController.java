@@ -145,11 +145,14 @@ public class DiveController {
 			dive.setDiveDuration(Duration.ZERO);
 		}
 		
-		
 		if(dive.getTankEnd() != 0 && dive.getTankStart() != 0) {
 			dive.setTankUsage(dive.getTankStart()-dive.getTankEnd());
 		} else {
 			dive.setTankUsage(0.0);
+		}
+		
+		if(dive.getDiveTitle().isEmpty()) {
+			dive.setDiveTitle(dive.getLocation() + ", " + dive.getCountry() + " - " + dive.getDate());
 		}
 		
 		currentUser.setNoOfDives(currentUser.getNoOfDives()+1);
