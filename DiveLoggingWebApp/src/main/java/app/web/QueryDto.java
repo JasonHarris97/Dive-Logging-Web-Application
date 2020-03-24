@@ -26,6 +26,8 @@ public class QueryDto {
     
     private String pageNo;
     
+    private String pageSize;
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     
@@ -100,6 +102,14 @@ public class QueryDto {
 
 	public void setSortBy(String sortBy) {
 		this.sortBy = sortBy;
+	}
+
+	public String getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
 	}
 }
 
