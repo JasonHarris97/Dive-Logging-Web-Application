@@ -208,11 +208,12 @@
 			</li>
 
 			<!-- More Pages -->
-			<li class="page-item disabled" th:if="${returnedDives.number + 10 < returnedDives.totalPages}">
-				<a class="page-link" href="#">
-					<!-- <span data-feather="more-horizontal" width="20" height="20"></span> -->
+			<li class="page-item" th:if="${returnedDives.number + 10 < returnedDives.totalPages}">
+				<a th:onclick="|submitPage(${returnedDives.totalPages})|" 
+				class="page-link" 
+				th:title="${'Page '+ returnedDives.totalPages}">
 					<span aria-hidden="true">&raquo;</span>
-					<span class="sr-only">Next</span>
+					<span class="sr-only">Last</span>
 				</a>
 			</li>
 
