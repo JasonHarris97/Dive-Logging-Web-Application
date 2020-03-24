@@ -159,6 +159,8 @@ public class UserController{
 			model.addAttribute("returnedUsers", new ArrayList<String>());
 		}
 		
+		model.addAttribute("query", query);
+		
 		return "user/"+query.getSource();
 	}
 	  

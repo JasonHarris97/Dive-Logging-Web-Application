@@ -16,28 +16,28 @@
 			<!-- SEARCH BY -->
 			<div class="radioContainer">
 				<h3>Search by:</h3>
-				<label class="container">All
+				<label onclick="searchByOnClick('all')" class="container">All
 				  <input type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="all">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Username 
-				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
+				  <input onclick="searchByOnClick('username')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="username">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Name 
-				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="name">
+				  <input onclick="searchByOnClick('name')"type="radio" name="searchOption" th:field="*{searchOption}" th:value="name">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Country 
-				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
+				  <input onclick="searchByOnClick('country')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">PADI Level
-				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
+				  <input onclick="searchByOnClick('padiLevel')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiLevel">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">PADI No
-				  <input type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiNo">
+				  <input onclick="searchByOnClick('padiNo')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="padiNo">
 				  <span class="checkmark"></span>
 				</label>
 			</div>
@@ -68,17 +68,8 @@
 			</div>
 
 			<div class="radioContainer">
-				<h3>Sort by:</h3>
-				<label class="container">Ascending
-				  <input onclick="submitOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="ascending">
-				  <span class="checkmark"></span>
-				</label>
-				<label class="container">Descending
-				  <input onclick="submitOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="descending">
-				  <span class="checkmark"></span>
-				</label>
 				<h3>Page Size:</h3>
-				<label class="container">12
+				<label class="container">Default
 				  <input onclick="submitOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="12">
 				  <span class="checkmark"></span>
 				</label>
@@ -88,6 +79,22 @@
 				</label>
 				<label class="container">50
 				  <input onclick="submitOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="50">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">100
+				  <input onclick="submitOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="100">
+				  <span class="checkmark"></span>
+				</label>
+			</div>
+
+			<div class="radioContainer">
+				<h3>Sort by:</h3>
+				<label class="container">Ascending
+				  <input onclick="submitOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="ascending">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Descending
+				  <input onclick="submitOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="descending">
 				  <span class="checkmark"></span>
 				</label>
 			</div>
