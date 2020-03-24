@@ -127,7 +127,7 @@
 					</label >
 					<!-- Date till -->
 					<label class="custom-label">Until
-						<input placeholder="Select end date..." type="date" name="endDate" id="endDate" class="querySearchBar" th:field="*{endDate}">
+						<input onclick="copyStartDate()" placeholder="Select end date..." type="date" name="endDate" id="endDate" class="querySearchBar" th:field="*{endDate}">
 					</label>
 				</div>
 
@@ -290,6 +290,16 @@
 					}
 				} else {
 					document.getElementById("queryForm").submit();
+				}
+			}
+
+			function copyStartDate(){
+				var startDateInput = document.getElementById("startDate");
+				var endDateInput = document.getElementById("endDate");
+				console.log(endDateInput.value);
+				
+				if(!endDateInput.value){
+					endDateInput.value = startDateInput.value;
 				}
 			}
 
