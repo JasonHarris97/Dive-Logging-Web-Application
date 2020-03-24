@@ -159,7 +159,22 @@
 						<td th:text="${d.noOfParticipants}">No. of Participants</td>
 						<td th:text="${d.country}">Dive Country</td>
 						<td th:text="${d.location}">Dive Location</td>
-						<td th:text="${d.diveOwner.padiLevel}">Dive Owner PADI Level</td>
+						<td th:switch="${query.orderBy}">
+							<span th:case="'date'" th:text="${d.date}"></span>
+							<span th:case="'diveOwnerUsername'" th:text="${d.diveOwner.username}"></span>
+							<span th:case="'country'" th:text="${d.country}"></span>
+							<span th:case="'location'" th:text="${d.location}"></span>
+							<span th:case="'diveOwnerPadiLevel'" th:text="${d.diveOwner.padiLevel}"></span>
+							<span th:case="'diveDuration'" th:text="${d.diveDuration}"></span>
+							<span th:case="'airTemperature'" th:text="${d.airTemperature}"></span>
+							<span th:case="'waterTemperature'" th:text="${d.waterTemperature}"></span>
+							<span th:case="'noOfParticipants'" th:text="${d.noOfParticipants}"></span>
+							<span th:case="'weather'" th:text="${d.weather}"></span>
+							<span th:case="'maxDepth'" th:text="${d.maxDepth}"></span>
+							<span th:case="'altitude'" th:text="${d.altitude}"></span>
+							<span th:case="'waterType'" th:text="${d.waterType}"></span>
+						</td>
+						
 					</tr>
 				</div>
 				<div th:if="${#lists.isEmpty(returnedDives)}">
@@ -215,10 +230,44 @@
 
 		<!-- MAIN -->
 		<script th:inline="javascript">
+			function orderByColumnTitle(orderBy){
+				if(orderBy == "date"){
+					return "Date";
+				} else if(orderBy == "diveOwnerUsername"){
+					return "Diver Username";
+				} else if(orderBy == "country"){
+					return "Country";
+				} else if(orderBy == "location"){
+					return "Location";
+				} else if(orderBy == "diveOwnerPadiLevel"){
+					return "Diver PADI Level";
+				} else if(orderBy == "diveDuration"){
+					return "Duration";
+				} else if(orderBy == "airTemperature"){
+					return "Air Temp";
+				} else if(orderBy == "waterTemperature"){
+					return "Water Temp";
+				} else if(orderBy == "noOfParticipants"){
+					return "No. Participants";
+				} else if(orderBy == "weather"){
+					return "Weather";
+				} else if(orderBy == "maxDepth"){
+					return "Max Depth";
+				} else if(orderBy == "altitude"){
+					return "Altitude";
+				} else if(orderBy == "waterType"){
+					return "Water Type";
+				} 
+			}
+			
+			/*<![CDATA[*/
 			function searchByOnClick(radioValue) {
 				var inputString = document.getElementById("inputString");
 				var inputStringHeader = document.getElementById("inputStringHeader"); 
 				var inputDateContainer = document.getElementById("inputDateContainer");
+				var orderByHeader = document.getElementById("orderByHeader");
+
+				orderByHeader.innerHTML = orderByColumnTitle(/*[[${query.orderBy}]]*/);
 
 				// Enable/Disable the search bar 
 				if(radioValue == "all"){
@@ -257,10 +306,8 @@
 					// Select PADI Level
 				}
 			}
-			
+
 			function orderByOnClick(orderBy){
-				var orderByHeader = document.getElementById("orderByHeader");
-				orderByHeader.innerHTML = orderBy;
 				document.getElementById("queryForm").submit();
 			}
 
@@ -268,7 +315,6 @@
 				document.getElementById("queryForm").submit();
 			}
 
-			/*<![CDATA[*/
 			var query = /*[[${query}]]*/ null;
 			var source = /*[[${query.source}]]*/ null;
 
