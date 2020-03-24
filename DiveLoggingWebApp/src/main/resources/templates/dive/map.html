@@ -33,16 +33,16 @@
 				  <input onclick="searchByOnClick('all')" type="radio" name="searchOption" th:field="*{searchOption}" value="all">
 				  <span class="checkmark"></span>
 				</label>
+				<label class="container">Date
+				  <input onclick="searchByOnClick('date')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="date">
+				  <span class="checkmark"></span>
+				</label>
 				<label class="container">Username
 				  <input onclick="searchByOnClick('username')" type="radio" checked="checked" name="searchOption" th:field="*{searchOption}" th:value="username">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Country
 				  <input onclick="searchByOnClick('country')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="country">
-				  <span class="checkmark"></span>
-				</label>
-				<label class="container">Date
-				  <input onclick="searchByOnClick('date')" type="radio" name="searchOption" th:field="*{searchOption}" th:value="date">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="container">Location
