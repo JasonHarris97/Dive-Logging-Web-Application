@@ -91,7 +91,7 @@ public class DiveController {
 			return "dive/"+query.getSource();
 		}
 		
-		if(query.getSource().equals("query")) {
+		if(query.getSource().equals("query") || query.getSource().equals("map")) {
 			if(query.getSearchOption().equals("all") || query.getSearchOption().equals("date")) {
 				model = performQueryPageable(query, model, page, size);
 			} else if(!query.getInputString().isEmpty()) {
