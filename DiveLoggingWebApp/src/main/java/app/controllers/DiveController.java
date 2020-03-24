@@ -60,6 +60,7 @@ public class DiveController {
         query.setSearchOption("all");
         query.setInputString("");
         query.setOrderBy("date");
+        query.setSortBy("descending");
         query.setPageNo("1");
         query.setSource("query");
         
@@ -193,27 +194,39 @@ public class DiveController {
     
     private Model performQueryPageable(QueryDto query, Model model, int page, int size) {
     	String orderBy = query.getOrderBy();
+    	Sort.Direction sortBy;
+    	
+    	if(query.getSortBy().equals("ascending")){
+    		sortBy = Sort.Direction.ASC;
+    	} else {
+    		sortBy = Sort.Direction.DESC;
+    	}
+    	
     	if(orderBy == null) {
     		orderBy = "diveOwnerUsername";
     	}
     	
     	if(query.getSearchOption().equals("country")) {
-			model.addAttribute("returnedDives", diveService.findAllByCountry(query.getInputString(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+			model.addAttribute("returnedDives", 
+					diveService.findAllByCountry(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("username")){
-			Page<Dive> returnedDives = diveService.findAllByDiveOwnerUsername(query.getInputString(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy)));
-			model.addAttribute("returnedDives", returnedDives);
+			model.addAttribute("returnedDives", 
+					diveService.findAllByDiveOwnerUsername(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("date")){
-			log.info("SEARCHING BY DATE");
-			model.addAttribute("returnedDives", diveService.findAllByDateBetween(query.getStartDate(), query.getEndDate(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+			model.addAttribute("returnedDives", 
+					diveService.findAllByDateBetween(query.getStartDate(), query.getEndDate(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("location")){
-			model.addAttribute("returnedDives", diveService.findAllByLocation(query.getInputString(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+			model.addAttribute("returnedDives", 
+					diveService.findAllByLocation(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("padiLevel")) {
-			model.addAttribute("returnedDives", diveService.findAllByDiveOwnerPadiLevel(query.getInputString(), PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+			model.addAttribute("returnedDives", 
+					diveService.findAllByDiveOwnerPadiLevel(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("all")){
-			Page<Dive> returnedDives = diveService.findAll(PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy)));
-			model.addAttribute("returnedDives", returnedDives);
+			model.addAttribute("returnedDives", 
+					diveService.findAll(PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else {
-			model.addAttribute("returnedDives", diveService.findAll(PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, orderBy))));
+			model.addAttribute("returnedDives", 
+					diveService.findAll(PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		}
     
     	return model;

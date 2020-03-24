@@ -104,8 +104,17 @@
 
 			<div class="radioContainer">
 				<h3>Sort by:</h3>
+				<label class="container">Ascending
+				  <input type="radio" name="sortBy" th:field="*{sortBy}" value="ascending">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Descending
+				  <input type="radio" name="sortBy" th:field="*{sortBy}" value="descending">
+				  <span class="checkmark"></span>
+				</label>
 			</div>
 
+			<!-- Search Bars -->
 			<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
 				<!-- Input string -->
 				<h3 id="inputStringHeader">Search</h3>
@@ -137,10 +146,10 @@
 					<th class="detailsCol">Details</th>
 					<th class="dateCol">Date</th>
 					<th>Diver Username</th>
-					<th>PADI Level</th>
 					<th class="participantsCol">Participants</th>
 					<th>Country</th>
 					<th>Location</th>
+					<th>PADI Level</th>
 				</tr>
 				<div th:if="${not #lists.isEmpty(returnedDives)}" >
 					<tr th:each="d : ${returnedDives}">
@@ -257,18 +266,21 @@
 					document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
 					var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
 					var orderByToCheck = /*[[${query.orderBy}]]*/ null;
+					var sortByToCheck = /*[[${query.sortBy}]]*/ null;
 
 					var query1 = "input[name='searchOption'][value='".concat(searchOptionToCheck, "']");
 					var query2 = "input[name='orderBy'][value='".concat(orderByToCheck, "']");
+					var query3 = "input[name='sortBy'][value='".concat(sortByToCheck, "']");
 
 					document.querySelector(query1).click();
 					document.querySelector(query2).checked = true;
+					document.querySelector(query3).checked = true;
 				} else {
 					document.querySelector("input[name='searchOption'][value='all']").click();
 					document.querySelector("input[name='orderBy'][value='username']").checked = true;	
+					document.querySelector("input[name='sortBy'][value='descending']").checked = true;
 				}
 			} 
-			console.log("This code acutually ran haha");
 			/*]]>*/
 		</script> 
 

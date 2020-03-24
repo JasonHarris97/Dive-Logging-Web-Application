@@ -19,6 +19,9 @@ public class QueryDto {
     private String orderBy;
     
     @NotEmpty
+    private String sortBy;
+    
+    @NotEmpty
     private String source;
     
     private String pageNo;
@@ -89,6 +92,14 @@ public class QueryDto {
 
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
+	}
+
+	public String getSortBy() {
+		return sortBy;
+	}
+
+	public void setSortBy(String sortBy) {
+		this.sortBy = sortBy;
 	}
 }
 
