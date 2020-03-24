@@ -71,7 +71,7 @@
 				</label>
 			</div>
 
-			<div class="radioContainer" style="margin-top: 23px">
+			<div class="radioContainer" style="margin-top: 10px">
 				<label class="container">Air Temp
 				  <input onclick="orderByOnClick('airTemperature')" type="radio" name="orderBy" th:field="*{orderBy}" value="airTemperature">
 				  <span class="checkmark"></span>
@@ -110,6 +110,19 @@
 				</label>
 				<label class="container">Descending
 				  <input onclick="sortByOnClick()" type="radio" name="sortBy" th:field="*{sortBy}" value="descending">
+				  <span class="checkmark"></span>
+				</label>
+				<h3>Page Size:</h3>
+				<label class="container">12
+				  <input onclick="sortByOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="12">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">25
+				  <input onclick="sortByOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="25">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">50
+				  <input onclick="sortByOnClick()" type="radio" name="pageSize" th:field="*{pageSize}" value="50">
 				  <span class="checkmark"></span>
 				</label>
 			</div>
@@ -371,18 +384,22 @@
 					var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
 					var orderByToCheck = /*[[${query.orderBy}]]*/ null;
 					var sortByToCheck = /*[[${query.sortBy}]]*/ null;
+					var pageSizeToCheck = /*[[${query.pageSize}]]*/ null;
 
 					var query1 = "input[name='searchOption'][value='".concat(searchOptionToCheck, "']");
 					var query2 = "input[name='orderBy'][value='".concat(orderByToCheck, "']");
 					var query3 = "input[name='sortBy'][value='".concat(sortByToCheck, "']");
+					var query4 = "input[name='pageSize'][value='".concat(pageSizeToCheck, "']");
 
 					document.querySelector(query1).click();
 					document.querySelector(query2).checked = true;
 					document.querySelector(query3).checked = true;
+					document.querySelector(query4).checked = true;
 				} else {
 					document.querySelector("input[name='searchOption'][value='all']").click();
 					document.querySelector("input[name='orderBy'][value='username']").checked = true;	
 					document.querySelector("input[name='sortBy'][value='descending']").checked = true;
+					document.querySelector("input[name='pageSize'][value='12']").checked = true;
 				}
 			} 
 			/*]]>*/

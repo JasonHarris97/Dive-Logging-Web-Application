@@ -18,8 +18,8 @@
 
 .mainContainer {
 	margin: auto;
-	margin-top: 50px;
-	margin-bottom: 16px;
+	margin-top: 65px;
+	margin-bottom: 18px;
 	width: 66%;
 	min-height: 850px;
 }
@@ -176,6 +176,10 @@
   width: 40%;
 }
 
+.querySearchBarContainer h3 {
+	margin-top: 2px;
+}
+
 .querySearchBar {
   width: 100%; /* Full-width */
   font-size: 16px; /* Increase font-size */
@@ -191,7 +195,6 @@
   background-color: #ffb3b3;
 }
 
-
 .querySearchButton:hover {
   background-color: white;
 }
@@ -201,6 +204,11 @@
 	float: left;
 	display: block;
 	max-width: 15%;
+	margin-bottom: 8px;
+}
+
+.radioContainer h3{
+	margin-top: 2px;
 }
 
 .resultsTable {
