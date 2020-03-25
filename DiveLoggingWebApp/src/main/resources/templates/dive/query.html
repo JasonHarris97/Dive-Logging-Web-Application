@@ -403,37 +403,30 @@
 			var source = /*[[${query.source}]]*/ null;
 
 			if(query != null) {
-				if(source == "query"){
-					var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
-					var orderByToCheck = /*[[${query.orderBy}]]*/ null;
-					var sortByToCheck = /*[[${query.sortBy}]]*/ null;
-					var pageSizeToCheck = /*[[${query.pageSize}]]*/ null;
+				var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
+				var orderByToCheck = /*[[${query.orderBy}]]*/ null;
+				var sortByToCheck = /*[[${query.sortBy}]]*/ null;
+				var pageSizeToCheck = /*[[${query.pageSize}]]*/ null;
 
-					var query1 = "input[name='searchOption'][value='".concat(searchOptionToCheck, "']");
-					var query2 = "input[name='orderBy'][value='".concat(orderByToCheck, "']");
-					var query3 = "input[name='sortBy'][value='".concat(sortByToCheck, "']");
-					var query4 = "input[name='pageSize'][value='".concat(pageSizeToCheck, "']");
+				var query1 = "input[name='searchOption'][value='".concat(searchOptionToCheck, "']");
+				var query2 = "input[name='orderBy'][value='".concat(orderByToCheck, "']");
+				var query3 = "input[name='sortBy'][value='".concat(sortByToCheck, "']");
+				var query4 = "input[name='pageSize'][value='".concat(pageSizeToCheck, "']");
 
-					document.querySelector(query1).click();
-					document.querySelector(query2).checked = true;
-					document.querySelector(query3).checked = true;
-					document.querySelector(query4).checked = true;
-					
-					if(searchOptionToCheck == "date"){
-						document.getElementById("startDate").text = /*[[${query.startDate}]]*/ null;
-						document.getElementById("endDate").text = /*[[${query.endDate}]]*/ null;
-					} else if(searchOptionToCheck == "padiLevel"){
-						document.getElementById("padiLevel").text = /*[[${query.inputString}]]*/ null;
-					} else if(searchOptionToCheck == "country") {
-						document.getElementById("country").text = /*[[${query.inputString}]]*/ null;
-					} else {
-						document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
-					}
+				document.querySelector(query1).click();
+				document.querySelector(query2).checked = true;
+				document.querySelector(query3).checked = true;
+				document.querySelector(query4).checked = true;
+				
+				if(searchOptionToCheck == "date"){
+					document.getElementById("startDate").text = /*[[${query.startDate}]]*/ null;
+					document.getElementById("endDate").text = /*[[${query.endDate}]]*/ null;
+				} else if(searchOptionToCheck == "padiLevel"){
+					document.getElementById("padiLevel").text = /*[[${query.inputString}]]*/ null;
+				} else if(searchOptionToCheck == "country") {
+					document.getElementById("country").text = /*[[${query.inputString}]]*/ null;
 				} else {
-					document.querySelector("input[name='searchOption'][value='all']").click();
-					document.querySelector("input[name='orderBy'][value='diveOwnerUsername']").checked = true;	
-					document.querySelector("input[name='sortBy'][value='descending']").checked = true;
-					document.querySelector("input[name='pageSize'][value='12']").checked = true;
+					document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
 				}
 			} 
 			/*]]>*/
