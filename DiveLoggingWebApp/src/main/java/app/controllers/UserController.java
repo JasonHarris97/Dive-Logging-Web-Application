@@ -157,7 +157,8 @@ public class UserController{
 			return "user/"+query.getSource();
 		}
 		
-		if(query.getSearchOption().equals("all")) {
+		if(query.getSearchOption().equals("all") || query.getSearchOption().equals("country") 
+				|| query.getSearchOption().equals("padiLevel")) {
 			model = performQueryPageable(query, model, page, size);
 		} else if(!query.getInputString().isEmpty()) {
 			model = performQueryPageable(query, model, page, size);
@@ -188,7 +189,7 @@ public class UserController{
 	    	
 	    	if(query.getSearchOption().equals("country")) { 
 	    		// country
-				model.addAttribute("returnedUsers", userService.findByCountry( query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy)) ));
+				model.addAttribute("returnedUsers", userService.findByCountry( query.getCountry(), PageRequest.of(page, size, Sort.by(sortBy, orderBy)) ));
 			} else if (query.getSearchOption().equals("username")){
 				// username
 				model.addAttribute("returnedUsers", userService.findByUsernameContaining(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
@@ -197,7 +198,7 @@ public class UserController{
 				model.addAttribute("returnedUsers", userService.findByName(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 			} else if (query.getSearchOption().equals("padiLevel")) {
 				// padiLevel
-				model.addAttribute("returnedUsers", userService.findByPadiLevel(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+				model.addAttribute("returnedUsers", userService.findByPadiLevel(query.getPadiLevel(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 			} else if (query.getSearchOption().equals("padiNo")){
 				// padiNo
 				model.addAttribute("returnedUsers", userService.findByPadiNo(query.getInputString(), PageRequest.of(page, size)));
