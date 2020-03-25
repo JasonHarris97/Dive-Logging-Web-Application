@@ -27,6 +27,7 @@ import app.models.Dive;
 import app.models.User;
 import app.services.DiveService;
 import app.services.UserService;
+import app.strings.StringLists;
 import app.web.QueryDto;
 
 @Controller
@@ -34,6 +35,7 @@ import app.web.QueryDto;
 public class DiveController {
 	
 	private final static Logger log = LoggerFactory.getLogger(InitialDataLoader.class);
+	private StringLists stringLists = new StringLists();
 	
 	@Autowired
 	private DiveService diveService;
@@ -67,6 +69,9 @@ public class DiveController {
         
         model.addAttribute("query", query);
         model.addAttribute("returnedDives", diveService.findAll(PageRequest.of(page, size)));
+        
+        model.addAttribute("countries", stringLists.getCountries());
+        model.addAttribute("padiLevels",stringLists.getPadiLevels());
          
 		return "dive/query";
 	}
@@ -92,7 +97,8 @@ public class DiveController {
 		}
 		
 		if(query.getSource().equals("query") || query.getSource().equals("map")) {
-			if(query.getSearchOption().equals("all") || query.getSearchOption().equals("date")) {
+			if(query.getSearchOption().equals("all") || query.getSearchOption().equals("date")
+					|| query.getSearchOption().equals("country") || query.getSearchOption().equals("padiLevel")) {
 				model = performQueryPageable(query, model, page, size);
 			} else if(!query.getInputString().isEmpty()) {
 				model = performQueryPageable(query, model, page, size);
@@ -111,6 +117,9 @@ public class DiveController {
 		
 		model.addAttribute("query", query);
 		
+		model.addAttribute("countries", stringLists.getCountries());
+	    model.addAttribute("padiLevels",stringLists.getPadiLevels());
+		
 		return "dive/"+query.getSource();
 	}
 	// CURRENT ---------------------------------------------------------------------------
@@ -125,6 +134,14 @@ public class DiveController {
 	
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
 	public String showUploadDiveForm(Model model) {
+		model.addAttribute("waterTypes", stringLists.getWaterTypes());
+		model.addAttribute("waterBodyTypes", stringLists.getWaterBodyTypes());
+		model.addAttribute("tideLevels", stringLists.getTideLevels());
+		model.addAttribute("countries", stringLists.getCountries());
+		model.addAttribute("weatherTypes", stringLists.getWeatherTypes());
+		model.addAttribute("visibilityTypes", stringLists.getVisibilityTypes());
+		model.addAttribute("entryMethods", stringLists.getEntryMethods());
+		model.addAttribute("diveSuitTypes", stringLists.getDivingSuitTypes());
 		return "dive/upload";
 	}
 	
@@ -145,11 +162,14 @@ public class DiveController {
 			dive.setDiveDuration(Duration.ZERO);
 		}
 		
-		
 		if(dive.getTankEnd() != 0 && dive.getTankStart() != 0) {
 			dive.setTankUsage(dive.getTankStart()-dive.getTankEnd());
 		} else {
 			dive.setTankUsage(0.0);
+		}
+		
+		if(dive.getDiveTitle().isEmpty()) {
+			dive.setDiveTitle(dive.getLocation() + ", " + dive.getCountry() + " - " + dive.getDate());
 		}
 		
 		currentUser.setNoOfDives(currentUser.getNoOfDives()+1);
@@ -174,6 +194,10 @@ public class DiveController {
         query.setPageSize("12");
         
         model.addAttribute("query", query);
+        
+        model.addAttribute("countries", stringLists.getCountries());
+        model.addAttribute("padiLevels",stringLists.getPadiLevels());
+        
         model.addAttribute("returnedDives", diveService.findAll(PageRequest.of(page, size)));
 	
 		return "dive/map";
@@ -227,7 +251,7 @@ public class DiveController {
     	
     	if(query.getSearchOption().equals("country")) {
 			model.addAttribute("returnedDives", 
-					diveService.findAllByCountry(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+					diveService.findAllByCountry(query.getCountry(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("username")){
 			model.addAttribute("returnedDives", 
 					diveService.findAllByDiveOwnerUsername(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
@@ -239,7 +263,7 @@ public class DiveController {
 					diveService.findAllByLocation(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("padiLevel")) {
 			model.addAttribute("returnedDives", 
-					diveService.findAllByDiveOwnerPadiLevel(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+					diveService.findAllByDiveOwnerPadiLevel(query.getPadiLevel(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("all")){
 			model.addAttribute("returnedDives", 
 					diveService.findAll(PageRequest.of(page, size, Sort.by(sortBy, orderBy))));

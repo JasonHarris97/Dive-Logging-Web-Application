@@ -1,5 +1,5 @@
 // Get the element with id="defaultOpen" and click on it
-if( document.getElementById("defaultOpen") != null){
+if(document.getElementById("defaultOpen") != null && document.getElementById("uploadButton") == null){
 	document.getElementById("defaultOpen").click();
 }
 

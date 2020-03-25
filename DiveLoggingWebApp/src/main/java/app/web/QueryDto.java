@@ -28,6 +28,10 @@ public class QueryDto {
     
     private String pageSize;
     
+    private String country;
+    
+    private String padiLevel;
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     
@@ -110,6 +114,22 @@ public class QueryDto {
 
 	public void setPageSize(String pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPadiLevel() {
+		return padiLevel;
+	}
+
+	public void setPadiLevel(String padiLevel) {
+		this.padiLevel = padiLevel;
 	}
 }
 

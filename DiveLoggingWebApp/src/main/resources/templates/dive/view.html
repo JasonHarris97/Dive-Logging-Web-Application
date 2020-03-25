@@ -35,7 +35,7 @@
 
 		<!-- First Tab -->
 		<div id="Overview" class="tabcontent">
-			<h2 th:text="${dive.diveTitle}+' #'+${dive.diveNo}"></h2>
+			<h2 th:text="${dive.diveTitle}+' - Dive #'+${dive.diveNo}"></h2>
 			
 			<h4>Diver</h4>
 			<p th:text="${dive.diveOwner.username}"> <a th:href="@{'/user/view/'+${dive.diveOwner.username}}"></a></p>

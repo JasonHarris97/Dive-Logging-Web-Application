@@ -99,10 +99,29 @@
 				</label>
 			</div>
 
-			<!-- Input string -->
+			<!-- Search Bar -->
 			<div class="querySearchBarContainer" th:classappend="${param.error}? has-error">
+
 				<h3 id="inputStringHeader">Search</h3>
+				<!-- Input string -->
 				<input placeholder="Enter text..." type="text" name="inputString" id="inputString" class="querySearchBar" th:field="*{inputString}">
+
+				<!-- Country -->
+				<div id="inputCountryContainer">
+					<label for="country" class="control-label">Country</label> 
+					<select class="querySearchBar" id="country" th:field="*{country}">
+						<option th:each="c : ${countries}" th:value="${c}" th:text="${c}"></option>
+					</select>
+				</div>
+
+				<!-- Padi Level -->
+				<div id="inputPadiLevelContainer">
+					<label for="padiLevel" class="control-label">PADI Level</label> 
+					<select class="querySearchBar" id="padiLevel" th:field="*{padiLevel}">
+						<option th:each="p : ${padiLevels}" th:value="${p}" th:text="${p}"></option>
+					</select>
+				</div>
+
 				<button onclick="submitOnClick()" class="green-button" type="button">GO</button>
 			</div>
 
@@ -201,6 +220,9 @@
 				var inputString = document.getElementById("inputString");
 				var inputStringHeader = document.getElementById("inputStringHeader"); 
 
+				var inputCountryContainer = document.getElementById("inputCountryContainer");
+				var inputPadiLevelContainer = document.getElementById("inputPadiLevelContainer");
+
 				// Enable/Disable the search bar 
 				if(radioValue == "all"){
 					inputString.disabled = true;
@@ -208,6 +230,18 @@
 				} else {
 					inputString.disabled = false;
 				}
+
+				inputString.style.display = "none";
+				inputCountryContainer.style.display = "none";
+				inputPadiLevelContainer.style.display = "none";
+
+				if(radioValue == "country"){
+					inputCountryContainer.style.display = "inline-block";
+				} else if(radioValue == "padiLevel"){
+					inputPadiLevelContainer.style.display = "inline-block";
+				} else {
+					inputString.style.display = "inline-block";
+				}	
 
 				if(radioValue == "all") {
 					inputStringHeader.innerHTML = "All";
@@ -239,7 +273,6 @@
 			var source = /*[[${query.source}]]*/ null;
 
 			if(query != null) {
-				document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
 				var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
 				var orderByToCheck = /*[[${query.orderBy}]]*/ null;
 				var sortByToCheck = /*[[${query.sortBy}]]*/ null;
@@ -254,6 +287,14 @@
 				document.querySelector(query2).checked = true;
 				document.querySelector(query3).checked = true;
 				document.querySelector(query4).checked = true;
+
+				if(searchOptionToCheck == "padiLevel"){
+					document.getElementById("padiLevel").text = /*[[${query.inputString}]]*/ null;
+				} else if(searchOptionToCheck == "country") {
+					document.getElementById("country").text = /*[[${query.inputString}]]*/ null;
+				} else {
+					document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
+				}
 			} 
 			/*]]>*/
 		</script>

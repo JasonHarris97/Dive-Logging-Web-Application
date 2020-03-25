@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import app.models.User;
 import app.services.DiveService;
 import app.services.UserService;
+import app.strings.StringLists;
 import app.web.QueryDto;
 import app.web.UserDto;
 
@@ -31,6 +32,7 @@ import app.web.UserDto;
 public class UserController{
 	
 	private final static Logger log = LoggerFactory.getLogger(UserController.class);
+	private StringLists stringLists = new StringLists();
 	
 	@Autowired
     private UserService userService;
@@ -55,6 +57,8 @@ public class UserController{
     
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
+    	 model.addAttribute("countries", stringLists.getCountries());
+         model.addAttribute("padiLevels",stringLists.getPadiLevels());
         return "user/registration";
     }
     
@@ -127,6 +131,8 @@ public class UserController{
 	    
 	    model.addAttribute("query", query);
 		model.addAttribute("returnedUsers", userService.findAll(PageRequest.of(page, size)));
+		model.addAttribute("countries", stringLists.getCountries());
+	    model.addAttribute("padiLevels",stringLists.getPadiLevels());
 		
 		return "user/find";
 	}
@@ -151,7 +157,8 @@ public class UserController{
 			return "user/"+query.getSource();
 		}
 		
-		if(query.getSearchOption().equals("all")) {
+		if(query.getSearchOption().equals("all") || query.getSearchOption().equals("country") 
+				|| query.getSearchOption().equals("padiLevel")) {
 			model = performQueryPageable(query, model, page, size);
 		} else if(!query.getInputString().isEmpty()) {
 			model = performQueryPageable(query, model, page, size);
@@ -159,6 +166,8 @@ public class UserController{
 			model.addAttribute("returnedUsers", new ArrayList<String>());
 		}
 		
+		model.addAttribute("countries", stringLists.getCountries());
+	    model.addAttribute("padiLevels",stringLists.getPadiLevels());
 		model.addAttribute("query", query);
 		
 		return "user/"+query.getSource();
@@ -180,7 +189,7 @@ public class UserController{
 	    	
 	    	if(query.getSearchOption().equals("country")) { 
 	    		// country
-				model.addAttribute("returnedUsers", userService.findByCountry( query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy)) ));
+				model.addAttribute("returnedUsers", userService.findByCountry( query.getCountry(), PageRequest.of(page, size, Sort.by(sortBy, orderBy)) ));
 			} else if (query.getSearchOption().equals("username")){
 				// username
 				model.addAttribute("returnedUsers", userService.findByUsernameContaining(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
@@ -189,7 +198,7 @@ public class UserController{
 				model.addAttribute("returnedUsers", userService.findByName(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 			} else if (query.getSearchOption().equals("padiLevel")) {
 				// padiLevel
-				model.addAttribute("returnedUsers", userService.findByPadiLevel(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+				model.addAttribute("returnedUsers", userService.findByPadiLevel(query.getPadiLevel(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 			} else if (query.getSearchOption().equals("padiNo")){
 				// padiNo
 				model.addAttribute("returnedUsers", userService.findByPadiNo(query.getInputString(), PageRequest.of(page, size)));

@@ -21,7 +21,7 @@
 	margin-top: 65px;
 	margin-bottom: 18px;
 	width: 66%;
-	min-height: 850px;
+	min-height: 800px;
 }
 
 /* ====================================================================================== */
@@ -148,13 +148,17 @@
 /* Style the tab content */
 .tabcontent {
 	display: none;
-	margin-bottom: 30px;
-	padding: 15px 12px;
+	padding: 15px 75px;
 	border: 1px solid #9bb7d0;
 	border-top: none;
 	animation: fadeEffect 0.3s; /* Fading effect takes 1 second */
 	min-height: inherit;
 }
+
+.tabcontent h3{
+	color: #2e4a62;
+}
+
 
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
@@ -437,4 +441,32 @@
 	width: 200px;
 	display: inline-block;
 }
+
+/* ====================================================================================== */
+/* Dive Uploading */
+/* ====================================================================================== */
+
+.custom-fg-3{
+	float: left;
+	display: block;
+	min-width: 25%;
+	margin-right: 8%;
+}
+
+.custom-fg-2{
+	float: left;
+	display: block;
+	min-width: 42%;
+	margin-right: 7%;
+}
+
+.custom-fg-1{
+	width: 91%;
+}
+
+.custom-row {
+	width: 100%;
+}
+
+
 
