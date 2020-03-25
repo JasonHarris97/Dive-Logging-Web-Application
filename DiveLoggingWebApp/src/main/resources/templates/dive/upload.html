@@ -515,21 +515,25 @@
 			function defaultOpenInvalid(){
 				document.getElementById('defaultOpen').style.color = "#ffffff";
 				document.getElementById('defaultOpen').style.backgroundColor = "#ff5050";
+				openUploadTab(new CustomEvent("invalid"), 'BasicInfo');
 			}
 
 			function environmentTabInvalid(){
 				document.getElementById('environmentTab').style.color = "#ffffff";
 				document.getElementById('environmentTab').style.backgroundColor = "#ff5050";
+				openUploadTab(new CustomEvent("invalid"), 'Environment');
 			}
 
 			function detailsTabInvalid(){
 				document.getElementById('detailsTab').style.color = "#ffffff";
 				document.getElementById('detailsTab').style.backgroundColor = "#ff5050";
+				openUploadTab(new CustomEvent("invalid"), 'Details');
 			}
 
 			function observationsTabInvalid(){
 				document.getElementById('observationsTab').style.color = "#ffffff";
 				document.getElementById('observationsTab').style.backgroundColor = "#ff5050";
+				openUploadTab(new CustomEvent("invalid"), 'Observations');
 			}
 		</script>
  	</div>
