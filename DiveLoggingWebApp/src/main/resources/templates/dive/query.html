@@ -181,7 +181,7 @@
 					<tr th:each="d : ${returnedDives}">
 						<td class="green-button"><a th:href ="@{'/dive/view/'+${d.id}}" th:text="View">Link</a></td>
 						<td th:text="${d.date}">Date</td>
-						<td><a th:href ="@{'/user/view/'+${d.diveOwner.username}}" th:text="${d.diveOwner.username}">Dive Owner Username</td>
+						<td><a th:href="@{'/user/view/'+${d.diveOwner.username}}" th:text="${d.diveOwner.username}">Dive Owner Username</td>
 						<td th:text="${d.noOfParticipants}">No. of Participants</td>
 						<td th:text="${d.country}">Dive Country</td>
 						<td th:text="${d.location}">Dive Location</td>
