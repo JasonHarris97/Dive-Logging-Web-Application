@@ -97,10 +97,10 @@
 			<script th:inline="javascript">
 			/*<![CDATA[*/
 				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
-				var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date, marker; 
+				var longitude, latitude, diveTitle, diveSite, divePurpose, diveCountry, diverName, date, diveID, diveLink, marker; 
 
 				var map = L.mapbox.map('map')
-				    .setView([0, 0], 3)
+				    .setView([0, 0], 2)
 				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'))
 
 				/*[# th:each="d : ${returnedDives}"]*/
@@ -114,16 +114,21 @@
 					diverName = /*[[${d.diveOwner.firstName}+' '+${d.diveOwner.lastName}]]*/ "null";
 					date = /*[[${d.date}]]*/ "null";
 
+					diveID = /*[[${d.id}]]*/ 1;
+					diveLink = "/dive/view/"+diveID.toString();
+					console.log(diveLink);
+
 					marker = L.marker([latitude, longitude], {
 					icon: L.mapbox.marker.icon({
-						'marker-size': 'large',
+						'marker-size': 'small',
 						'marker-symbol': 'circle',
-						'marker-color': '#4169E1'
+						'marker-color': '#e60000'
 					    	})
 					})
 
 					marker.bindPopup("<p>Title: "+diveTitle+"<br />Diver: "+diverName+"<br />Country: "+diveCountry+
-							"<br />Site: "+diveSite+"<br />Purpose: "+divePurpose+"<br />Date: "+date+"</p>");
+							"<br />Site: "+diveSite+"<br />Purpose: "+divePurpose+"<br />Date: "+date+"</p>"+
+							"<p>Link: <a href='" + diveLink +"'>View Log</a></p>");
 
 
 					marker.addTo(map);
