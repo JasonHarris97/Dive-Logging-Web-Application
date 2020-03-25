@@ -316,7 +316,7 @@
 				<!-- participantsList -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('participantsList')}? 'has-error':''">
 					<label for="participantsList" class="control-label">Participants List (Separate using comma)</label> 
-					<input placeholder="Enter a list of participants..." type="text" id="participantsList" class="form-control" th:field="*{participantsList}" />
+					<input maxlength="500" placeholder="Enter a list of participants..." type="text" id="participantsList" class="form-control" th:field="*{participantsList}" />
 					<p class="error-message" th:each="error: ${#fields.errors('participantsList')}" th:text="${error}">Validation error</p>
 				</div>
 
@@ -347,7 +347,7 @@
 				<!-- buoyancy -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('buoyancy')}? 'has-error':''">
 					<label for="buoyancy" class="control-label">Buoyancy Descrption</label> 
-					<input placeholder="Enter a buoyancy description..." type="text" id="buoyancy" class="form-control" th:field="*{buoyancy}" />
+					<input maxlength="50" placeholder="Enter a buoyancy description..." type="text" id="buoyancy" class="form-control" th:field="*{buoyancy}" />
 					<p class="error-message" th:each="error: ${#fields.errors('buoyancy')}" th:text="${error}">Validation error</p>
 				</div>
 
@@ -355,14 +355,14 @@
 					<!-- startCode -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('startCode')}? 'has-error':''">
 						<label for="startCode" class="control-label">Start Code</label> 
-						<input placeholder="Enter a start code..." type="text" id="startCode" class="form-control" th:field="*{startCode}" />
+						<input maxlength="30" placeholder="Enter a start code..." type="text" id="startCode" class="form-control" th:field="*{startCode}" />
 						<p class="error-message" th:each="error: ${#fields.errors('startCode')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- surfacingCode -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('surfacingCode')}? 'has-error':''">
 						<label for="surfacingCode" class="control-label">Surfacing Code</label> 
-						<input placeholder="Enter a surfacing code..." type="text" id="surfacingCode" class="form-control" th:field="*{surfacingCode}" />
+						<input maxlength="30" placeholder="Enter a surfacing code..." type="text" id="surfacingCode" class="form-control" th:field="*{surfacingCode}" />
 						<p class="error-message" th:each="error: ${#fields.errors('surfacingCode')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
@@ -372,7 +372,7 @@
 					<!-- equipment -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('equipment')}? 'has-error':''">
 						<label for="equipment" class="control-label">Equipment list (Separate by comma)</label> 
-						<input placeholder="Enter a list of equipment..." type="text" id="equipment" class="form-control" th:field="*{equipment}" />
+						<input maxlength="500" placeholder="Enter a list of equipment..." type="text" id="equipment" class="form-control" th:field="*{equipment}" />
 						<p class="error-message" th:each="error: ${#fields.errors('equipment')}" th:text="${error}">Validation error</p>
 					</div>
 
@@ -391,21 +391,21 @@
 					<!-- tankType -->
 					<div class="form-group custom-fg-3" th:classappend="${#fields.hasErrors('tankType')}? 'has-error':''">
 						<label for="tankType" class="control-label">Tank Type</label> 
-						<input placeholder="Enter a type of gas tank..." type="text" id="tankType" class="form-control" th:field="*{tankType}" />
+						<input maxlength="50" placeholder="Enter a type of gas tank..." type="text" id="tankType" class="form-control" th:field="*{tankType}" />
 						<p class="error-message" th:each="error: ${#fields.errors('tankType')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- gasType -->
 					<div class="form-group custom-fg-3" th:classappend="${#fields.hasErrors('gasType')}? 'has-error':''">
 						<label for="gasType" class="control-label">Gas Type</label> 
-						<input placeholder="Enter a gas type..." type="text" id="gasType" class="form-control" th:field="*{gasType}" />
+						<input maxlength="50" placeholder="Enter a gas type..." type="text" id="gasType" class="form-control" th:field="*{gasType}" />
 						<p class="error-message" th:each="error: ${#fields.errors('gasType')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- gasMix -->
 					<div class="form-group custom-fg-3" th:classappend="${#fields.hasErrors('gasMix')}? 'has-error':''">
 						<label for="gasMix" class="control-label">Gas Mix</label> 
-						<input placeholder="Enter a gas mix..." type="text" id="gasMix" class="form-control" th:field="*{gasMix}" />
+						<input maxlength="50" placeholder="Enter a gas mix..." type="text" id="gasMix" class="form-control" th:field="*{gasMix}" />
 						<p class="error-message" th:each="error: ${#fields.errors('gasMix')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
@@ -465,7 +465,7 @@
 				<!-- descrption -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('description')}? 'has-error':''">
 					<label for="description" class="control-label">Description</label> 
-					<input oninvalid="observationsTabInvalid()" placeholder="Enter a description..." type="text" id="description" class="form-control" th:field="*{description}" required/>
+					<input maxlength="1000" oninvalid="observationsTabInvalid()" placeholder="Enter a description..." type="text" id="description" class="form-control" th:field="*{description}" required/>
 					<p class="error-message" th:each="error: ${#fields.errors('description')}" th:text="${error}">Validation error</p>
 				</div>
 
@@ -473,14 +473,14 @@
 				<!-- faunaList -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('faunaList')}? 'has-error':''">
 					<label for="faunaList" class="control-label">Fauna (Separate by comma)</label> 
-					<input placeholder="Enter a list of fauna observed..." type="text" id="faunaList" class="form-control" th:field="*{faunaList}" />
+					<input maxlength="500" placeholder="Enter a list of fauna observed..." type="text" id="faunaList" class="form-control" th:field="*{faunaList}" />
 					<p class="error-message" th:each="error: ${#fields.errors('faunaList')}" th:text="${error}">Validation error</p>
 				</div>
 
 				<!-- floraList -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('floraList')}? 'has-error':''">
 					<label for="floraList" class="control-label">Flora (Separate by comma)</label> 
-					<input placeholder="Enter a list of flora observed..." type="text" id="floraList" class="form-control" th:field="*{floraList}" />
+					<input maxlength="500" placeholder="Enter a list of flora observed..." type="text" id="floraList" class="form-control" th:field="*{floraList}" />
 					<p class="error-message" th:each="error: ${#fields.errors('floraList')}" th:text="${error}">Validation error</p>
 				</div>
 
@@ -488,7 +488,7 @@
 				<!-- observationsList -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('observationsList')}? 'has-error':''">
 					<label for="observationsList" class="control-label">Observations (Separate by comma)</label> 
-					<input placeholder="Enter a list of other observations..."type="text" id="observationsList" class="form-control" th:field="*{observationsList}" />
+					<input maxlength="500" placeholder="Enter a list of other observations..."type="text" id="observationsList" class="form-control" th:field="*{observationsList}" />
 					<p class="error-message" th:each="error: ${#fields.errors('observationsList')}" th:text="${error}">Validation error</p>
 				</div>
 
