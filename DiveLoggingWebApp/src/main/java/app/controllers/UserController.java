@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import app.models.User;
 import app.services.DiveService;
 import app.services.UserService;
+import app.strings.StringLists;
 import app.web.QueryDto;
 import app.web.UserDto;
 
@@ -31,6 +32,7 @@ import app.web.UserDto;
 public class UserController{
 	
 	private final static Logger log = LoggerFactory.getLogger(UserController.class);
+	private StringLists stringLists = new StringLists();
 	
 	@Autowired
     private UserService userService;
@@ -55,6 +57,8 @@ public class UserController{
     
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
+    	 model.addAttribute("countries", stringLists.getCountries());
+         model.addAttribute("padiLevels",stringLists.getPadiLevels());
         return "user/registration";
     }
     
@@ -127,6 +131,8 @@ public class UserController{
 	    
 	    model.addAttribute("query", query);
 		model.addAttribute("returnedUsers", userService.findAll(PageRequest.of(page, size)));
+		model.addAttribute("countries", stringLists.getCountries());
+	    model.addAttribute("padiLevels",stringLists.getPadiLevels());
 		
 		return "user/find";
 	}
@@ -159,6 +165,8 @@ public class UserController{
 			model.addAttribute("returnedUsers", new ArrayList<String>());
 		}
 		
+		model.addAttribute("countries", stringLists.getCountries());
+	    model.addAttribute("padiLevels",stringLists.getPadiLevels());
 		model.addAttribute("query", query);
 		
 		return "user/"+query.getSource();

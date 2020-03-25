@@ -69,6 +69,9 @@ public class DiveController {
         
         model.addAttribute("query", query);
         model.addAttribute("returnedDives", diveService.findAll(PageRequest.of(page, size)));
+        
+        model.addAttribute("countries", stringLists.getCountries());
+        model.addAttribute("padiLevels",stringLists.getPadiLevels());
          
 		return "dive/query";
 	}
@@ -94,7 +97,8 @@ public class DiveController {
 		}
 		
 		if(query.getSource().equals("query") || query.getSource().equals("map")) {
-			if(query.getSearchOption().equals("all") || query.getSearchOption().equals("date")) {
+			if(query.getSearchOption().equals("all") || query.getSearchOption().equals("date")
+					|| query.getSearchOption().equals("country") || query.getSearchOption().equals("padiLevel")) {
 				model = performQueryPageable(query, model, page, size);
 			} else if(!query.getInputString().isEmpty()) {
 				model = performQueryPageable(query, model, page, size);
@@ -112,6 +116,9 @@ public class DiveController {
 		}
 		
 		model.addAttribute("query", query);
+		
+		model.addAttribute("countries", stringLists.getCountries());
+	    model.addAttribute("padiLevels",stringLists.getPadiLevels());
 		
 		return "dive/"+query.getSource();
 	}
@@ -187,6 +194,10 @@ public class DiveController {
         query.setPageSize("12");
         
         model.addAttribute("query", query);
+        
+        model.addAttribute("countries", stringLists.getCountries());
+        model.addAttribute("padiLevels",stringLists.getPadiLevels());
+        
         model.addAttribute("returnedDives", diveService.findAll(PageRequest.of(page, size)));
 	
 		return "dive/map";
@@ -240,7 +251,7 @@ public class DiveController {
     	
     	if(query.getSearchOption().equals("country")) {
 			model.addAttribute("returnedDives", 
-					diveService.findAllByCountry(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+					diveService.findAllByCountry(query.getCountry(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("username")){
 			model.addAttribute("returnedDives", 
 					diveService.findAllByDiveOwnerUsername(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
@@ -252,7 +263,7 @@ public class DiveController {
 					diveService.findAllByLocation(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("padiLevel")) {
 			model.addAttribute("returnedDives", 
-					diveService.findAllByDiveOwnerPadiLevel(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+					diveService.findAllByDiveOwnerPadiLevel(query.getPadiLevel(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
 		} else if (query.getSearchOption().equals("all")){
 			model.addAttribute("returnedDives", 
 					diveService.findAll(PageRequest.of(page, size, Sort.by(sortBy, orderBy))));

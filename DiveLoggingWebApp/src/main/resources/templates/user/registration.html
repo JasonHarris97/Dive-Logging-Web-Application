@@ -88,7 +88,9 @@
 				<!-- country -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('country')}? 'has-error':''">
 					<label for="country" class="control-label">Country</label> 
-					<input id="country" class="form-control" th:field="*{country}" />
+					<select class="form-control" id="country" th:field="*{country}">
+						<option th:each="c : ${countries}" th:value="${c}" th:text="${c}"></option>
+					</select>
 					<p class="error-message" th:each="error : ${#fields.errors('country')}" th:text="${error}">Validation error</p>
 				</div>
 			</div>
@@ -99,7 +101,9 @@
 				<!-- padiLevel -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('padiLevel')}? 'has-error':''">
 					<label for="padiLevel" class="control-label">PADI Level</label> 
-					<input id="padiLevel" class="form-control" th:field="*{padiLevel}" />
+					<select class="form-control" id="padiLevel" th:field="*{padiLevel}">
+						<option th:each="p : ${padiLevels}" th:value="${p}" th:text="${p}"></option>
+					</select>
 					<p class="error-message" th:each="error : ${#fields.errors('padiLevel')}" th:text="${error}">Validation error</p>
 				</div>
 

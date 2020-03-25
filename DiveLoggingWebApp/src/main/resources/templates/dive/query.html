@@ -143,6 +143,20 @@
 					</label>
 				</div>
 
+				<div id="inputCountryContainer">
+					<label for="country" class="control-label">Country</label> 
+					<select class="querySearchBar" id="country" th:field="*{country}">
+						<option th:each="c : ${countries}" th:value="${c}" th:text="${c}"></option>
+					</select>
+				</div>
+
+				<div id="inputPadiLevelContainer">
+					<label for="padiLevel" class="control-label">PADI Level</label> 
+					<select class="querySearchBar" id="padiLevel" th:field="*{padiLevel}">
+						<option th:each="p : ${padiLevels}" th:value="${p}" th:text="${p}"></option>
+					</select>
+				</div>
+
 				<button onclick="submitQuery()" class="green-button" type="button">GO</button>
 			</div>
 
@@ -320,6 +334,10 @@
 				var inputString = document.getElementById("inputString");
 				var inputStringHeader = document.getElementById("inputStringHeader"); 
 				var inputDateContainer = document.getElementById("inputDateContainer");
+
+				var inputCountryContainer = document.getElementById("inputCountryContainer");
+				var inputPadiLevelContainer = document.getElementById("inputPadiLevelContainer");
+
 				var orderByHeader = document.getElementById("orderByHeader");
 				var startDateInput = document.getElementById("startDate");
 				var endDateInput = document.getElementById("endDate");
@@ -334,15 +352,22 @@
 					inputString.disabled = false;
 				}
 
+				inputString.style.display = "none";
+				inputCountryContainer.style.display = "none";
+				inputPadiLevelContainer.style.display = "none";
+				inputDateContainer.style.display = "none";
+
+				startDateInput.style.backgroundColor = "white";
+				endDateInput.style.backgroundColor = "white";
+
 				if(radioValue == "date"){
-					inputString.style.display = "none";
 					inputDateContainer.style.display = "inline-block";
-					
+				} else if(radioValue == "country"){
+					inputCountryContainer.style.display = "inline-block";
+				} else if(radioValue == "padiLevel"){
+					inputPadiLevelContainer.style.display = "inline-block";
 				} else {
 					inputString.style.display = "inline-block";
-					inputDateContainer.style.display = "none";
-					startDateInput.style.backgroundColor = "white";
-					endDateInput.style.backgroundColor = "white";
 				}
 
 				if(radioValue == "all") {
@@ -379,7 +404,6 @@
 
 			if(query != null) {
 				if(source == "query"){
-					document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
 					var searchOptionToCheck = /*[[${query.searchOption}]]*/ null;
 					var orderByToCheck = /*[[${query.orderBy}]]*/ null;
 					var sortByToCheck = /*[[${query.sortBy}]]*/ null;
@@ -394,6 +418,17 @@
 					document.querySelector(query2).checked = true;
 					document.querySelector(query3).checked = true;
 					document.querySelector(query4).checked = true;
+					
+					if(searchOptionToCheck == "date"){
+						document.getElementById("startDate").text = /*[[${query.startDate}]]*/ null;
+						document.getElementById("endDate").text = /*[[${query.endDate}]]*/ null;
+					} else if(searchOptionToCheck == "padiLevel"){
+						document.getElementById("padiLevel").text = /*[[${query.inputString}]]*/ null;
+					} else if(searchOptionToCheck == "country") {
+						document.getElementById("country").text = /*[[${query.inputString}]]*/ null;
+					} else {
+						document.getElementById("inputString").text = /*[[${query.inputString}]]*/ null;
+					}
 				} else {
 					document.querySelector("input[name='searchOption'][value='all']").click();
 					document.querySelector("input[name='orderBy'][value='diveOwnerUsername']").checked = true;	
