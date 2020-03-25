@@ -76,7 +76,7 @@
 				<!-- diveTitle -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('diveTitle')}? 'has-error':''">
 					<label for="diveTitle" class="control-label">Title - Auto-generated if left blank</label> 
-					<input type="text" id="diveTitle" class="form-control" th:field="*{diveTitle}" />
+					<input type="text" maxlength="50" id="diveTitle" class="form-control" th:field="*{diveTitle}" />
 					<p class="error-message" th:each="error: ${#fields.errors('diveTitle')}" th:text="${error}">Validation error</p>
 				</div>
 
@@ -111,14 +111,14 @@
 					<!-- latitude -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('latitude')}? 'has-error':''">
 						<label for="latitude" class="control-label">Latitude (*)</label> 
-						<input type="number" value="" step="any" id="latitude" class="form-control" th:field="*{latitude}" />
+						<input type="number" min="-90" max="90" value="" step="any" id="latitude" class="form-control" th:field="*{latitude}" />
 						<p class="error-message" th:each="error: ${#fields.errors('latitude')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- longitude -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('longitude')}? 'has-error':''">
 						<label for="longitude" class="control-label">Longitude (*)</label> 
-						<input type="number" value="" step="any" id="longitude" class="form-control" th:field="*{longitude}" />
+						<input type="number" min="-180" max="180" value="" step="any" id="longitude" class="form-control" th:field="*{longitude}" />
 						<p class="error-message" th:each="error: ${#fields.errors('longitude')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
@@ -138,7 +138,7 @@
 					<!-- location -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('location')}? 'has-error':''">
 						<label for="location" class="control-label">Location (*)</label> 
-						<input type="text" id="location" class="form-control" th:field="*{location}" />
+						<input type="text" maxlength="50" id="location" class="form-control" th:field="*{location}" />
 						<p class="error-message" th:each="error: ${#fields.errors('location')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
@@ -146,7 +146,7 @@
 				<!-- detailedLocation -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('detailedLocation')}? 'has-error':''">
 					<label for="detailedLocation" class="control-label">Detailed Location</label> 
-					<input type="text" id="detailedLocation" class="form-control" th:field="*{detailedLocation}" />
+					<input type="text" maxlength="100" id="detailedLocation" class="form-control" th:field="*{detailedLocation}" />
 					<p class="error-message" th:each="error: ${#fields.errors('detailedLocation')}" th:text="${error}">Validation error</p>
 				</div>
 			
@@ -156,21 +156,21 @@
 				<!-- diveSite -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('diveSite')}? 'has-error':''">
 					<label for="diveSite" class="control-label">Dive Site - Custom Description of Dive Site</label> 
-					<input type="text" id="diveSite" class="form-control" th:field="*{diveSite}" />
+					<input type="text" maxlength="100" id="diveSite" class="form-control" th:field="*{diveSite}" />
 					<p class="error-message" th:each="error: ${#fields.errors('diveSite')}" th:text="${error}">Validation error</p>
 				</div>
 				
 				<!-- divePurpose -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('divePurpose')}? 'has-error':''">
 					<label for="divePurpose" class="control-label">Dive Purpose</label> 
-					<input type="text" id="divePurpose" class="form-control" th:field="*{divePurpose}" />
+					<input type="text" maxlength="100" id="divePurpose" class="form-control" th:field="*{divePurpose}" />
 					<p class="error-message" th:each="error: ${#fields.errors('divePurpose')}" th:text="${error}">Validation error</p>
 				</div>
 
 				<!-- diveBuddy -->
 				<div class="form-group custom-fg-1" th:classappend="${#fields.hasErrors('diveBuddy')}? 'has-error':''">
 					<label for="diveBuddy" class="control-label">Dive Buddy - Designated Buddy for PADI Certifiction</label> 
-					<input type="text" id="diveBuddy" class="form-control" th:field="*{diveBuddy}" />
+					<input type="text" maxlength="50" id="diveBuddy" class="form-control" th:field="*{diveBuddy}" />
 					<p class="error-message" th:each="error: ${#fields.errors('diveBuddy')}" th:text="${error}">Validation error</p>
 				</div>
 		
@@ -252,14 +252,14 @@
 					<!-- waterDensity -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('waterDensity')}? 'has-error':''">
 						<label for="waterDensity" class="control-label">Water Density (kg/m^3)</label> 
-						<input type="number" value="0" step="any" id="waterDensity" class="form-control" th:field="*{waterDensity}" />
+						<input type="number" min="0" max="10000" value="0" step="any" id="waterDensity" class="form-control" th:field="*{waterDensity}" />
 						<p class="error-message" th:each="error: ${#fields.errors('waterDensity')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- altitude -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('altitude')}? 'has-error':''">
 						<label for="altitude" class="control-label">Altitude - Height above sea level (Metres)</label> 
-						<input type="number" value="" step="any" min="0" id="altitude" class="form-control" th:field="*{altitude}" />
+						<input type="number" min="0" max="8850" value="" step="any" id="altitude" class="form-control" th:field="*{altitude}" />
 						<p class="error-message" th:each="error: ${#fields.errors('altitude')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
@@ -269,14 +269,14 @@
 					<!-- airTemperature -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('airTemperature')}? 'has-error':''">
 						<label for="airTemperature" class="control-label">Air Temperature (Degrees Celsius)</label> 
-						<input type="number" value="" step="any" id="airTemperature" class="form-control" th:field="*{airTemperature}" />
+						<input type="number" min="-200" max="200" value="" step="any" id="airTemperature" class="form-control" th:field="*{airTemperature}" />
 						<p class="error-message" th:each="error: ${#fields.errors('airTemperature')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- waterTemperature -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('waterTemperature')}? 'has-error':''">
 						<label for="waterTemperature" class="control-label">Water Temperature (Degrees Celsius)</label> 
-						<input type="number" value="" step="any" id="waterTemperature" class="form-control" th:field="*{waterTemperature}" />
+						<input type="number" min="-200" max="200" value="" step="any" id="waterTemperature" class="form-control" th:field="*{waterTemperature}" />
 						<p class="error-message" th:each="error: ${#fields.errors('waterTemperature')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
@@ -307,7 +307,7 @@
 					<!-- noOfParticipants -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('noOfParticipants')}? 'has-error':''">
 						<label for="noOfParticipants" class="control-label">Number of Participants</label> 
-						<input type="number" value="1" min="0" id="noOfParticipants" class="form-control" th:field="*{noOfParticipants}" />
+						<input type="number" value="1" min="0" max="2000" id="noOfParticipants" class="form-control" th:field="*{noOfParticipants}" />
 						<p class="error-message" th:each="error: ${#fields.errors('noOfParticipants')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
@@ -323,7 +323,7 @@
 					<!-- weightCarried -->
 					<div class="form-group custom-fg-3" th:classappend="${#fields.hasErrors('weightCarried')}? 'has-error':''">
 						<label for="weightCarried" class="control-label">Weight Carried (kg)</label> 
-						<input type="number" value="" min="0" step="any" id="weightCarried" class="form-control" th:field="*{weightCarried}" />
+						<input type="number" value="" min="0" max="2000" step="any" id="weightCarried" class="form-control" th:field="*{weightCarried}" />
 						<p class="error-message" th:each="error: ${#fields.errors('weightCarried')}" th:text="${error}">Validation error</p>
 					</div>
 
@@ -331,14 +331,14 @@
 					<!-- bottomTime -->
 					<div class="form-group custom-fg-3" th:classappend="${#fields.hasErrors('bottomTime')}? 'has-error':''">
 						<label for="bottomTime" class="control-label">Bottom Time (Minutes)</label> 
-						<input type="number" value="" min="0" step="any" id="bottomTime" class="form-control" th:field="*{bottomTime}" />
+						<input type="number" value="" min="0" max="5000" step="any" id="bottomTime" class="form-control" th:field="*{bottomTime}" />
 						<p class="error-message" th:each="error: ${#fields.errors('bottomTime')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- maxDepth -->
 					<div class="form-group custom-fg-3" th:classappend="${#fields.hasErrors('maxDepth')}? 'has-error':''">
 						<label for="maxDepth" class="control-label">Max Depth (Metres)</label> 
-						<input type="number" value="" min="0" step="any" id="maxDepth" class="form-control" th:field="*{maxDepth}" />
+						<input type="number" value="" min="0" max="10000" step="any" id="maxDepth" class="form-control" th:field="*{maxDepth}" />
 						<p class="error-message" th:each="error: ${#fields.errors('maxDepth')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
@@ -414,14 +414,14 @@
 					<!-- fractionOfHelium -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('fractionOfHelium')}? 'has-error':''">
 						<label for="fractionOfHelium" class="control-label">Fraction of Helium (Percentage)</label> 
-						<input type="number" value="0" min="0" step="any" id="fractionOfHelium" class="form-control" th:field="*{fractionOfHelium}" />
+						<input type="number" value="0" min="0" max="100" step="any" id="fractionOfHelium" class="form-control" th:field="*{fractionOfHelium}" />
 						<p class="error-message" th:each="error: ${#fields.errors('fractionOfHelium')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- fractionOfNitrogen -->
 					<div class="form-group custom-fg-2" th:classappend="${#fields.hasErrors('fractionOfNitrogen')}? 'has-error':''">
 						<label for="fractionOfNitrogen" class="control-label">Fraction of Nitrogen (Percentage)</label> 
-						<input type="number" value="0" min="0" step="any" id="fractionOfNitrogen" class="form-control" th:field="*{fractionOfNitrogen}" />
+						<input type="number" value="0" min="0" max="100" step="any" id="fractionOfNitrogen" class="form-control" th:field="*{fractionOfNitrogen}" />
 						<p class="error-message" th:each="error: ${#fields.errors('fractionOfNitrogen')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
@@ -430,21 +430,21 @@
 					<!-- tankSize -->
 					<div class="form-group custom-fg-3" th:classappend="${#fields.hasErrors('tankSize')}? 'has-error':''">
 						<label for="tankSize" class="control-label">Tank Size (Litres)</label> 
-						<input type="number" value="" min="0" step="any" id="tankSize" class="form-control" th:field="*{tankSize}" />
+						<input type="number" value="" min="0" max="10000" step="any" id="tankSize" class="form-control" th:field="*{tankSize}" />
 						<p class="error-message" th:each="error: ${#fields.errors('tankSize')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- tankStart -->
 					<div class="form-group custom-fg-3" th:classappend="${#fields.hasErrors('tankStart')}? 'has-error':''">
 						<label for="tankStart" class="control-label">Tank Start Pressure (Bar)</label> 
-						<input type="number" value="" min="0" step="any" id="tankStart" class="form-control" th:field="*{tankStart}" />
+						<input type="number" value="" min="0" max="10000" step="any" id="tankStart" class="form-control" th:field="*{tankStart}" />
 						<p class="error-message" th:each="error: ${#fields.errors('tankStart')}" th:text="${error}">Validation error</p>
 					</div>
 
 					<!-- tankEnd -->
 					<div class="form-group custom-fg-3" th:classappend="${#fields.hasErrors('tankEnd')}? 'has-error':''">
 						<label for="tankEnd" class="control-label">Tank End Pressure (Bar)</label> 
-						<input type="number" value="" min="0" step="any" id="tankEnd" class="form-control" th:field="*{tankEnd}" />
+						<input type="number" value="" min="0" max="10000" step="any" id="tankEnd" class="form-control" th:field="*{tankEnd}" />
 						<p class="error-message" th:each="error: ${#fields.errors('tankEnd')}" th:text="${error}">Validation error</p>
 					</div>
 				</div>
