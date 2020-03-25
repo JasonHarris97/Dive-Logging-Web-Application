@@ -120,9 +120,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testDive.setCountry(address.country());
 			testDive.setLocation(address.city());
 			testDive.setDetailedLocation(address.fullAddress());
-			
+		
 			testDive.setWeather(faker.weather().description());
-			testDive.setVisibility(stringLists.getVisabilityOptions().get(rand.nextInt(stringLists.getVisabilityOptions().size())));
+			testDive.setVisibility(stringLists.getVisibilityTypes().get(rand.nextInt(stringLists.getVisibilityTypes().size())));
 			testDive.setWaterType(stringLists.getWaterTypes().get(rand.nextInt(stringLists.getWaterTypes().size())));
 			testDive.setWaterBodyType("Lake");
 			testDive.setWaterDensity(faker.number().randomDouble(2, 0, 10));

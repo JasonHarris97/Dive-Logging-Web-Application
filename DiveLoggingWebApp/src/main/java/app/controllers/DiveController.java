@@ -27,6 +27,7 @@ import app.models.Dive;
 import app.models.User;
 import app.services.DiveService;
 import app.services.UserService;
+import app.strings.StringLists;
 import app.web.QueryDto;
 
 @Controller
@@ -34,6 +35,7 @@ import app.web.QueryDto;
 public class DiveController {
 	
 	private final static Logger log = LoggerFactory.getLogger(InitialDataLoader.class);
+	private StringLists stringLists = new StringLists();
 	
 	@Autowired
 	private DiveService diveService;
@@ -125,6 +127,14 @@ public class DiveController {
 	
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
 	public String showUploadDiveForm(Model model) {
+		model.addAttribute("waterTypes", stringLists.getWaterTypes());
+		model.addAttribute("waterBodyTypes", stringLists.getWaterBodyTypes());
+		model.addAttribute("tideLevels", stringLists.getTideLevels());
+		model.addAttribute("countries", stringLists.getCountries());
+		model.addAttribute("weatherTypes", stringLists.getWeatherTypes());
+		model.addAttribute("visibilityTypes", stringLists.getVisibilityTypes());
+		model.addAttribute("entryMethods", stringLists.getEntryMethods());
+		model.addAttribute("diveSuitTypes", stringLists.getDivingSuitTypes());
 		return "dive/upload";
 	}
 	
