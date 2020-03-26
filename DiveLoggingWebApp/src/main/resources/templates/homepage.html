@@ -36,26 +36,62 @@
 <body>
 	<!-- MAIN -->
 	<div layout:fragment="content">
-		<div class="tableDiv">
-			<div class="block" style="background-color:#aaa;">
-				<h1 class="descriptionText">Query our database of dive logs from all across the world!</h1>
-				<button type="button" class="grey-button"><a th:href="@{/dive/query}">Query</a></button>
+		<div class="homePageContainer">
+			<div class="block-style float-left">
+				<h1 class="block-title">Query</h1>
+				<a class="block-button" th:href="@{/dive/query}">GO</a>
+
+
+				<p class="block-description">Query our ever growing database of dive logs. Users from all across the world are adding logs daily!</p>
+				<ul class="block-list">
+					<li>Search by user, location and PADI level</li>
+					<li>Order and sort the results</li>
+					<li>View further deatils for each dive log</li>
+				</ul>
+
 			</div>
 
-			<div class="block" style="background-color:#bbb;">
-				<h1 class="descriptionText">Find other divers and see what they have discovered!</h1>
-				<button type="button" class="grey-button"><a th:href="@{/user/find}">Find</a></button>
+			<div class="block-style float-right">
+				<h1 class="block-title">Discover</h1>
+				<a class="block-button" th:href="@{/dive/map}">GO</a>
+
+				<p class="block-description">Discover where your fellow divers have been and what they have discoverd using our interactive world map!</p>
+				<ul class="block-list">
+					<li>See the latest uploaded dive logs</li>
+					<li>Fully queryable</li>
+					<li>See your friends latest updates</li>
+				</ul>
+				
 			</div>
 
-			<div class="block" style="background-color:#ccc;">
-				<h1 class="descriptionText">Contribute to our ever growing databse of dive logs!</h1>
-				<button type="button" class="grey-button"><a th:href="@{/dive/upload}">Upload</a></button>
+
+
+			<div class="block-style float-left">
+				<h1 class="block-title">Upload</h1>
+				<a class="block-button" th:href="@{/dive/upload}">GO</a>
+
+				<p class="block-description">Share your experiences and upload your own dive logs!</p>
+				<ul class="block-list">
+					<li>Comprehensive dive logging capability</li>
+					<li>Upload images from your dives</li>
+					<li>Share with anyone</li>
+				</ul>
 			</div>
 
-			<div class="block" style="background-color:#ddd;">
-				<h1 class="descriptionText">Register to start uploading and get your own personlised experience!</h1>
-				<button type="button" class="grey-button"><a th:href="@{/user/registration}">Register</a></button>
+
+
+			<div class="block-style float-right">
+				<h1 class="block-title">Find</h1>
+				<a class="block-button" th:href="@{/user/find}">GO</a>
+
+				<p class="block-description">Find other divers from all across the world and start building your own community!</p>
+				<ul class="block-list">
+					<li>Find your friends</li>
+					<li>Get in contact with expert divers</li>
+					<li>See who our most active divers are</li>
+				</ul>
 			</div>
+
 		</div>
 	</div>
 	<!-- MAIN -->
