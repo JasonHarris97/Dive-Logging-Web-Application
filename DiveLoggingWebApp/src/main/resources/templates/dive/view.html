@@ -25,173 +25,340 @@
 
 		<div class="tab">
 			<button class="tablinks" onclick="openGenericTab(event, 'Overview')"  id="defaultOpen">Overview</button>
-			<button class="tablinks" onclick="openGenericTab(event, 'Environment')">Environment</button>
 			<button class="tablinks" onclick="openGenericTab(event, 'DiveDetails')">Dive Details</button>
 			<button class="tablinks" onclick="openGenericTab(event, 'Observations')">Observations</button>
 			<button class="tablinks" onclick="openGenericTab(event, 'DiveSiteMap')">Dive Site Map</button>
 			<button class="tablinks" onclick="openGenericTab(event, 'Images')">Images</button>
-			<button class="tablinks" onclick="openGenericTab(event, 'DiverDetails')">Diver Details</button>
 		</div>
+
+
+
+
 
 		<!-- First Tab -->
 		<div id="Overview" class="tabcontent">
-			<h2 th:text="${dive.diveTitle}+' - Dive #'+${dive.diveNo}"></h2>
-			
-			<h4>Diver</h4>
-			<p th:text="${dive.diveOwner.username}"> <a th:href="@{'/user/view/'+${dive.diveOwner.username}}"></a></p>
+			<div class="profile-top-banner">
+				<img class="profile-picture" th:if="${returnedUser.profilePicture != null}" th:src="@{'/getImage/'+${returnedUser.profilePicture.id}}">
 
-			<h4>Dive Buddy</h4>
-			<p th:text="${dive.diveBuddy}"></p>
+				<div class="profile-details">
+					<h1 th:text="${dive.diveTitle}+' - Dive #'+${dive.diveNo}"></h1>
+				</div>
+			</div>
 
-			<h4>No of Participants</h4>
-			<p th:text="${dive.noOfParticipants}"></p>
+			<div class="profile-left-banner">
+				<h1>Details</h1>
 
-			<h4>Participants List</h4>
-			<p th:text="${dive.participantsList}"></p>
+				<table>
+					<tr>
+						<td>Diver:</td>
+						<td th:text="${dive.diveOwner.username}"></td>
+					</tr>
+					<tr>
+						<td>PADI Level:</td>
+						<td th:text="${dive.diveOwner.padiLevel}"></td>
+					</tr>
+					<tr>
+						<td>Country:</td>
+						<td th:text="${dive.country}"></td>
+					</tr>
+					<tr>
+						<td>Location:</td>
+						<td th:text="${dive.location}"></td>
+					</tr>
+					<tr>
+						<td>Date</td>
+						<td th:text="${dive.date}"></td>
+					</tr>
+					<tr>
+						<td>Start:</td>
+						<td th:text="${dive.startTime}"></td>
+					</tr>
+					<tr>
+						<td>End:</td>
+						<td th:text="${dive.endTime}"></td>
+					</tr>
+					<tr>
+						<td>Max Depth:</td>
+						<td th:text="${dive.maxDepth}"></td>
+					</tr>
+				</table>
+			</div>
 
-			<h4>Dive Site</h4>
-			<p th:text="${dive.diveSite}"></p>
+			<div class="profile-right-banner">
+				<div class="profile-recent-dive">
+					<h1>Photos</h1>
 
-			<h4>Dive Purpose</h4>
-			<p th:text="${dive.divePurpose}"></p>
-
-			<h4>Date</h4>
-			<p th:text="${dive.date}"></p>
-
-			<h4>Start Time</h4>
-			<p th:text="${dive.startTime}"></p>
-
-			<h4>End Time</h4>
-			<p th:text="${dive.endTime}"></p>
-
-			<h4>Duration</h4>
-			<p th:text="${dive.diveDuration.toMinutes()}"></p>
-
-			<h4>Latitude</h4>
-			<p th:text="${dive.latitude}"></p>
-
-			<h4>Longitude</h4>
-			<p th:text="${dive.longitude}"></p>
-
-			<h4>Country</h4>
-			<p th:text="${dive.country}"></p>
-
-			<h4>Location</h4>
-			<p th:text="${dive.location}"></p>
-
-			<h4>Detailed Location</h4>
-			<p th:text="${dive.detailedLocation}"></p>
+					<div class="profile-recent-images">
+					<img class="recent-picture float-left" th:if="${dive.images.size() gt 0}" th:src="@{'/getImage/'+${dive.images.get(0).id}}">
+					<img class="recent-picture float-right" th:if="${dive.images.size() gt 1}" th:src="@{'/getImage/'+${dive.images.get(1).id}}">
+					<img class="recent-picture float-left" th:if="${dive.images.size() gt 2}" th:src="@{'/getImage/'+${dive.images.get(2).id}}">
+					<img class="recent-picture float-right" th:if="${dive.images.size() gt 3}" th:src="@{'/getImage/'+${dive.images.get(3).id}}">
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- Second Tab -->
-		<div id="Environment" class="tabcontent">
-
-			<h4>Weather</h4>
-			<p th:text="${dive.weather}"></p>
-
-			<h4>Visibility</h4>
-			<p th:text="${dive.visibility}"></p>
-
-			<h4>Air Temp</h4>
-			<p th:text="${dive.airTemperature}"></p>
-
-			<h4>Water Temp</h4>
-			<p th:text="${dive.waterTemperature}"></p>
-
-			<h4>Water Density</h4>
-			<p th:text="${dive.waterDensity}"></p>
-
-			<h4>Water Type</h4>
-			<p th:text="${dive.waterType}"></p>
-
-			<h4>Water Body Type</h4>
-			<p th:text="${dive.waterBodyType}"></p>
-
-			<h4>Tide Level</h4>
-			<p th:text="${dive.tideLevel}"></p>
-
-			<h4>Altitude</h4>
-			<p th:text="${dive.altitude}"></p>
-
-			<h4>Max Depth</h4>
-			<p th:text="${dive.maxDepth}"></p>
-		</div>
-
-		<!-- Third Tab -->
 		<div id="DiveDetails" class="tabcontent">
-			<h4>Entry</h4>
-			<p th:text="${dive.entry}"></p>
 
-			<h4>Dive Suit</h4>
-			<p th:text="${dive.diveSuit}"></p>
-
-			<h4>Equipment</h4>
-			<p th:text="${dive.equipment}"></p>
-
-			<h4>Tank Type</h4>
-			<p th:text="${dive.tankType}"></p>
-
-			<h4>Tank Size</h4>
-			<p th:text="${dive.tankSize}"></p>
-
-			<h4>Tank Start</h4>
-			<p th:text="${dive.tankStart}"></p>
-
-			<h4>Tank End</h4>
-			<p th:text="${dive.tankEnd}"></p>
-
-			<h4>Tank Usage</h4>
-			<p th:text="${dive.tankUsage}"></p>
-
-			<h4>Gas Type</h4>
-			<p th:text="${dive.gasType}"></p>
-
-			<h4>Gas Mix</h4>
-			<p th:text="${dive.gasMix}"></p>
-
-			<h4>Fraction Of Helium</h4>
-			<p th:text="${dive.fractionOfHelium}"></p>
-
-			<h4>Fraction Of Nitrogen</h4>
-			<p th:text="${dive.fractionOfNitrogen}"></p>
-
-			<h4>Weight Carried</h4>
-			<p th:text="${dive.weightCarried}"></p>
-
-			<h4>Buoyancy</h4>
-			<p th:text="${dive.buoyancy}"></p>
-
-			<h4>Start Code</h4>
-			<p th:text="${dive.startCode}"></p>
-
-			<h4>Surfacing Code</h4>
-			<p th:text="${dive.surfacingCode}"></p>
+			<div class="log-banner float-left">
+				<h1>General</h1>
+	
+				<table>
+					<tr>
+						<td>Username:</td>
+						<td th:text="${dive.diveOwner.username}"></td>
+					</tr>
+					<tr>
+						<td>Name:</td>
+						<td th:text="${dive.diveOwner.fullName}"></td>
+					</tr>
+					<tr>
+						<td>PADI Level:</td>
+						<td th:text="${dive.diveOwner.padiLevel}"></td>
+					</tr>
+					<tr>
+						<td>Max Depth:</td>
+						<td th:text="${dive.maxDepth}"></td>
+					</tr>
+					<tr>
+						<td>Buoyancy:</td>
+						<td th:text="${dive.buoyancy}"></td>
+					</tr>
+					<tr>
+						<td>Start Code:</td>
+						<td th:text="${dive.startCode}"></td>
+					</tr>
+					<tr>
+						<td>Surfacing Code:</td>
+						<td th:text="${dive.surfacingCode}"></td>
+					</tr>
+				</table>
+			</div>
 
 
+			<div class="log-banner float-right">
+				<h1>Location</h1>
+	
+				<table>
+					<tr>
+						<td>Country:</td>
+						<td th:text="${dive.country}"></td>
+					</tr>
+					<tr>
+						<td>Location:</td>
+						<td th:text="${dive.location}"></td>
+					</tr>
+					<tr>
+						<td>Detailed Location:</td>
+						<td th:text="${dive.detailedLocation}"></td>
+					</tr>
+					<tr>
+						<td>Dive Site:</td>
+						<td th:text="${dive.diveSite}"></td>
+					</tr>
+					<tr>
+						<td>Latitude:</td>
+						<td th:text="${dive.latitude}"></td>
+					</tr>
+					<tr>
+						<td>Longitude:</td>
+						<td th:text="${dive.longitude}"></td>
+					</tr>
+				</table>
+			</div>
+
+
+			<div class="log-banner float-left">
+				<h1>Time and Date</h1>
+				<table>
+					<tr>
+						<td>Date</td>
+						<td th:text="${dive.date}"></td>
+					</tr>
+					<tr>
+						<td>Start:</td>
+						<td th:text="${dive.startTime}"></td>
+					</tr>
+					<tr>
+						<td>End:</td>
+						<td th:text="${dive.endTime}"></td>
+					</tr>
+					<tr>
+						<td>Duration:</td>
+						<td th:text="${dive.diveDuration.toMinutes()}"></td>
+					</tr>
+				</table>
+			</div>
+
+
+			<div class="log-banner float-right">
+				<h1>Environment</h1>
+	
+				<table>
+					<tr>
+						<td>Weather:</td>
+						<td th:text="${dive.weather}"></td>
+					</tr>
+					<tr>
+						<td>Visibility:</td>
+						<td th:text="${dive.visibility}"></td>
+					</tr>
+					<tr>
+						<td>Air Temp:</td>
+						<td th:text="${dive.airTemperature}"></td>
+					</tr>
+					<tr>
+						<td>Water Temp:</td>
+						<td th:text="${dive.waterTemperature}"></td>
+					</tr>
+					<tr>
+						<td>Water Density</td>
+						<td th:text="${dive.waterDensity}"></td>
+					</tr>
+					<tr>
+						<td>Water Type</td>
+						<td th:text="${dive.waterType}"></td>
+					</tr>
+					<tr>
+						<td>Water Body</td>
+						<td th:text="${dive.waterBodyType}"></td>
+					</tr>
+					<tr>
+						<td>Tide Level</td>
+						<td  th:text="${dive.tideLevel}"></td>
+					</tr>
+					<tr>
+						<td>Altitude</td>
+						<td  th:text="${dive.altitude}"></td>
+					</tr>
+				</table>
+			</div>
+
+
+			<div class="log-banner float-left">
+				<h1>Participants and Purpose</h1>
+				<table>
+					<tr>
+						<td>Dive Buddy:</td>
+						<td th:text="${dive.diveBuddy}"></td>
+					</tr>
+					<tr>
+						<td>No of Participants:</td>
+						<td th:text="${dive.noOfParticipants}"></td>
+					</tr>
+					<tr>
+						<td>Participants List:</td>
+						<td th:text="${dive.participantsList}"></td>
+					</tr>
+					<tr>
+						<td>Dive Purpose:</td>
+						<td th:text="${dive.divePurpose}"></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="log-banner float-right">
+				<h1>Equipment and Entry</h1>
+				<table>
+					<tr>
+						<td>Equipment:</td>
+						<td th:text="${dive.equipment}"></td>
+					</tr>
+					<tr>
+						<td>Dive Suit:</td>
+						<td th:text="${dive.diveSuit}"></td>
+					</tr>
+					<tr>
+						<td>Weight Carried</td>
+						<td th:text="${dive.weightCarried}"></td>
+					</tr>
+					<tr>
+						<td>Entry</td>
+						<td th:text="${dive.entry}"></td>
+					</tr>
+				</table>
+			</div>	
+
+			<div class="log-banner float-left">
+				<h1>Tank Details</h1>
+				<table>
+					<tr>
+						<td>Type:</td>
+						<td th:text="${dive.tankType}"></td>
+					</tr>
+					<tr>
+						<td>Size:</td>
+						<td th:text="${dive.tankSize}"></td>
+					</tr>
+					<tr>
+						<td>Start:</td>
+						<td th:text="${dive.tankStart}"></td>
+					</tr>
+					<tr>
+						<td>End:</td>
+						<td th:text="${dive.tankEnd}"></td>
+					</tr>
+					<tr>
+						<td>Usage:</td>
+						<td th:text="${dive.tankUsage}"></td>
+					</tr>
+				</table>
+			</div>
+
+
+			<div class="log-banner float-right">
+				<h1>Gas Details</h1>
+				<table>
+					<tr>
+						<td>Type:</td>
+						<td th:text="${dive.gasType}"></td>
+					</tr>
+					<tr>
+						<td>Gas Mix:</td>
+						<td th:text="${dive.gasMix}"></td>
+					</tr>
+					<tr>
+						<td>Helium %:</td>
+						<td th:text="${dive.fractionOfHelium}"></td>
+					</tr>
+					<tr>
+						<td>Nitrogen %:</td>
+						<td  th:text="${dive.fractionOfNitrogen}"></td>
+					</tr>
+	
+				</table>
+			</div>	
 		</div>
-
-
 
 		<!-- Fourth Tab -->
 		<div id="Observations" class="tabcontent">
-			<h4>Description</h4>
-			<p th:text="${dive.description}"></p>
+			<div class="log-banner float-left">
+				<h1>Description</h1>
+				<p th:text="${dive.description}"></p>
+			</div>
 
-			<h4>Fauna</h4>
-			<p th:text="${dive.faunaList}"></p>
+			<div class="log-banner float-right">
+				<h1>Observations</h1>
+				<p th:text="${dive.observationsList}"></p>
+			</div>
 
-			<h4>Flora</h4>
-			<p th:text="${dive.floraList}"></p>
+			<div class="log-banner float-left">
+				<h1>Fauna</h1>
+				<p th:text="${dive.faunaList}"></p>
+			</div>
 
-			<h4>ObservationsList</h4>
-			<p th:text="${dive.observationsList}"></p>
+			<div class="log-banner float-right">
+				<h1>Flora</h1>
+				<p th:text="${dive.floraList}"></p>
+			</div>
 		</div>
 
 
 
 		<!-- Fifth Tab -->
 		<div id="DiveSiteMap" class="tabcontent">
-			<div id='map' class="diveViewMap"></div>
+			<div id='map' class="tab-map"></div>
 
 			<script th:inline="javascript">
 				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
@@ -205,7 +372,7 @@
 			
 
 				var map = L.mapbox.map('map')
-				    .setView([latitude, longitude], 3)
+				    .setView([latitude, longitude], 5)
 				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
 
 				var marker = L.marker([latitude, longitude], {
@@ -225,37 +392,10 @@
 
 		<!-- Sixth Tab -->
 		<div id="Images" class="tabcontent">
-			<table id="myTable">
-				<tr class="header">
-					<th>Name</th>	
-					<th>Image</th>
-				</tr>
-				<tr th:each="i : ${dive.images}">
-					<td th:text="${i.fileName}">Filename</td>
-					<td><img class="diveImg" th:src="@{'/getImage/'+${i.id}}"></td>
-				</tr>
-			</table>
+			<div class="dive-image-container" th:each="i : ${dive.images}">
+				<img class="dive-image" th:src="@{'/getImage/'+${i.id}}">
+			</div>
 		</div>
-
-		<!-- Seventh Tab -->
-		<div id="DiverDetails" class="tabcontent">
-			<h4>Username</h4>
-			<p th:text="${dive.diveOwner.username}"> <a th:href="@{'/user/view/'+${dive.diveOwner.username}}"></a></p>
-			<h4>Full Name</h4>
-			<p th:text="${dive.diveOwner.firstName}+' '+${dive.diveOwner.lastName}"></p>
-			<h4>Owner Email</h4>
-			<p th:text="${dive.diveOwner.email}"></p>
-			<h4>Contact Number</h4>
-			<p th:text="${dive.diveOwner.contactNumber}"></p>
-			<h4>Padi Level</h4>
-			<p th:text="${dive.diveOwner.padiLevel}"></p>
-			<h4>Padi No</h4>
-			<p th:text="${dive.diveOwner.padiNo}"></p>
-			<h4>Number Of Dives</h4>
-			<p th:text="${dive.diveOwner.noOfDives}"></p>
-		</div>
-
-
 	</div>
 
 	<!-- MAIN -->

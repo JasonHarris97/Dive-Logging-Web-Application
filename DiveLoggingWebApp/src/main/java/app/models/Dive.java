@@ -120,16 +120,16 @@ public class Dive {
 	
 	private String surfacingCode; 
 	
-	@Column(columnDefinition="varchar(2000)")
+	@Column(columnDefinition="varchar(3000)")
 	private String description; 
 	
-	@Column(columnDefinition="varchar(500)")
+	@Column(columnDefinition="varchar(3000)")
 	private String faunaList;
 	
-	@Column(columnDefinition="varchar(500)")
+	@Column(columnDefinition="varchar(3000)")
 	private String floraList;
 	
-	@Column(columnDefinition="varchar(500)")
+	@Column(columnDefinition="varchar(3000)")
 	private String observationsList; 
 	
 	@OneToMany(mappedBy = "associatedDive")

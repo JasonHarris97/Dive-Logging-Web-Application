@@ -128,6 +128,7 @@ public class DiveController {
 	public String getDiveDetails(@PathVariable("diveId") String diveId, Model model) {
 		Dive dive = diveService.findById(Long.parseLong(diveId));
 		model.addAttribute("dive", dive);
+		model.addAttribute("returnedUser", dive.getDiveOwner());
 		
 		return "dive/view";
 	}
