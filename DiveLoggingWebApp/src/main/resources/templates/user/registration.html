@@ -109,16 +109,9 @@
 
 				<!-- padiNo -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('padiNo')}? 'has-error':''">
-					<label for="padiNo" class="control-label">PADI No</label> 
+					<label for="padiNo" class="control-label">PADI No (Put unknown if you don't have one)</label> 
 					<input id="padiNo" class="form-control" th:field="*{padiNo}" />
 					<p class="error-message" th:each="error : ${#fields.errors('padiNo')}" th:text="${error}">Validation error</p>
-				</div>
-
-				<!-- acceptTermsAndConditions -->
-				<div class="form-group" th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">  
-					<label class="control-label" for="terms"> I agree with the <a href="#">terms and conditions</a> for Registration. </label> 
-					<input id="terms" style="width:5%;" type="checkbox" th:field="*{terms}" required/> 
-					<p class="error-message" th:each="error : ${#fields.errors('terms')}" th:text="${error}">Validation error</p>
 				</div>
 			</div>
 

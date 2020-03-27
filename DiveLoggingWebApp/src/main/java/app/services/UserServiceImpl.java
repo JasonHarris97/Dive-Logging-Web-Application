@@ -74,7 +74,6 @@ public class UserServiceImpl implements UserService {
         user.setNoOfDives(0);
         user.setNoOfCountries(0);
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
-        this.setToDefaultProfile(user);
         return userRepository.save(user);
     }
     
@@ -170,6 +169,7 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByPadiLevel(padiLevel, pageable);
 	}
 	
+	@Override
 	public void setToDefaultProfile(User testUser) {
 		File file = new File("src/main/resources/images/default-profile-picture.jpg");
         FileInputStream fin = null;
@@ -187,7 +187,6 @@ public class UserServiceImpl implements UserService {
             dbFileService.saveDBFile(image);
             testUser.setProfilePicture(image);
             this.save(testUser);
-            
         } catch (FileNotFoundException e) {
             System.out.println("File not found" + e);
         }
