@@ -29,7 +29,8 @@
 /* ====================================================================================== */
 
 .navbar-custom {
-	font-size: 18px;
+	font-size: 22px;
+	font-family: Raleway;
 	background-color: #253a4e;
 	color: white;
 	text-decoration: none;
@@ -590,7 +591,7 @@
 }
 
 .profile-details h1{
-	font-size: 62px;
+	font-size: 55px;
 	width: 100%;
 	margin: 0px;
 	padding-top: 17px;
@@ -694,7 +695,7 @@
 	text-decoration: none;
 }
 
-.profile-map { 
+.tab-map { 
 	display: inline-block;
 	margin: 0;
 	height: 675px;
@@ -740,6 +741,11 @@
 	font-size: 22px;
 	padding-left: 28px;
 	padding-top: 10px;
+}
+
+.log-banner p {
+	font-size: 22px;
+	padding: 0px 35px;
 }
 
 

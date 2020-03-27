@@ -333,24 +333,32 @@
 
 		<!-- Fourth Tab -->
 		<div id="Observations" class="tabcontent">
-			<h4>Description</h4>
-			<p th:text="${dive.description}"></p>
+			<div class="log-banner float-left">
+				<h1>Description</h1>
+				<p th:text="${dive.description}"></p>
+			</div>
 
-			<h4>Fauna</h4>
-			<p th:text="${dive.faunaList}"></p>
+			<div class="log-banner float-right">
+				<h1>Observations</h1>
+				<p th:text="${dive.observationsList}"></p>
+			</div>
 
-			<h4>Flora</h4>
-			<p th:text="${dive.floraList}"></p>
+			<div class="log-banner float-left">
+				<h1>Fauna</h1>
+				<p th:text="${dive.faunaList}"></p>
+			</div>
 
-			<h4>ObservationsList</h4>
-			<p th:text="${dive.observationsList}"></p>
+			<div class="log-banner float-right">
+				<h1>Flora</h1>
+				<p th:text="${dive.floraList}"></p>
+			</div>
 		</div>
 
 
 
 		<!-- Fifth Tab -->
 		<div id="DiveSiteMap" class="tabcontent">
-			<div id='map' class="diveViewMap"></div>
+			<div id='map' class="tab-map"></div>
 
 			<script th:inline="javascript">
 				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
@@ -364,7 +372,7 @@
 			
 
 				var map = L.mapbox.map('map')
-				    .setView([latitude, longitude], 3)
+				    .setView([latitude, longitude], 5)
 				    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
 
 				var marker = L.marker([latitude, longitude], {
