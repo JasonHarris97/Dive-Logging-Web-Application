@@ -49,7 +49,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	private final static Random rand = new Random();
 	private final static StringLists stringLists = new StringLists();
 	
-	private final static int noOfTestUsers = 50;
+	private final static int noOfTestUsers = 2;
 	
 	private final static int noOfTestDives = 15;
 	
@@ -71,6 +71,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		loadTestProfilePictures(profilePictures);
+		loadTestDivePictures(divePictures);
 		
 		List<User> testUsers;
 		
@@ -177,6 +178,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testDive.setObservationsList("observation1 observation2");
 			
 			diveService.save(testDive);
+			setDiveImages(divePictures, testDive);
 		}	
 	}
 	
@@ -340,5 +342,61 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         dbFileService.saveDBFile(image);
         testUser.setProfilePicture(image);
         userService.save(testUser);
+	}
+	
+	private void loadTestDivePictures(byte[][] divePictures) {
+		for(int i = 0; i < 20; i++) {
+			File file = new File("src/main/resources/images/dive-pictures/"+(i+1)+".jfif");
+	        FileInputStream fin = null;
+	        
+	        try {
+	            // create FileInputStream object
+	            fin = new FileInputStream(file);
+	 
+	            divePictures[i] = new byte[(int)file.length()];
+	             
+	            // Reads up to certain bytes of data from this input stream into an array of bytes.
+	            fin.read(divePictures[i]);     
+	            log.info("LOADED " + i + ".jfif");  
+	        } catch (FileNotFoundException e) {
+	            System.out.println("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	        }
+	        catch (IOException ioe) {
+	            System.out.println("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	        }
+	        finally {
+	            // close the streams using close method
+	            try {
+	                if (fin != null) {
+	                    fin.close();
+	                }
+	            }
+	            catch (IOException ioe) {
+	                System.out.println("Error while closing stream: " + ioe);
+	            }
+	        }
+		}	
+	}
+	
+	private void setDiveImages(byte[][] divePictures, Dive testDive) {
+		for(int i = 0; i < 3; i++) {
+			DBFile image = new DBFile(testDive.getDiveOwner(), (i+1)+".jpg", "image/jpg", divePictures[rand.nextInt(20)]);
+	        image.setFileUse("diveImage");
+	        image.setAssociatedDive(testDive);
+	        dbFileService.saveDBFile(image);
+	        //diveService.save(testDive);
+		}
 	}
 }
