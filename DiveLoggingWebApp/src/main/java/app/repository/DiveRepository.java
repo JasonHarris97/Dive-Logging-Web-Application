@@ -16,6 +16,7 @@ import app.models.User;
 public interface DiveRepository extends JpaRepository<Dive, Long> {
 	Dive findByDiveOwner(User diveOwner);
 	Dive findById(long id);
+	Dive findTop1ByDiveOwnerOrderByDate(User diveOwner);
 	
 	@Query(value = "SELECT * FROM dive LIMIT 50", nativeQuery = true)
 	Iterable<Dive> findFifty();

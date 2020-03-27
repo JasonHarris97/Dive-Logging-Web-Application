@@ -88,11 +88,16 @@
 
 			<div class="profile-right-banner">
 				<div class="profile-recent-dive">
-					<h1>Test</h1>
-				</div>
+					<h1>Most Recent Dive</h1>
 
-				<div class="profile-recent-images">
-					<h1>Test</h1>
+					<p th:if="${mostRecentDive != null}" th:text="${mostRecentDive.date}"></p>
+					<p th:if="${mostRecentDive != null}" th:text="${mostRecentDive.country}"></p>
+					<a class="viewlog-button" th:if="${mostRecentDive != null}" th:href="@{'/dive/view/'+${mostRecentDive.id}}">View Log</a>
+					<p th:if="${mostRecentDive == null}">No logged dives!</p>
+					<div class="profile-recent-images">
+					<span th:if="${mostRecentDive != null}"><img class="recent-picture float-left" th:if="${mostRecentDive.images.size() gt 0}" th:src="@{'/getImage/'+${mostRecentDive.images.get(0).id}}"></span>
+					<span th:if="${mostRecentDive != null}"><img class="recent-picture float-right" th:if="${mostRecentDive.images.size() gt 1}" th:src="@{'/getImage/'+${mostRecentDive.images.get(1).id}}"></span>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -142,4 +142,9 @@ public class DiveServiceImpl implements DiveService{
 	public Page<Dive> findAllByDateBetween(LocalDate startDate, LocalDate endDate, Pageable pageable) {
 		return diveRepository.findByDateBetween(startDate, endDate, pageable);
 	}
+
+	@Override
+	public Dive findMostRecentByUser(User diveOwner) {
+		return diveRepository.findTop1ByDiveOwnerOrderByDate(diveOwner);
+	}
 }

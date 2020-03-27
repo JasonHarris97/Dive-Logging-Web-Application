@@ -112,6 +112,7 @@ public class UserController{
 			}
 		}
 		model.addAttribute("returnedDives", diveService.findAllByDiveOwner(user));
+		model.addAttribute("mostRecentDive", diveService.findMostRecentByUser(user));
 		model.addAttribute("returnedUser", user);
 		
 		return "user/view";
