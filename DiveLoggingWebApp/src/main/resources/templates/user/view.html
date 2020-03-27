@@ -93,6 +93,11 @@
 		<!-- Second Tab -->
 		<div id="DiveHistory" class="tabcontent">
 			<!-- Table -->
+
+			<div class="no-results" th:if="${#lists.isEmpty(returnedDives)}">
+				<h1>No logs in history!</h1>
+			</div>
+
 			<table id="myTable" class="resultsTable">
 				<tr class="header">
 					<th class="detailsCol">Details</th>
@@ -113,12 +118,6 @@
 						<td th:text="${d.country}">Dive Country</td>
 						<td th:text="${d.location}">Dive Location</td>
 					</tr>
-				</div>
-				<div th:if="${#lists.isEmpty(returnedDives)}">
-					<tr id="empty-results"></tr>
-					<script>
-						document.getElementById("empty-results").innerHTML = "No dives for this query";
-					</script>
 				</div>
 			</table>
 		</div>

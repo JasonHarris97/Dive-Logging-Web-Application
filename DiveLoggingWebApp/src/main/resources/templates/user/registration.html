@@ -29,35 +29,35 @@
 				<!-- username -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('username')}? 'has-error':''">
 					<label for="username" class="control-label">Username</label> 
-					<input id="username" class="form-control" th:field="*{username}" />
+					<input id="username" maxlength="25" class="form-control" th:field="*{username}" />
 					<p class="error-message" th:each="error : ${#fields.errors('username')}" th:text="${error}">Validation error</p>
 				</div>
 
 				<!-- email -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
 					<label for="email" class="control-label">E-mail</label> 
-					<input id="email" class="form-control" th:field="*{email}" />
+					<input id="email" maxlength="50" class="form-control" th:field="*{email}" />
 					<p class="error-message" th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation error</p>
 				</div>
 
 				<!-- confirmEmail -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
 					<label for="confirmEmail" class="control-label">Confirm e-mail</label> 
-					<input id="confirmEmail" class="form-control" th:field="*{confirmEmail}" />
+					<input id="confirmEmail" maxlength="50" class="form-control" th:field="*{confirmEmail}" />
 					<p class="error-message" th:each="error : ${#fields.errors('confirmEmail')}" th:text="${error}">Validation error</p>
 				</div>
 
 				<!-- password -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
 					<label for="password" class="control-label">Password</label> 
-					<input id="password" class="form-control" type="password" th:field="*{password}" />
+					<input id="password" maxlength="18" class="form-control" type="password" th:field="*{password}" />
 					<p class="error-message" th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation error</p>
 				</div>
 
 				<!-- confirmPassword-->
 				<div class="form-group" th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
 					<label for="confirmPassword" class="control-label">Confirm password</label> 
-					<input id="confirmPassword" class="form-control" type="password" th:field="*{confirmPassword}" />
+					<input id="confirmPassword" maxlength="18" class="form-control" type="password" th:field="*{confirmPassword}" />
 					<p class="error-message" th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}">Validation error</p>
 				</div>
 			</div>
@@ -67,21 +67,21 @@
 				<!-- firstName -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
 					<label for="firstName" class="control-label">First name</label> 
-					<input id="firstName" class="form-control" th:field="*{firstName}" />
+					<input id="firstName" maxlength="25" class="form-control" th:field="*{firstName}" />
 					<p class="error-message" th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>
 				</div>
 
 				<!-- lastName -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
 					<label for="lastName" class="control-label">Last name</label> 
-					<input id="lastName" class="form-control" th:field="*{lastName}" />
+					<input id="lastName" maxlength="25" class="form-control" th:field="*{lastName}" />
 					<p class="error-message" th:each="error : ${#fields.errors('lastName')}" th:text="${error}">Validation error</p>
 				</div>
 
 				<!-- contactNumber -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('contactNumber')}? 'has-error':''">
 					<label for="contactNumber" class="control-label">Contact Number</label> 
-					<input id="contactNumber" class="form-control" th:field="*{contactNumber}" />
+					<input id="contactNumber" maxlength="15" class="form-control" th:field="*{contactNumber}" />
 					<p class="error-message" th:each="error : ${#fields.errors('contactNumber')}" th:text="${error}">Validation error</p>
 				</div>
 
@@ -110,7 +110,7 @@
 				<!-- padiNo -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('padiNo')}? 'has-error':''">
 					<label for="padiNo" class="control-label">PADI No (Put unknown if you don't have one)</label> 
-					<input id="padiNo" class="form-control" th:field="*{padiNo}" />
+					<input id="padiNo" maxlength="10" class="form-control" th:field="*{padiNo}" />
 					<p class="error-message" th:each="error : ${#fields.errors('padiNo')}" th:text="${error}">Validation error</p>
 				</div>
 			</div>

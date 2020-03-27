@@ -97,14 +97,7 @@ public class DiveController {
 		}
 		
 		if(query.getSource().equals("query") || query.getSource().equals("map")) {
-			if(query.getSearchOption().equals("all") || query.getSearchOption().equals("date")
-					|| query.getSearchOption().equals("country") || query.getSearchOption().equals("padiLevel")) {
-				model = performQueryPageable(query, model, page, size);
-			} else if(!query.getInputString().isEmpty()) {
-				model = performQueryPageable(query, model, page, size);
-			} else {
-				model.addAttribute("returnedDives", new ArrayList<String>());
-			}
+			model = performQueryPageable(query, model, page, size);
 		} else {
 			if(query.getSearchOption().equals("all")) {
 				model = performQuery(query, model);
