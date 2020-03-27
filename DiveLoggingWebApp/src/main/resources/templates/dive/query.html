@@ -195,7 +195,7 @@
 							<span th:case="'country'" th:text="${d.country}"></span>
 							<span th:case="'location'" th:text="${d.location}"></span>
 							<span th:case="'diveOwnerPadiLevel'" th:text="${d.diveOwner.padiLevel}"></span>
-							<span th:case="'diveDuration'" th:text="${d.diveDuration}"></span>
+							<span th:case="'diveDuration'" th:text="${d.diveDuration.toMinutes()}"></span>
 							<span th:case="'airTemperature'" th:text="${d.airTemperature}"></span>
 							<span th:case="'waterTemperature'" th:text="${d.waterTemperature}"></span>
 							<span th:case="'noOfParticipants'" th:text="${d.noOfParticipants}"></span>
