@@ -131,7 +131,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testDive.setLatitude(Double.parseDouble(faker.address().latitude()));
 			testDive.setLongitude(Double.parseDouble(faker.address().longitude()));
 			
-			testDive.setCountry(address.country());
+			testDive.setCountry(stringLists.getCountries().get(rand.nextInt(stringLists.getCountries().size())));
 			testDive.setLocation(address.city());
 			testDive.setDetailedLocation(address.fullAddress());
 		
@@ -172,10 +172,10 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testDive.setStartCode("startcode");
 			testDive.setSurfacingCode("surfacingcode");
 			
-			testDive.setDescription("Test description");
-			testDive.setFaunaList("animal1 animal2");
-			testDive.setFloraList("plant1 plant2 plant3");
-			testDive.setObservationsList("observation1 observation2");
+			testDive.setDescription(faker.lorem().paragraph(10));
+			testDive.setFaunaList(faker.lorem().paragraph(10));
+			testDive.setFloraList(faker.lorem().paragraph(10));
+			testDive.setObservationsList(faker.lorem().paragraph(10));
 			
 			diveService.save(testDive);
 			setDiveImages(divePictures, testDive);
@@ -244,7 +244,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		testDive.setDiveDuration(Duration.between(LocalTime.now(), LocalTime.now()));
 		testDive.setLatitude(20.0);
 		testDive.setLongitude(24.0);
-		testDive.setCountry("England the almighty country of peace and Land of Coronavirus");
+		testDive.setCountry("England");
 		testDive.setLocation("Brazil");
 		testDive.setDetailedLocation("Brazil, Sao Paulo");
 		testDive.setWeather("Rainy");
@@ -276,10 +276,10 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		testDive.setSurfacingCode("surfacing code");
 		testDive.setMaxDepth(345.67);
 		testDive.setAltitude(346);
-		testDive.setDescription("Test description");
-		testDive.setFaunaList("animal1 animal2");
-		testDive.setFloraList("plant1 plant2 plant3");
-		testDive.setObservationsList("observation1 observation2");
+		testDive.setDescription(faker.lorem().paragraph(10));
+		testDive.setFaunaList(faker.lorem().paragraph(10));
+		testDive.setFloraList(faker.lorem().paragraph(10));
+		testDive.setObservationsList(faker.lorem().paragraph(10));
 		
 		diveService.save(testDive);
 		setDiveImages(divePictures, testDive);
