@@ -264,7 +264,18 @@
 
 
 			function submitOnClick(){
-				document.getElementById("queryForm").submit();
+				if (document.querySelector("input[name='searchOption'][value='name']").checked == true ||
+						document.querySelector("input[name='searchOption'][value='username']").checked == true ||
+							document.querySelector("input[name='searchOption'][value='padiNo']").checked == true ) {
+					var inputString = document.getElementById("inputString");
+					if(!!inputString.value){
+						document.getElementById("queryForm").submit();
+					} else {
+						alert("Enter something in the search bar!");
+					}
+				} else {
+					document.getElementById("queryForm").submit();
+				}
 			}
 
  			var query = /*[[${query}]]*/ null;
