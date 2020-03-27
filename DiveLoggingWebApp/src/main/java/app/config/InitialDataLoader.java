@@ -221,7 +221,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		testUser.setNoOfCountries(0);
 		testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
 		userService.save(testUser);
-		loadDefaultProfile(testUser);
+		userService.setToDefaultProfile(testUser);
 		
 		// Test Dive Log
 		Dive testDive = new Dive(testUser, "Test Description. Dive Description. Etc.");
@@ -281,50 +281,5 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	    return dateToConvert.toInstant()
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
-	}
-	
-	private void loadDefaultProfile(User testUser) {
-		File file = new File("src/main/resources/images/default-profile-picture.jpg");
-        FileInputStream fin = null;
-        
-        try {
-            // create FileInputStream object
-            fin = new FileInputStream(file);
- 
-            byte fileContent[] = new byte[(int)file.length()];
-             
-            // Reads up to certain bytes of data from this input stream into an array of bytes.
-            fin.read(fileContent);
-            DBFile image = new DBFile(testUser, "default-profile-picture.jpg", "image/jpg", fileContent);
-            image.setFileUse("profilePicture");
-            dbFileService.saveDBFile(image);
-            testUser.setProfilePicture(image);
-            userService.save(testUser);
-            
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found" + e);
-            log.info("FILE NOT FOUND");
-            log.info("FILE NOT FOUND");
-            log.info("FILE NOT FOUND");
-            log.info("FILE NOT FOUND");
-        }
-        catch (IOException ioe) {
-            System.out.println("Exception while reading file " + ioe);
-            log.info("EXCEPTION WHILTE READING FILE");
-            log.info("EXCEPTION WHILTE READING FILE");
-            log.info("EXCEPTION WHILTE READING FILE");
-            log.info("EXCEPTION WHILTE READING FILE");
-        }
-        finally {
-            // close the streams using close method
-            try {
-                if (fin != null) {
-                    fin.close();
-                }
-            }
-            catch (IOException ioe) {
-                System.out.println("Error while closing stream: " + ioe);
-            }
-        }
 	}
 }

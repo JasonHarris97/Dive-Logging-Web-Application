@@ -15,6 +15,9 @@ public interface UserService extends UserDetailsService {
     User findById(long Id);
     User save(UserDto registration);
     
+    void setToDefaultProfile(User testUser);
+    
+    
     void save(User user);
     long count();
     

@@ -1,5 +1,9 @@
 package app.services;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -15,8 +19,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import app.models.DBFile;
 import app.models.Role;
 import app.models.User;
+import app.repository.DBFileRepository;
 import app.repository.UserRepository;
 import app.web.UserDto;
 
@@ -25,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private DBFileService dbFileService;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -158,5 +167,42 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Page<User> findByPadiLevel(String padiLevel, Pageable pageable) {
 		return userRepository.findByPadiLevel(padiLevel, pageable);
+	}
+	
+	public void setToDefaultProfile(User testUser) {
+		File file = new File("src/main/resources/images/default-profile-picture.jpg");
+        FileInputStream fin = null;
+        
+        try {
+            // create FileInputStream object
+            fin = new FileInputStream(file);
+ 
+            byte fileContent[] = new byte[(int)file.length()];
+             
+            // Reads up to certain bytes of data from this input stream into an array of bytes.
+            fin.read(fileContent);
+            DBFile image = new DBFile(testUser, "default-profile-picture.jpg", "image/jpg", fileContent);
+            image.setFileUse("profilePicture");
+            dbFileService.saveDBFile(image);
+            testUser.setProfilePicture(image);
+            this.save(testUser);
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found" + e);
+        }
+        catch (IOException ioe) {
+            System.out.println("Exception while reading file " + ioe);
+        }
+        finally {
+            // close the streams using close method
+            try {
+                if (fin != null) {
+                    fin.close();
+                }
+            }
+            catch (IOException ioe) {
+                System.out.println("Error while closing stream: " + ioe);
+            }
+        }
 	}
 }
