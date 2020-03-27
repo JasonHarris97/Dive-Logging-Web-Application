@@ -153,7 +153,7 @@
 	padding: 35px 75px;
 	border: 2px solid #456f93;
 	border-top: none;
-	animation: fadeEffect 0.3s; /* Fading effect takes 1 second */
+	animation: fadeEffect 0.4s; /* Fading effect takes 1 second */
 	width: 100%;
 }
 
