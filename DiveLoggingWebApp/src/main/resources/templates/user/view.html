@@ -6,22 +6,6 @@
 
 <head>
 	<title>User View</title>
-	<style>
-		.userViewMap { 
-			display: inline-block;
-			margin: 0;
-			margin-top: 20px;
-			height: 600px;  
-			width: 95%; 
-		}
-
-		.userViewImg {
-			border: 1px solid #ddd;
-			border-radius: 4px;
-			padding: 5px;
-			width: 150px;
-		}
-	</style>
 </head>
 
 
@@ -32,68 +16,116 @@
 		<div class="tab">
 			<button class="tablinks" onclick="openGenericTab(event, 'Overview')"  id="defaultOpen">Overview</button>
 			<button class="tablinks" onclick="openGenericTab(event, 'DiveHistory')">Dive History</button>
-			<button class="tablinks" onclick="openGenericTab(event, 'DiveMap')">Dive Map</button>
+			<button class="tablinks" onclick="openGenericTab(event, 'DiveMap')">Map</button>
 			<button class="tablinks" onclick="openGenericTab(event, 'Images')">Images</button>
 		</div>
 
+
+
+
 		<!-- First Tab -->
-		<div id="Overview" style="font-size:16px" class="tabcontent">
-		    <img th:if="${returnedUser.profilePicture != null}" class="profileImage" th:src="@{'/getImage/'+${returnedUser.profilePicture.id}}">
-			<h1 th:text="${returnedUser.username}"></h1>
-			<h4>Name</h4>
-			<p th:text="${returnedUser.fullName}"></p>
-			<h4>Country</h4>
-			<p th:text="${returnedUser.country}"></p>
-			<h4>Contact Number</h4>
-			<p th:text="${returnedUser.contactNumber}"></p>
-			<h4>Contact Email</h4>
-			<p th:text="${returnedUser.email}"></p>
-			<h4>PADI Level</h4>
-			<p th:text="${returnedUser.padiLevel}"></p>
-			<h4>PADI No</h4>
-			<p th:text="${returnedUser.padiNo}"></p>
-			<h4>No of Dives</h4>
-			<p th:text="${returnedUser.noOfDives}"></p>
+		<div id="Overview" class="tabcontent">
+			<div class="profile-top-banner">
+				<img class="profile-picture" th:if="${returnedUser.profilePicture != null}" th:src="@{'/getImage/'+${returnedUser.profilePicture.id}}">
+
+				<div class="profile-details">
+					<h1 th:text="${returnedUser.username}"></h1>
+					<p th:text="${returnedUser.fullName}"></p>
+					<p th:text="${returnedUser.country}"></p>	
+				</div>
+			</div>
+			
+			<div class="profile-left-banner">
+				<h1>Details</h1>
+				
+				<table>
+					<tr>
+						<td>Name:</td>
+						<td th:text="${returnedUser.fullName}"></td>
+					</tr>
+					<tr>
+						<td>Country:</td>
+						<td th:text="${returnedUser.country}"></td>
+					</tr>
+					<tr>
+						<td>No. of Dives:</td>
+						<td th:text="${returnedUser.noOfDives}"></td>
+					</tr>
+					<tr>
+						<td>Padi Level</td>
+						<td th:text="${returnedUser.padiLevel}"></td>
+					</tr>
+					<tr>
+						<td>Padi No</td>
+						<td th:text="${returnedUser.padiNo}"></td>
+					</tr>
+					<tr>
+						<td>Email:</td>
+						<td th:text="${returnedUser.email}"></td>
+					</tr>
+					<tr>
+						<td>Contact No:</td>
+						<td th:text="${returnedUser.contactNumber}"></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="profile-right-banner">
+				<div class="profile-recent-dive">
+					<h1>Most Recent Dive</h1>
+
+					<p th:if="${mostRecentDive != null}" th:text="${mostRecentDive.date}"></p>
+					<p th:if="${mostRecentDive != null}" th:text="${mostRecentDive.country}"></p>
+					<a class="viewlog-button" th:if="${mostRecentDive != null}" th:href="@{'/dive/view/'+${mostRecentDive.id}}">View Log</a>
+					<p th:if="${mostRecentDive == null}">No logged dives!</p>
+					<div class="profile-recent-images">
+					<span th:if="${mostRecentDive != null}"><img class="recent-picture float-left" th:if="${mostRecentDive.images.size() gt 0}" th:src="@{'/getImage/'+${mostRecentDive.images.get(0).id}}"></span>
+					<span th:if="${mostRecentDive != null}"><img class="recent-picture float-right" th:if="${mostRecentDive.images.size() gt 1}" th:src="@{'/getImage/'+${mostRecentDive.images.get(1).id}}"></span>
+					</div>
+				</div>
+			</div>
 		</div>
+
+
+
+
 
 		<!-- Second Tab -->
 		<div id="DiveHistory" class="tabcontent">
 			<!-- Table -->
-			<div>
-				<table id="myTable" class="resultsTable">
-					<tr class="header">
-						<th>Details</th>
-						<th>Date</th>
-						<th>Diver Username</th>
-						<th>PADI Level</th>
-						<th>Participants</th>
-						<th>Country</th>
-						<th>Location</th>
+			<table id="myTable" class="resultsTable">
+				<tr class="header">
+					<th class="detailsCol">Details</th>
+					<th class="dateCol">Date</th>
+					<th>Diver Username</th>
+					<th>PADI Level</th>
+					<th class="participantsCol">Participants</th>
+					<th>Country</th>
+					<th>Location</th>
+				</tr>
+				<div th:if="${not #lists.isEmpty(returnedDives)}" >
+					<tr th:each="d : ${returnedDives}">
+						<td class="green-button"><a th:href ="@{'/dive/view/'+${d.id}}" th:text="View">Link</a></td>
+						<td th:text="${d.date}">Date</td>
+						<td><a th:href ="@{'/user/view/'+${d.diveOwner.username}}" th:text="${d.diveOwner.username}">Dive Owner Username</td>
+						<td th:text="${d.diveOwner.padiLevel}">Dive Owner PADI Level</td>
+						<td th:text="${d.noOfParticipants}">No. of Participants</td>
+						<td th:text="${d.country}">Dive Country</td>
+						<td th:text="${d.location}">Dive Location</td>
 					</tr>
-					<div th:if="${not #lists.isEmpty(returnedDives)}" >
-						<tr th:each="d : ${returnedDives}">
-							<td><a th:href ="@{'/dive/view/'+${d.id}}" th:text="Click">Link</a></td>
-							<td th:text="${d.date}">Date</td>
-							<td><a th:href ="@{'/user/view/'+${d.diveOwner.username}}" th:text="${d.diveOwner.username}">Dive Owner Username</td>
-							<td th:text="${d.diveOwner.padiLevel}">Dive Owner PADI Level</td>
-							<td th:text="${d.noOfParticipants}">No. of Participants</td>
-							<td th:text="${d.country}">Dive Country</td>
-							<td th:text="${d.location}">Dive Location</td>
-						</tr>
-					</div>
-					<div th:if="${#lists.isEmpty(returnedDives)}">
-						<tr id="empty-results"></tr>
-						<script>
-							document.getElementById("empty-results").innerHTML = "No dives for this query";
-						</script>
-					</div>
-				</table>
-			</div>
+				</div>
+				<div th:if="${#lists.isEmpty(returnedDives)}">
+					<tr id="empty-results"></tr>
+					<script>
+						document.getElementById("empty-results").innerHTML = "No dives for this query";
+					</script>
+				</div>
+			</table>
 		</div>
 
 		<!-- Third Tab -->
 		<div id="DiveMap" class="tabcontent">
-			<div id='map' class="userViewMap"></div>
+			<div id='map' class="profile-map"></div>
 			<script th:inline="javascript">
 			/*<![CDATA[*/
 				L.mapbox.accessToken = 'pk.eyJ1IjoiamFzb24zeXAiLCJhIjoiY2s3ZW4waXl2MHo0MzNucGF4NHQ5bXZ4diJ9.P93UqztpQcrq70aYz1XETQ';
@@ -140,8 +172,8 @@
 		<!-- Fourth Tab -->
 		<div id="Images" class="tabcontent">
 			<div th:each="d : ${returnedDives}">
-				<div th:each="i : ${d.images}" style="display:inline-grid;">
-					<img class="profileImg" th:src="@{'/getImage/'+${i.id}}">
+				<div class="dive-image-container" th:each="i : ${d.images}">
+					<img class="dive-image" th:src="@{'/getImage/'+${i.id}}">
 				</div>
 			</div>
 		</div>

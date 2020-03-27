@@ -38,6 +38,13 @@ public class DBFile {
         this.data = data;
     }
     
+    public DBFile(User fileOwner, String fileName, String fileType, byte[] data) {
+    	this.setFileOwner(fileOwner);
+        this.setFileName(fileName);
+        this.setFileType(fileType);
+        this.data = data;
+    }
+    
  // Id -----------------------------------------
  	public Long getId() {
          return id;

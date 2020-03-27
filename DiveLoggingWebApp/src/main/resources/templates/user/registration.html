@@ -117,7 +117,7 @@
 				<!-- acceptTermsAndConditions -->
 				<div class="form-group" th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">  
 					<label class="control-label" for="terms"> I agree with the <a href="#">terms and conditions</a> for Registration. </label> 
-					<input id="terms" style="width:5%;" type="checkbox" th:field="*{terms}" /> 
+					<input id="terms" style="width:5%;" type="checkbox" th:field="*{terms}" required/> 
 					<p class="error-message" th:each="error : ${#fields.errors('terms')}" th:text="${error}">Validation error</p>
 				</div>
 			</div>

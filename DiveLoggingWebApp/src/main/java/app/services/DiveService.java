@@ -15,6 +15,7 @@ public interface DiveService{
     
     Dive findByUser(User user);
     Dive findById(long Id);
+    Dive findMostRecentByUser(User user);
     
     Iterable<Dive> findAll();
     Iterable<Dive> findAll(Sort sort);
