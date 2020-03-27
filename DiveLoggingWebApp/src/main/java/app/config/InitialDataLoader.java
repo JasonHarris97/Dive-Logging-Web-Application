@@ -49,9 +49,12 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	private final static Random rand = new Random();
 	private final static StringLists stringLists = new StringLists();
 	
-	private final static int noOfTestUsers = 2;
+	private final static int noOfTestUsers = 50;
 	
 	private final static int noOfTestDives = 15;
+	
+	private byte[][] profilePictures = new byte[10][];
+	private byte[][] divePictures = new byte[20][];
 	
 	@Autowired
 	private UserService userService;
@@ -67,6 +70,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
+		loadTestProfilePictures(profilePictures);
 		
 		List<User> testUsers;
 		
@@ -199,7 +203,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testUser.setNoOfCountries(0);
 			testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
 			userService.save(testUser);
-			userService.setToDefaultProfile(testUser);
+			setProfilePicture(profilePictures[rand.nextInt(10)], testUser);
 			testUsers.add(testUser);
 		}
 		return testUsers;
@@ -282,5 +286,59 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	    return dateToConvert.toInstant()
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
+	}
+	
+	private void loadTestProfilePictures(byte[][] profilePictures) {
+		for(int i = 0; i < 10; i++) {
+			File file = new File("src/main/resources/images/profile-pictures/"+(i+1)+".jfif");
+	        FileInputStream fin = null;
+	        
+	        try {
+	            // create FileInputStream object
+	            fin = new FileInputStream(file);
+	 
+	            profilePictures[i] = new byte[(int)file.length()];
+	             
+	            // Reads up to certain bytes of data from this input stream into an array of bytes.
+	            fin.read(profilePictures[i]);     
+	            log.info("LOADED " + i + ".jfif");  
+	        } catch (FileNotFoundException e) {
+	            System.out.println("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	            log.info("File not found" + e);
+	        }
+	        catch (IOException ioe) {
+	            System.out.println("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	            log.info("Exception while reading file " + ioe);
+	        }
+	        finally {
+	            // close the streams using close method
+	            try {
+	                if (fin != null) {
+	                    fin.close();
+	                }
+	            }
+	            catch (IOException ioe) {
+	                System.out.println("Error while closing stream: " + ioe);
+	            }
+	        }
+		}	
+	}
+	
+	private void setProfilePicture(byte[] profilePicture, User testUser) {
+		DBFile image = new DBFile(testUser, "default-profile-picture.jpg", "image/jpg", profilePicture);
+        image.setFileUse("profilePicture");
+        dbFileService.saveDBFile(image);
+        testUser.setProfilePicture(image);
+        userService.save(testUser);
 	}
 }
