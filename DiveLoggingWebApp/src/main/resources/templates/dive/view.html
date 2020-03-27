@@ -392,16 +392,9 @@
 
 		<!-- Sixth Tab -->
 		<div id="Images" class="tabcontent">
-			<table id="myTable">
-				<tr class="header">
-					<th>Name</th>	
-					<th>Image</th>
-				</tr>
-				<tr th:each="i : ${dive.images}">
-					<td th:text="${i.fileName}">Filename</td>
-					<td><img class="diveImg" th:src="@{'/getImage/'+${i.id}}"></td>
-				</tr>
-			</table>
+			<div class="dive-image-container" th:each="i : ${dive.images}">
+				<img class="dive-image" th:src="@{'/getImage/'+${i.id}}">
+			</div>
 		</div>
 	</div>
 
