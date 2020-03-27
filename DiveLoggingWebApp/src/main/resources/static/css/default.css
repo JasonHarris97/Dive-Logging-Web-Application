@@ -153,6 +153,7 @@
 	border: 2px solid #456f93;
 	border-top: none;
 	animation: fadeEffect 0.3s; /* Fading effect takes 1 second */
+	width: 100%;
 }
 
 .tabcontent h3{
@@ -227,7 +228,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 0px;
+  max-width: 100px;
 }
 
 .resultsTable tr {
