@@ -282,6 +282,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		testDive.setObservationsList("observation1 observation2");
 		
 		diveService.save(testDive);
+		setDiveImages(divePictures, testDive);
 	}
 	
 	private LocalDate convertToLocalDate(Date dateToConvert) {
@@ -391,7 +392,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	}
 	
 	private void setDiveImages(byte[][] divePictures, Dive testDive) {
-		for(int i = 0; i < 3; i++) {
+		for(int i = 0; i < 5; i++) {
 			DBFile image = new DBFile(testDive.getDiveOwner(), (i+1)+".jpg", "image/jpg", divePictures[rand.nextInt(20)]);
 	        image.setFileUse("diveImage");
 	        image.setAssociatedDive(testDive);
