@@ -318,7 +318,8 @@
 						startDateInput.style.backgroundColor = "#ffb3b3";
 						endDateInput.style.backgroundColor = "#ffb3b3";
 					}
-				} else if (document.querySelector("input[name='searchOption'][value='all']").checked != true) {
+				} else if (document.querySelector("input[name='searchOption'][value='location']").checked == true ||
+						document.querySelector("input[name='searchOption'][value='username']").checked == true) {
 					var inputString = document.getElementById("inputString");
 					if(!!inputString.value){
 						document.getElementById("queryForm").submit();
@@ -412,11 +413,11 @@
 			}
 
 			function orderByOnClick(orderBy){
-				document.getElementById("queryForm").submit();
+				submitQuery();
 			}
 
 			function sortByOnClick(){
-				document.getElementById("queryForm").submit();
+				submitQuery();
 			}
 
 			var query = /*[[${query}]]*/ null;
