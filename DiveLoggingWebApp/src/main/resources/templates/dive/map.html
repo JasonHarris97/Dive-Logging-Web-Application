@@ -238,21 +238,36 @@
 					console.log("Checking Dates");
 					var startDateInput = document.getElementById("startDate");
 					var endDateInput = document.getElementById("endDate");
-					var startDate = new Date(startDateInput.value);
-					var endDate = new Date(endDateInput.value);
-					if(startDate > endDate){
-						console.log("Invalid Dates");
-						alert("End date must be the same as or after start date");
+					if(!!startDateInput.value && !!endDateInput.value){
+						var startDate = new Date(startDateInput.value);
+						var endDate = new Date(endDateInput.value);
+						if(startDate > endDate){
+							console.log("Invalid Dates");
+							alert("End date must be the same as or after start date");
+							startDateInput.style.backgroundColor = "#ffb3b3";
+							endDateInput.style.backgroundColor = "#ffb3b3";
+						} else {
+							console.log("Valid Dates");
+							document.getElementById("queryForm").submit();
+						}
+					} else {
+						alert("Enter start and end date");
 						startDateInput.style.backgroundColor = "#ffb3b3";
 						endDateInput.style.backgroundColor = "#ffb3b3";
-					} else {
-						console.log("Valid Dates");
+					}
+				} else if (document.querySelector("input[name='searchOption'][value='location']").checked == true ||
+						document.querySelector("input[name='searchOption'][value='username']").checked == true) {
+					var inputString = document.getElementById("inputString");
+					if(!!inputString.value){
 						document.getElementById("queryForm").submit();
+					} else {
+						alert("Enter something in the search bar!");
 					}
 				} else {
 					document.getElementById("queryForm").submit();
 				}
 			}
+
 			function copyStartDate(){
 				var startDateInput = document.getElementById("startDate");
 				var endDateInput = document.getElementById("endDate");
@@ -272,6 +287,7 @@
 				var inputCountryContainer = document.getElementById("inputCountryContainer");
 				var inputPadiLevelContainer = document.getElementById("inputPadiLevelContainer");
 
+				var orderByHeader = document.getElementById("orderByHeader");
 				var startDateInput = document.getElementById("startDate");
 				var endDateInput = document.getElementById("endDate");
 
@@ -291,14 +307,23 @@
 				startDateInput.style.backgroundColor = "white";
 				endDateInput.style.backgroundColor = "white";
 
+				startDateInput.required = false;
+				endDateInput.required = false;
+				inputString.required = false;
+
 				if(radioValue == "date"){
 					inputDateContainer.style.display = "inline-block";
+					startDateInput.required = true;
+					endDateInput.required = true;
 				} else if(radioValue == "country"){
 					inputCountryContainer.style.display = "inline-block";
 				} else if(radioValue == "padiLevel"){
 					inputPadiLevelContainer.style.display = "inline-block";
+				} else if(radioValue == "all"){
+					inputString.style.display = "inline-block";
 				} else {
 					inputString.style.display = "inline-block";
+					inputString.required = true;
 				}
 
 				if(radioValue == "all") {
@@ -322,12 +347,11 @@
 				}
 			}
 
-
 			function submitOnClick(){
-				document.getElementById("queryForm").submit();
+				submitQuery();;
 			}
 
- 			var query = /*[[${query}]]*/ null;
+			var query = /*[[${query}]]*/ null;
 			var source = /*[[${query.source}]]*/ null;
 
 			if(query != null) {
@@ -345,7 +369,7 @@
 				document.querySelector(query2).checked = true;
 				document.querySelector(query3).checked = true;
 				document.querySelector(query4).checked = true;
-
+				
 				if(searchOptionToCheck == "date"){
 					document.getElementById("startDate").text = /*[[${query.startDate}]]*/ null;
 					document.getElementById("endDate").text = /*[[${query.endDate}]]*/ null;
