@@ -51,7 +51,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	
 	private final static int noOfTestUsers = 2;
 	
-	private final static int noOfTestDives = 15;
+	private final static int noOfTestDives = 10;
 	
 	private byte[][] profilePictures = new byte[10][];
 	private byte[][] divePictures = new byte[20][];
