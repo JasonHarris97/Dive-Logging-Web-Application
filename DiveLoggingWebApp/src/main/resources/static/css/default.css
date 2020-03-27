@@ -149,11 +149,10 @@
 /* Style the tab content */
 .tabcontent {
 	display: none;
-	padding: 15px 75px;
+	padding: 35px 75px;
 	border: 2px solid #456f93;
 	border-top: none;
 	animation: fadeEffect 0.3s; /* Fading effect takes 1 second */
-	min-height: inherit;
 }
 
 .tabcontent h3{
@@ -434,15 +433,6 @@
 	width: 200px;
 }
 
-.profileImg {
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	padding: 5px;
-	height: 200px;
-	width: 200px;
-	display: inline-block;
-}
-
 /* ====================================================================================== */
 /* Dive Uploading */
 /* ====================================================================================== */
@@ -567,6 +557,87 @@
 
 .float-right {
 	float: right;
+}
+
+/* ====================================================================================== */
+/* Homepage Styling */
+/* ====================================================================================== */
+
+
+.profile-top-banner {
+	width: 100%;
+	display: inline-block;		
+	font-family: Raleway;
+	padding: 20px 45px;
+	background-color: #cddbe7;
+	border-radius: 50px;
+}
+
+.profile-picture {
+	padding: 5px;
+	height: 100%;
+	width: 174px;
+	border-radius: 50%;
+	float: left;
+}
+
+.profile-details{
+	width: 80%;
+	padding-left: 45px;
+	float: left;
+}
+
+.profile-details h1{
+	font-size: 62px;
+	width: 100%;
+	margin: 0px;
+	padding-top: 17px;
+}
+
+.profile-details p{
+	font-size: 26px;
+	margin: 0px;
+}
+
+.profile-left-banner {
+	float: left;
+	width: 48%;
+	min-height: 478px;
+	padding: 35px 30px;
+	margin-top: 28px;
+	background-color: #cddbe7;
+	display: inline-block;	
+	border-radius: 50px;
+	font-family: Raleway;
+}
+
+.profile-left-banner h1 {
+	margin: 0px; 
+	text-align: center;
+	font-size: 45px;
+	padding-bottom: 22px;
+}
+
+.profile-left-banner td {
+	font-size: 22px;
+	padding-left: 28px;
+	padding-top: 10px;
+}
+
+.profile-right-banner {
+	float: right;
+	width: 49%;
+	padding: 10px 15px;
+	margin-top: 28px;
+	background-color: #cddbe7;
+	display: inline-block;
+	border-radius: 50px;	
+}
+
+.profile-recent-dive {
+}
+
+.profile-recent-images {
 }
 
 

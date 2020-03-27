@@ -64,7 +64,7 @@ public class UserController{
     
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registerUserAccount(@ModelAttribute("user") @Valid UserDto userDto,
-        BindingResult result, HttpServletRequest request) {
+        BindingResult result, HttpServletRequest request, Model model) {
 
         User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null) {
@@ -77,6 +77,8 @@ public class UserController{
         }
         
         if (result.hasErrors()) {
+       	 	model.addAttribute("countries", stringLists.getCountries());
+       	 	model.addAttribute("padiLevels",stringLists.getPadiLevels());
             return "user/registration";
         }
 

@@ -36,25 +36,70 @@
 			<button class="tablinks" onclick="openGenericTab(event, 'Images')">Images</button>
 		</div>
 
+
+
+
 		<!-- First Tab -->
-		<div id="Overview" style="font-size:16px" class="tabcontent">
-		    <img th:if="${returnedUser.profilePicture != null}" class="profileImage" th:src="@{'/getImage/'+${returnedUser.profilePicture.id}}">
-			<h1 th:text="${returnedUser.username}"></h1>
-			<h4>Name</h4>
-			<p th:text="${returnedUser.fullName}"></p>
-			<h4>Country</h4>
-			<p th:text="${returnedUser.country}"></p>
-			<h4>Contact Number</h4>
-			<p th:text="${returnedUser.contactNumber}"></p>
-			<h4>Contact Email</h4>
-			<p th:text="${returnedUser.email}"></p>
-			<h4>PADI Level</h4>
-			<p th:text="${returnedUser.padiLevel}"></p>
-			<h4>PADI No</h4>
-			<p th:text="${returnedUser.padiNo}"></p>
-			<h4>No of Dives</h4>
-			<p th:text="${returnedUser.noOfDives}"></p>
+		<div id="Overview" class="tabcontent">
+			<div class="profile-top-banner">
+				<img class="profile-picture" th:if="${returnedUser.profilePicture != null}" th:src="@{'/getImage/'+${returnedUser.profilePicture.id}}">
+
+				<div class="profile-details">
+					<h1 th:text="${returnedUser.username}"></h1>
+					<p th:text="${returnedUser.fullName}"></p>
+					<p th:text="${returnedUser.country}"></p>	
+				</div>
+			</div>
+			
+			<div class="profile-left-banner">
+				<h1>Details</h1>
+				
+				<table>
+					<tr>
+						<td>Name:</td>
+						<td th:text="${returnedUser.fullName}"></td>
+					</tr>
+					<tr>
+						<td>Country:</td>
+						<td th:text="${returnedUser.country}"></td>
+					</tr>
+					<tr>
+						<td>No. of Dives:</td>
+						<td th:text="${returnedUser.noOfDives}"></td>
+					</tr>
+					<tr>
+						<td>Padi Level</td>
+						<td th:text="${returnedUser.padiLevel}"></td>
+					</tr>
+					<tr>
+						<td>Padi No</td>
+						<td th:text="${returnedUser.padiNo}"></td>
+					</tr>
+					<tr>
+						<td>Email:</td>
+						<td th:text="${returnedUser.email}"></td>
+					</tr>
+					<tr>
+						<td>Contact No:</td>
+						<td th:text="${returnedUser.contactNumber}"></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="profile-right-banner">
+				<div class="profile-recent-dive">
+					<h1>Test</h1>
+				</div>
+
+				<div class="profile-recent-images">
+					<h1>Test</h1>
+				</div>
+			</div>
 		</div>
+
+
+
+
 
 		<!-- Second Tab -->
 		<div id="DiveHistory" class="tabcontent">
