@@ -193,7 +193,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testUser = new User();
 			testUser.setFirstName(faker.name().firstName());
 			testUser.setLastName(faker.name().lastName());
-			testUser.setUsername(testUser.getFirstName() + " " + testUser.getLastName());
+			testUser.setUsername(faker.name().username() + rand.nextInt(1000));
 			testUser.setFullName(testUser.getFirstName()+" "+testUser.getLastName());
 			testUser.setEmail(testUser.getUsername() + "." + fakeValuesService.bothify("????##@gmail.com"));
 			testUser.setCountry(faker.address().country());
