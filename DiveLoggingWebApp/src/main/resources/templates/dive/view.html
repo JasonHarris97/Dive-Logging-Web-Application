@@ -6,16 +6,6 @@
 
 <head>
 	<title>Dive View</title>
-	<style>
-		.diveViewMap { 
-			display: inline-block;
-			margin: 0;
-			margin-top: 20px;
-			height: 600px;  
-			width: 95%; 
-		}
-	</style>
-	
 </head>
 
 
@@ -66,7 +56,7 @@
 						<td th:text="${dive.location}"></td>
 					</tr>
 					<tr>
-						<td>Date</td>
+						<td>Date:</td>
 						<td th:text="${dive.date}"></td>
 					</tr>
 					<tr>
@@ -78,7 +68,7 @@
 						<td th:text="${dive.endTime}"></td>
 					</tr>
 					<tr>
-						<td>Max Depth:</td>
+						<td>Max Depth (m):</td>
 						<td th:text="${dive.maxDepth}"></td>
 					</tr>
 				</table>
@@ -118,7 +108,7 @@
 						<td th:text="${dive.diveOwner.padiLevel}"></td>
 					</tr>
 					<tr>
-						<td>Max Depth:</td>
+						<td>Max Depth (m):</td>
 						<td th:text="${dive.maxDepth}"></td>
 					</tr>
 					<tr>
@@ -173,7 +163,7 @@
 				<h1>Time and Date</h1>
 				<table>
 					<tr>
-						<td>Date</td>
+						<td>Date:</td>
 						<td th:text="${dive.date}"></td>
 					</tr>
 					<tr>
@@ -185,7 +175,7 @@
 						<td th:text="${dive.endTime}"></td>
 					</tr>
 					<tr>
-						<td>Duration:</td>
+						<td>Duration (mins):</td>
 						<td th:text="${dive.diveDuration.toMinutes()}"></td>
 					</tr>
 				</table>
@@ -205,31 +195,31 @@
 						<td th:text="${dive.visibility}"></td>
 					</tr>
 					<tr>
-						<td>Air Temp:</td>
+						<td>Air Temp (Deg):</td>
 						<td th:text="${dive.airTemperature}"></td>
 					</tr>
 					<tr>
-						<td>Water Temp:</td>
+						<td>Water Temp (Deg):</td>
 						<td th:text="${dive.waterTemperature}"></td>
 					</tr>
 					<tr>
-						<td>Water Density</td>
+						<td>Water Density (kg/m^3):</td>
 						<td th:text="${dive.waterDensity}"></td>
 					</tr>
 					<tr>
-						<td>Water Type</td>
+						<td>Water Type:</td>
 						<td th:text="${dive.waterType}"></td>
 					</tr>
 					<tr>
-						<td>Water Body</td>
+						<td>Water Body:</td>
 						<td th:text="${dive.waterBodyType}"></td>
 					</tr>
 					<tr>
-						<td>Tide Level</td>
+						<td>Tide Level:</td>
 						<td  th:text="${dive.tideLevel}"></td>
 					</tr>
 					<tr>
-						<td>Altitude</td>
+						<td>Altitude (m):</td>
 						<td  th:text="${dive.altitude}"></td>
 					</tr>
 				</table>
@@ -270,11 +260,11 @@
 						<td th:text="${dive.diveSuit}"></td>
 					</tr>
 					<tr>
-						<td>Weight Carried</td>
+						<td>Weight Carried (kg):</td>
 						<td th:text="${dive.weightCarried}"></td>
 					</tr>
 					<tr>
-						<td>Entry</td>
+						<td>Entry Method:</td>
 						<td th:text="${dive.entry}"></td>
 					</tr>
 				</table>
@@ -288,19 +278,19 @@
 						<td th:text="${dive.tankType}"></td>
 					</tr>
 					<tr>
-						<td>Size:</td>
+						<td>Size (L):</td>
 						<td th:text="${dive.tankSize}"></td>
 					</tr>
 					<tr>
-						<td>Start:</td>
+						<td>Start (Bar):</td>
 						<td th:text="${dive.tankStart}"></td>
 					</tr>
 					<tr>
-						<td>End:</td>
+						<td>End (Bar):</td>
 						<td th:text="${dive.tankEnd}"></td>
 					</tr>
 					<tr>
-						<td>Usage:</td>
+						<td>Usage (Bar):</td>
 						<td th:text="${dive.tankUsage}"></td>
 					</tr>
 				</table>
@@ -319,11 +309,11 @@
 						<td th:text="${dive.gasMix}"></td>
 					</tr>
 					<tr>
-						<td>Helium %:</td>
+						<td>Helium (%):</td>
 						<td th:text="${dive.fractionOfHelium}"></td>
 					</tr>
 					<tr>
-						<td>Nitrogen %:</td>
+						<td>Nitrogen (%):</td>
 						<td  th:text="${dive.fractionOfNitrogen}"></td>
 					</tr>
 	

@@ -132,6 +132,10 @@
 
 		<!-- Table -->
 		<div>
+			<div class="no-results" th:if="${returnedUsers.totalPages eq 0}">
+				<h1>No results where returned!</h1>
+			</div>
+
 			<table id="myTable" class="resultsTable">
 				<tr class="header">
 					<th class="detailsCol">Profile</th>
@@ -152,12 +156,6 @@
 						<td th:text="${u.padiNo}">PADI No</td>
 						<td th:text="${u.noOfDives}">No of Dives</td>
 					</tr>
-				</div>
-				<div th:if="${#lists.isEmpty(returnedUsers)}">
-					<tr id="empty-results"></tr>
-					<script>
-						document.getElementById("empty-results").innerHTML = "No dives for this query";
-					</script>
 				</div>
 			</table>
 		</div>

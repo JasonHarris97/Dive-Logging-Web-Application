@@ -167,6 +167,10 @@
 
 		<!-- Table -->
 		<div>
+			<div class="no-results" th:if="${returnedDives.totalPages eq 0}">
+				<h1>No results where returned!</h1>
+			</div>
+
 			<table id="myTable" class="resultsTable">
 				<tr class="header">
 					<th class="detailsCol">Details</th>
@@ -202,12 +206,6 @@
 						</td>
 						
 					</tr>
-				</div>
-				<div th:if="${#lists.isEmpty(returnedDives)}">
-					<tr id="empty-results"></tr>
-					<script>
-						document.getElementById("empty-results").innerHTML = "No dives for this query";
-					</script>
 				</div>
 			</table>
 		</div>

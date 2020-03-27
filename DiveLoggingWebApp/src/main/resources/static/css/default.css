@@ -172,14 +172,33 @@
 /* QUERYING */
 /* ====================================================================================== */
 .custom-label {
-  width: 100%;
-  margin: 0px;
+	width: 100%;
+	margin: 0px;
 }
+
+.no-results{
+	display: inline-block;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 22px;
+	background-color: #e6301f;
+	color: white;
+	font-family: Raleway;
+	padding: 16px 0px;
+	border-radius: 20px;
+}
+
+.no-results h1{
+	margin: 0px;
+	text-align: center;
+	font-size: 16px; 
+}
+
 .querySearchBarContainer {
-  display: block;
-  float: right;
-  margin: auto;	
-  width: 40%;
+	display: block;
+	float: right;
+	margin: auto;	
+	width: 40%;
 }
 
 .querySearchBarContainer h3 {
@@ -187,22 +206,22 @@
 }
 
 .querySearchBar {
-  width: 100%; /* Full-width */
-  font-size: 16px; /* Increase font-size */
-  font-family: Raleway;
-  padding: 8px 16px 8px 16px; /* Add some padding */
-  border: 1px solid #9bb7d0; /* Add a grey border */
-  margin-bottom: 9px; /* Add some space below the input */
-  opacity: 100;
-  cursor: pointer;
+	width: 100%; /* Full-width */
+	font-size: 16px; /* Increase font-size */
+	font-family: Raleway;
+	padding: 8px 16px 8px 16px; /* Add some padding */
+	border: 1px solid #9bb7d0; /* Add a grey border */
+	margin-bottom: 9px; /* Add some space below the input */
+	opacity: 100;
+	cursor: pointer;
 }
 
 .querySearchBar:disabled {
-  background-color: #ffb3b3;
+	background-color: #ffb3b3;
 }
 
 .querySearchButton:hover {
-  background-color: white;
+	background-color: white;
 }
 
 .radioContainer{
@@ -719,9 +738,9 @@
 /* ====================================================================================== */
 
 .log-banner {
-	width: 47%;
+	width: 45%;
     	min-height: 500px;
-    	margin: 1.5% 1.5%;
+    	margin: 2% 2%;
    	padding: 3% 2%;
 	background-color: #6993b8;
 	color: white;
