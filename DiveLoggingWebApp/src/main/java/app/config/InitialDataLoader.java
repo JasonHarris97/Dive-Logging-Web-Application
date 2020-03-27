@@ -199,6 +199,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 			testUser.setNoOfCountries(0);
 			testUser.setRoles(Arrays.asList(new Role("ROLE_USER")));
 			userService.save(testUser);
+			userService.setToDefaultProfile(testUser);
 			testUsers.add(testUser);
 		}
 		return testUsers;

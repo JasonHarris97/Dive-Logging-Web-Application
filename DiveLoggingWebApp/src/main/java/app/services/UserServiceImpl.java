@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService {
         user.setNoOfDives(0);
         user.setNoOfCountries(0);
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        this.setToDefaultProfile(user);
         return userRepository.save(user);
     }
     
