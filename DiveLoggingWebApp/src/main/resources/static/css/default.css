@@ -561,7 +561,7 @@
 }
 
 /* ====================================================================================== */
-/* Homepage Styling */
+/* User Profile Styling */
 /* ====================================================================================== */
 
 
@@ -687,6 +687,20 @@
 	background-color: white;
 	color: #4CAF50;
 	text-decoration: none;
+}
+
+.profile-map { 
+	display: inline-block;
+	margin: 0;
+	height: 675px;
+	width: 100%; 
+}
+
+.userViewImg {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 5px;
+	width: 150px;
 }
 
 
