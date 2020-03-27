@@ -627,17 +627,65 @@
 .profile-right-banner {
 	float: right;
 	width: 49%;
-	padding: 10px 15px;
+	min-height: 478px;
+	padding: 35px 30px;
 	margin-top: 28px;
 	background-color: #cddbe7;
 	display: inline-block;
 	border-radius: 50px;	
+	font-family: Raleway;
+}
+
+.profile-right-banner h1 {
+	margin: 0px; 
+	text-align: center;
+	font-size: 45px;
+	padding-bottom: 22px;
+}
+
+.profile-right-banner p {
+	font-size: 22px;
+	text-align: center;
+	margin: 0px;
 }
 
 .profile-recent-dive {
+	width: 100%;
+	padding: 0px 15px;
 }
 
 .profile-recent-images {
+	width: 100%;
+	padding-top: 25px;
+}
+
+.recent-picture {
+	width: 47%;
+    	height: 182px;
+    	border-radius: 20px;
+}
+
+.viewlog-button {
+	width: 66%;
+	background-color: #4CAF50;
+	border: 2px solid #4CAF50;
+	color: #ffffff;
+	padding: 4px 20px;
+	font-size: 28px;
+	cursor: pointer;
+	text-decoration: none;
+	text-align: center;
+	transition-duration: 0.2s;
+	display: block;
+	margin: auto;
+	margin-top: 16px;
+	border-radius: 30px;
+}
+
+.viewlog-button:hover {
+	background-color: white;
+	color: #4CAF50;
+	text-decoration: none;
 }
 
 
