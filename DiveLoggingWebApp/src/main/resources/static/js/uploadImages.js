@@ -14,10 +14,6 @@ var profilePicUploadForm = document.querySelector('#profilePicUploadForm');
 var profilePicUploadInput = document.querySelector('#profilePicUploadInput');
 var profilePicUploadInputUse = document.querySelector('#profilePicUploadInputUse');
 
-var profileBannerUploadForm = document.querySelector('#profileBannerUploadForm');
-var profileBannerUploadInput = document.querySelector('#profileBannerUploadInput');
-var profileBannerUploadInputUse = document.querySelector('#profileBannerUploadInputUse');
-
 var singleFileUploadError = document.querySelector('#singleFileUploadError');
 var singleFileUploadSuccess = document.querySelector('#singleFileUploadSuccess');
 
@@ -117,20 +113,6 @@ if(profilePicUploadForm != null) {
 	    }
 	    console.log(fileUse);
 	    console.log("Running uploadSingleFiles");
-	    uploadSingleFile(files[0], fileUse);
-	    event.preventDefault();
-	}, true);
-}
-
-if (profileBannerUploadForm != null) {
-	// PROFILE BANNER
-	profileBannerUploadForm.addEventListener('submit', function(event){
-	    var files = profileBannerUploadInput.files;
-	    var fileUse = profileBannerUploadInputUse.value;
-	    if(files.length === 0) {
-		singleFileUploadError.innerHTML = "Please select a file";
-		singleFileUploadError.style.display = "block";
-	    }
 	    uploadSingleFile(files[0], fileUse);
 	    event.preventDefault();
 	}, true);

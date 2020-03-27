@@ -1,5 +1,9 @@
 package app.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -20,7 +24,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import app.models.DBFile;
 import app.models.User;
+import app.services.DBFileService;
 import app.services.DiveService;
 import app.services.UserService;
 import app.strings.StringLists;
@@ -39,6 +45,9 @@ public class UserController{
 	
 	@Autowired
     private DiveService diveService;
+	
+	@Autowired
+    private DBFileService dbFileService;
 
     @ModelAttribute("user")
     public UserDto userDto() {
@@ -82,7 +91,7 @@ public class UserController{
             return "user/registration";
         }
 
-        userService.save(userDto);
+        User returnedUser = userService.save(userDto);
         
         try {
             request.login(userDto.getUsername(), userDto.getPassword());
@@ -176,42 +185,42 @@ public class UserController{
 		return "user/"+query.getSource();
 	}
 	  
-	  private Model performQueryPageable(QueryDto query, Model model, int page, int size) {
-	    	String orderBy = query.getOrderBy();
-	    	Sort.Direction sortBy;
-	    	
-	    	if(query.getSortBy().equals("ascending")){
-	    		sortBy = Sort.Direction.ASC;
-	    	} else {
-	    		sortBy = Sort.Direction.DESC;
-	    	}
-	    	
-	    	if(orderBy == null) {
-	    		orderBy = "username";
-	    	}
-	    	
-	    	if(query.getSearchOption().equals("country")) { 
-	    		// country
-				model.addAttribute("returnedUsers", userService.findByCountry( query.getCountry(), PageRequest.of(page, size, Sort.by(sortBy, orderBy)) ));
-			} else if (query.getSearchOption().equals("username")){
-				// username
-				model.addAttribute("returnedUsers", userService.findByUsernameContaining(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
-			} else if (query.getSearchOption().equals("name")){
-				// name
-				model.addAttribute("returnedUsers", userService.findByName(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
-			} else if (query.getSearchOption().equals("padiLevel")) {
-				// padiLevel
-				model.addAttribute("returnedUsers", userService.findByPadiLevel(query.getPadiLevel(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
-			} else if (query.getSearchOption().equals("padiNo")){
-				// padiNo
-				model.addAttribute("returnedUsers", userService.findByPadiNo(query.getInputString(), PageRequest.of(page, size)));
-			} else if (query.getSearchOption().equals("all")){
-				// all
-				model.addAttribute("returnedUsers", userService.findAll(PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
-			} else {
-				model.addAttribute("returnedUsers", userService.findAll(PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
-			}
-	    	return model;
-	    }
+	private Model performQueryPageable(QueryDto query, Model model, int page, int size) {
+    	String orderBy = query.getOrderBy();
+    	Sort.Direction sortBy;
+    	
+    	if(query.getSortBy().equals("ascending")){
+    		sortBy = Sort.Direction.ASC;
+    	} else {
+    		sortBy = Sort.Direction.DESC;
+    	}
+    	
+    	if(orderBy == null) {
+    		orderBy = "username";
+    	}
+    	
+    	if(query.getSearchOption().equals("country")) { 
+    		// country
+			model.addAttribute("returnedUsers", userService.findByCountry( query.getCountry(), PageRequest.of(page, size, Sort.by(sortBy, orderBy)) ));
+		} else if (query.getSearchOption().equals("username")){
+			// username
+			model.addAttribute("returnedUsers", userService.findByUsernameContaining(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+		} else if (query.getSearchOption().equals("name")){
+			// name
+			model.addAttribute("returnedUsers", userService.findByName(query.getInputString(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+		} else if (query.getSearchOption().equals("padiLevel")) {
+			// padiLevel
+			model.addAttribute("returnedUsers", userService.findByPadiLevel(query.getPadiLevel(), PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+		} else if (query.getSearchOption().equals("padiNo")){
+			// padiNo
+			model.addAttribute("returnedUsers", userService.findByPadiNo(query.getInputString(), PageRequest.of(page, size)));
+		} else if (query.getSearchOption().equals("all")){
+			// all
+			model.addAttribute("returnedUsers", userService.findAll(PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+		} else {
+			model.addAttribute("returnedUsers", userService.findAll(PageRequest.of(page, size, Sort.by(sortBy, orderBy))));
+		}
+    	return model;
+    }
 }
 
