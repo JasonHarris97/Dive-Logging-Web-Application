@@ -570,13 +570,14 @@
 	display: inline-block;		
 	font-family: Raleway;
 	padding: 20px 45px;
-	background-color: #cddbe7;
+	background-color: #6993b8;
+	color: white;
 	border-radius: 25px;
 }
 
 .profile-picture {
 	padding: 5px;
-	height: 182px;
+	height: 174px;
 	width: 174px;
 	border-radius: 50%;
 	float: left;
@@ -606,7 +607,8 @@
 	min-height: 478px;
 	padding: 35px 30px;
 	margin-top: 28px;
-	background-color: #cddbe7;
+	background-color: #6993b8;
+	color: white;
 	display: inline-block;	
 	border-radius: 25px;
 	font-family: Raleway;
@@ -631,7 +633,8 @@
 	min-height: 478px;
 	padding: 35px 30px;
 	margin-top: 28px;
-	background-color: #cddbe7;
+	background-color: #6993b8;
+	color: white;
 	display: inline-block;
 	border-radius: 25px;	
 	font-family: Raleway;
