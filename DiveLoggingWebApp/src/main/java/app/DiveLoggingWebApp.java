@@ -1,4 +1,8 @@
-// SOURCE: https://www.codebyamir.com/blog/user-account-registration-with-spring-boot
+/*
+ * Application entry point containing main method 
+ * 
+ * The @SpringBootApplication annotation is equivalent to using @Configuration, @EnableAutoConfiguration, and @ComponentScan
+ */
 
 package app;
 

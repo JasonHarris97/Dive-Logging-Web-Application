@@ -1,3 +1,9 @@
+/*
+ * Class for handling test data initialization 
+ * 
+ * Several mock dive logs, users and files are added to the database when the web application is started 
+ */
+
 package app.config;
 
 import java.io.File;
@@ -49,9 +55,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 	private final static Random rand = new Random();
 	private final static StringLists stringLists = new StringLists();
 	
-	private final static int noOfTestUsers = 200;
+	private final static int noOfTestUsers = 10;
 	
-	private final static int noOfTestDives = 2000;
+	private final static int noOfTestDives = 100;
 	
 	private byte[][] profilePictures = new byte[10][];
 	private byte[][] divePictures = new byte[20][];

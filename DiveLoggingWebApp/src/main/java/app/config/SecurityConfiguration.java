@@ -1,3 +1,7 @@
+/*
+ * Spring security configuration 
+ */
+
 package app.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	http.csrf().disable();
     	
+    	// The following pages cannot be reached without logging in
     	http
     		.authorizeRequests()
     			.antMatchers(
@@ -29,6 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     					"/dive/uploadImages/**",
     					"/user/uploadUserImages/**").authenticated();
     	
+    	// The following pages are accessible WITHOUT authentication
         http
             .authorizeRequests()
                 .antMatchers(
@@ -64,6 +70,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /*
+     * Uses custom userService for authentication 
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
