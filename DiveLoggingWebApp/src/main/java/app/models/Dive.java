@@ -144,7 +144,6 @@ public class Dive {
 		this.description = description;
 	}
 	
-	// Id -----------------------------------------
 	public Long getId() {
         return id;
     }
@@ -152,9 +151,7 @@ public class Dive {
     public void setId(Long id) {
         this.id = id;
     }
-    // Id -----------------------------------------
     
-    // diveOwner -----------------------------------------
  	public User getDiveOwner() {
          return diveOwner;
     }
@@ -162,9 +159,7 @@ public class Dive {
 	public void setDiveOwner(User diveOwner) {
 	    this.diveOwner = diveOwner;
 	}
-	// diveOwner -----------------------------------------
  
-	// date -----------------------------------------
 	public LocalDate getDate() {
 	     return date;
 	}
@@ -172,9 +167,7 @@ public class Dive {
 	public void setDate(LocalDate date) {
 	     this.date = date;
 	}
-	// date -----------------------------------------
       
-	// startTime -----------------------------------------
 	public LocalTime getStartTime() {
 	     return startTime;
 	}
@@ -182,9 +175,7 @@ public class Dive {
 	public void setStartTime(LocalTime startTime) {
 	     this.startTime = startTime;
 	}
-	// startTime -----------------------------------------
 
-	// endTime -----------------------------------------
 	public LocalTime getEndTime() {
 	     return endTime;
 	}
@@ -192,9 +183,7 @@ public class Dive {
 	public void setEndTime(LocalTime endTime) {
 	     this.endTime = endTime;
 	}
-	// endTime -----------------------------------------
 	
-	// diveTimeLength -----------------------------------------
 	public Duration getDiveDuration() {
 	     return diveDuration;
 	}
@@ -202,7 +191,6 @@ public class Dive {
 	public void setDiveDuration(Duration diveDuration) {
 	     this.diveDuration = diveDuration;
 	}
-	// diveTimeLength -----------------------------------------
 
 	public double getLatitude() {
 		return latitude;

@@ -43,22 +43,29 @@ public class DBFileController {
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, 
     		@RequestParam("diveId") long diveId, @RequestParam("fileUse") String fileUse, 
     			Principal principal) {
+    	// Create new file
         DBFile dbFile = dbFileService.generateDBFile(file);
         
+        // Associate new file with logged in user
         User currentUser = userService.findByUsername(principal.getName());
         dbFile.setFileOwner(currentUser);
         dbFile.setFileUse(fileUse);
         
+        // If the file is part of a dive log, associate it with that dive log
         if(fileUse.equals("diveImage")) {
         	dbFile.setAssociatedDive(diveService.findById(diveId));
         }
         
+        // Save the file and associate with user 
         dbFileService.saveDBFile(dbFile);
         userService.save(currentUser);
 
         return new UploadFileResponse(dbFile.getFileName(),file.getContentType(), file.getSize());
     }
 	
+    /*
+     * This can be refactored to make use of the uploadFile method above 
+     */
 	@RequestMapping(value = {"/uploadSingleFile"}, method = RequestMethod.POST)
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, 
     		@RequestParam("fileUse") String fileUse, Principal principal) {

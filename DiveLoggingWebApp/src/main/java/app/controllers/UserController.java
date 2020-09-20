@@ -149,7 +149,6 @@ public class UserController{
 		return "user/find";
 	}
 	
-	// CURRENT ---------------------------------------------------------------------------
 	@RequestMapping(value = {"/find"}, method = RequestMethod.POST)
 	public String performUserQuery(@ModelAttribute("query") QueryDto query, Model model,
 			BindingResult result) {

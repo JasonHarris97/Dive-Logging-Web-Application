@@ -75,8 +75,7 @@ public class DiveController {
          
 		return "dive/query";
 	}
-	
-	// CURRENT ---------------------------------------------------------------------------
+
 	@RequestMapping(value = {"/query"}, method = RequestMethod.POST)
 	public String performDiveQuery(@ModelAttribute("query") QueryDto query, Model model,
 			BindingResult result) {
@@ -115,7 +114,6 @@ public class DiveController {
 		
 		return "dive/"+query.getSource();
 	}
-	// CURRENT ---------------------------------------------------------------------------
 	
 	@RequestMapping(value = "/view/{diveId}", method = RequestMethod.GET)
 	public String getDiveDetails(@PathVariable("diveId") String diveId, Model model) {

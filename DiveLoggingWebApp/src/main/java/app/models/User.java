@@ -1,5 +1,3 @@
-// SOURCE: https://www.codebyamir.com/blog/user-account-registration-with-spring-boot
-
 package app.models;
 
 import javax.persistence.*;
@@ -12,31 +10,31 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;//d
+    private Long id;
 
-    private String firstName;//d
+    private String firstName;
     
-    private String lastName;//d
+    private String lastName;
     
     private String fullName;
     
-    private String username;//d
+    private String username;
     
-    private String email;//d
+    private String email;
     
-    private String password;//d
+    private String password;
     
-    private String contactNumber;//d
+    private String contactNumber;
     
-    private String country;//d
+    private String country;
     
-    private String padiLevel;//d
+    private String padiLevel;
     
-    private String padiNo; //d
+    private String padiNo; 
     
-    private int noOfDives;//d
+    private int noOfDives;
     
-    private int noOfCountries;//d
+    private int noOfCountries;
     
     @OneToOne
 	private DBFile profilePicture;
